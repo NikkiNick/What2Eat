@@ -24,11 +24,9 @@ class WelcomeFragment : Fragment() {
         // Layout Binding
         val binding: FragmentWelcomeBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_welcome, container, false)
 
-        // Set Activity title
-        activity?.actionBar?.title = "Welcome"
-
         return binding.root
 
     }
+
 
 }
