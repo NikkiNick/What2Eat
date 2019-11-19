@@ -3,13 +3,13 @@ package android.com.what2eat.model
 class MaaltijdOnderdeel {
 
     var naam: String = ""
-    var producten = mutableListOf<Product>()
+    var ingredienten = mutableListOf<Ingredient>()
 
-    fun addProduct(product: Product){
-        this.producten.add(product)
+    fun addIngredient(ingredient: Ingredient){
+        this.ingredienten.add(ingredient)
     }
-    fun removeProduct(product: Product){
-        this.producten.remove(product)
+    fun removeIngredient(ingredient: Ingredient){
+        this.ingredienten.remove(ingredient)
     }
 
 }

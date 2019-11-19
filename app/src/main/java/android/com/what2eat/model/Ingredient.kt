@@ -1,6 +1,6 @@
 package android.com.what2eat.model
 
-class Product {
+class Ingredient {
 
     var naam: String = ""
     var hoeveelheid: Number = 0
