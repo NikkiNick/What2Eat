@@ -2,9 +2,9 @@ package android.com.what2eat.model
 
 class Maaltijd() {
 
-    lateinit var naam: String
+    var naam: String = ""
     var maaltijdOnderdelen = mutableListOf<MaaltijdOnderdeel>()
-    lateinit var score: Number
+    var score: Number = 0
 
     fun addMaaltijdOnderdeel(maaltijdOnderdeel: MaaltijdOnderdeel){
         this.maaltijdOnderdelen.add(maaltijdOnderdeel)

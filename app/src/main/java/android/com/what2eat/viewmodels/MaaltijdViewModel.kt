@@ -11,11 +11,14 @@ class MaaltijdViewModel(): ViewModel() {
     val maaltijd: LiveData<Maaltijd>
         get() = _maaltijd
 
-    fun setNaam(naam: String){
-        this._maaltijd.value!!.naam = naam
+    init{
+        this._maaltijd.value = Maaltijd()
     }
-    fun getNaam(): String{
-        return this._maaltijd.value!!.naam
+    fun setNaam(naam: String){
+        this._maaltijd.value?.naam = naam
+    }
+    fun getNaam(): String?{
+        return this._maaltijd.value?.naam
     }
 
 }
