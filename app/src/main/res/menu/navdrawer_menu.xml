@@ -3,5 +3,10 @@
 
     <item
         android:id="@+id/welcomeFragment"
+        android:icon="@mipmap/round_home_black_18dp"
         android:title="@string/welcome" />
+    <item
+        android:id="@+id/aboutFragment"
+        android:icon="@drawable/round_info_black_18"
+        android:title="@string/about" />
 </menu>
