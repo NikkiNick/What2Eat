@@ -8,19 +8,29 @@ import android.view.View
 import android.view.ViewGroup
 
 import android.com.what2eat.R
+import android.com.what2eat.databinding.FragmentAddMaaltijdStartBinding
+import androidx.databinding.DataBindingUtil
 
 /**
  * A simple [Fragment] subclass.
  */
 class AddMaaltijd_Start : Fragment() {
 
+    private lateinit var binding: FragmentAddMaaltijdStartBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_maaltijd__start, container, false)
+        this.binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_maaltijd__start, container, false)
+
+        this.binding.cancelButton.setOnClickListener {
+            activity!!.finish()
+        }
+
+        return this.binding.root
     }
+
 
 
 }
