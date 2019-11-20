@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/medium_margin"
-        tools:context=".fragments.AboutFragment">
+        tools:context=".activities.AddMaaltijdActivity">
 
-        <TextView
+        <fragment
+            android:id="@+id/myNavHostFragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/about" />
+            app:navGraph="@navigation/navigation_add_maaltijd"
+            app:defaultNavHost="true" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

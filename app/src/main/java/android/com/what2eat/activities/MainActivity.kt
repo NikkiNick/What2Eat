@@ -18,21 +18,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var appBarConfiguration: AppBarConfiguration
 
-    /**
-     * ======= onCreate() =======
-     * Called when MainActivity is created
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
-        /**
-         *  NAVIGATION
-         *  =================
-         *  - NavDrawer
-         *  - ActionBar
-         */
         val navController = this.findNavController(R.id.myNavHostFragment)
 
         drawerLayout = binding.drawerLayout
@@ -43,9 +33,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    /**
-     * ======= onSupportNavigateUp() =======
-     */
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.myNavHostFragment)
         return NavigationUI.navigateUp(navController, drawerLayout)
