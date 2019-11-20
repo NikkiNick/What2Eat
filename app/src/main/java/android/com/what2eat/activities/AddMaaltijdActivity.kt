@@ -4,6 +4,7 @@ import android.com.what2eat.R
 import android.com.what2eat.databinding.ActivityAddMaaltijdBinding
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.ActionBar
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -22,6 +23,8 @@ class AddMaaltijdActivity : AppCompatActivity() {
         val navController = findNavController(R.id.myNavHostFragment_AddMeal)
 
         NavigationUI.setupActionBarWithNavController(this, navController)
+        getSupportActionBar()!!.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM)
+        getSupportActionBar()!!.setCustomView(R.layout.actionbar_add_new_meal)
 
     }
 

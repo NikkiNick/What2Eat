@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import android.com.what2eat.R
+import android.com.what2eat.activities.MainActivity
 
 /**
  * About fragment
@@ -18,7 +19,9 @@ class AboutFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
+        val act = activity as MainActivity
+        act.setCustomActionBar("about")
         return inflater.inflate(R.layout.fragment_about, container, false)
     }
 

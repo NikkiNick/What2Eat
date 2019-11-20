@@ -14,7 +14,7 @@ import androidx.databinding.DataBindingUtil
 /**
  * A simple [Fragment] subclass.
  */
-class AddMaaltijd_Start : Fragment() {
+class AddMaaltijd_StartFragment : Fragment() {
 
     private lateinit var binding: FragmentAddMaaltijdStartBinding
 

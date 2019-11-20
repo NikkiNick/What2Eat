@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import android.com.what2eat.R
+import android.com.what2eat.activities.MainActivity
 import android.com.what2eat.databinding.FragmentWelcomeBinding
 import android.com.what2eat.model.Maaltijd
 import android.com.what2eat.viewmodels.MaaltijdViewModel
@@ -25,6 +26,9 @@ class WelcomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         this.binding = DataBindingUtil.inflate(inflater, R.layout.fragment_welcome, container, false)
+
+        val act = getActivity() as MainActivity
+        act.setCustomActionBar("welcome")
 
         return this.binding.root
 
