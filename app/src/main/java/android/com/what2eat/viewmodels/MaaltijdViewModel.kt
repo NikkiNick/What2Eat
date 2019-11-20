@@ -14,11 +14,5 @@ class MaaltijdViewModel(): ViewModel() {
     init{
         this._maaltijd.value = Maaltijd()
     }
-    fun setNaam(naam: String){
-        this._maaltijd.value?.naam = naam
-    }
-    fun getNaam(): String?{
-        return this._maaltijd.value?.naam
-    }
 
 }

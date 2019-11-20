@@ -7,4 +7,6 @@
     <string name="add_new_meal">Add new meal</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
+    <string name="name">name</string>
+    <string name="meal_parts">Meal parts</string>
 </resources>
