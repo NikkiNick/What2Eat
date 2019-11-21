@@ -36,6 +36,9 @@ class AddMaaltijd_StartFragment : Fragment() {
         this.binding.cancelButton.setOnClickListener {
             activity!!.finish()
         }
+        this.binding.saveButton.setOnClickListener {
+            activity!!.finish()
+        }
         return this.binding.root
     }
 
