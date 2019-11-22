@@ -9,4 +9,12 @@
     <string name="save">Save</string>
     <string name="name">name</string>
     <string name="meal_parts">Meal parts</string>
+
+    <string name="rating">Rating:</string>
+    <string name="rating0">None</string>
+    <string name="rating1">Very poor</string>
+    <string name="rating2">Poor</string>
+    <string name="rating3">Fair</string>
+    <string name="rating4">Good</string>
+    <string name="rating5">Excellent</string>
 </resources>

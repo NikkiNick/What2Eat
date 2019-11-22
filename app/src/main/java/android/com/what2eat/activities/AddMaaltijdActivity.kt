@@ -1,8 +1,10 @@
 package android.com.what2eat.activities
 
 import android.com.what2eat.R
+import android.com.what2eat.database.MaaltijdDatabase
 import android.com.what2eat.databinding.ActivityAddMaaltijdBinding
 import android.com.what2eat.viewmodels.MaaltijdViewModel
+import android.com.what2eat.viewmodels.MaaltijdViewModelFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
@@ -21,8 +23,10 @@ class AddMaaltijdActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         this.binding = DataBindingUtil.setContentView<ActivityAddMaaltijdBinding>(this, R.layout.activity_add_maaltijd)
-        this.viewModel = ViewModelProviders.of(this).get(MaaltijdViewModel::class.java)
-        viewModel.maaltijd.value?.naam = "test"
+        val application = requireNotNull(this).application
+        val dataSource = MaaltijdDatabase.getInstance(application).maaltijdDatabaseDao
+        val viewModelFactory = MaaltijdViewModelFactory(dataSource, application)
+        this.viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdViewModel::class.java)
 
         val navController = findNavController(R.id.myNavHostFragment_AddMeal)
 

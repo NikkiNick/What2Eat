@@ -5,13 +5,13 @@ import android.com.what2eat.database.MaaltijdDatabaseDao
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-class MaaltijdViewModelFactory(val dataSource: MaaltijdDatabaseDao, val application: Application
+class MaaltijdOverzichtViewModelFactory(val dataSource: MaaltijdDatabaseDao, val application: Application
 ) : ViewModelProvider.Factory {
 
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(MaaltijdViewModel::class.java)) {
-            return MaaltijdViewModel(dataSource, application) as T
+        if (modelClass.isAssignableFrom(MaaltijdOverzichtViewModel::class.java)) {
+            return MaaltijdOverzichtViewModel(dataSource, application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
 

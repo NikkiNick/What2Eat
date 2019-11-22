@@ -6,5 +6,13 @@
     <fragment
         android:id="@+id/addMaaltijd_Start"
         android:name="android.com.what2eat.fragments.AddMaaltijd.AddMaaltijd_StartFragment"
-        android:label="@string/add_new_meal" />
+        android:label="@string/add_new_meal" >
+        <action
+            android:id="@+id/action_addMaaltijd_Start_to_maaltijdOverzichtFragment"
+            app:destination="@id/maaltijdOverzichtFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/maaltijdOverzichtFragment2"
+        android:name="android.com.what2eat.fragments.MaaltijdOverzichtFragment"
+        android:label="MaaltijdOverzichtFragment" />
 </navigation>

@@ -17,10 +17,10 @@ interface MaaltijdDatabaseDao {
     fun delete(maaltijd: Maaltijd)
 
     @Query("SELECT * FROM table_maaltijden WHERE maaltijdId = :id")
-    fun get(id: Long): Maaltijd
+    fun get(id: Long): Maaltijd?
 
-    @Query("SELECT * FROM table_maaltijden")
-    fun getAll(): LiveData<List<Maaltijd>>
+    @Query("SELECT * FROM table_maaltijden ORDER BY maaltijdId DESC")
+    fun getAll(): List<Maaltijd>?
 
     @Query("DELETE FROM table_maaltijden")
     fun deleteAll()
