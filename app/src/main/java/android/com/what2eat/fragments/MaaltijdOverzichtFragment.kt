@@ -44,17 +44,7 @@ class MaaltijdOverzichtFragment : Fragment() {
         binding.setLifecycleOwner(this)
 
         viewModelFactory = MaaltijdOverzichtViewModelFactory(dataSource, application)
-        viewModel = ViewModelProviders.of(this.activity!!, viewModelFactory).get(MaaltijdOverzichtViewModel::class.java)
-
-        viewModel.maaltijden.observe(this, Observer{ lijst ->
-            Log.i("Aantal", "Changes observed")
-            lijst?.let{
-                val iter = lijst.iterator()
-                val str = StringBuilder()
-                iter.forEach { maaltijd ->  str.append(maaltijd.naam+"("+maaltijd.rating+") - ")}
-                binding.maaltijdenText.text = str.toString()
-            }
-        })
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdOverzichtViewModel::class.java)
 
         binding.maaltijden = viewModel
 
@@ -65,5 +55,23 @@ class MaaltijdOverzichtFragment : Fragment() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        Log.i("Observe", "Start observing maaltijden")
+        viewModel.maaltijden.observe(this, Observer{ lijst ->
+            Log.i("Aantal", "Changes observed")
+            lijst?.let{
+                val iter = lijst.iterator()
+                val str = StringBuilder()
+                iter.forEach { maaltijd ->  str.append(maaltijd.naam+"("+maaltijd.rating+") - ")}
+                binding.maaltijdenText.text = str.toString()
+            }
+        })
+    }
 
+    override fun onStop() {
+        super.onStop()
+        Log.i("Observe", "Stop observing maaltijden")
+        viewModel.maaltijden.removeObservers(this)
+    }
 }
