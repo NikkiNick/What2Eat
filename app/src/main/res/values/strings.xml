@@ -19,4 +19,6 @@
     <string name="rating3">Fair</string>
     <string name="rating4">Good</string>
     <string name="rating5">Excellent</string>
+    <string name="delete_all_meals">Delete all meals</string>
+    <string name="deletedAllMeals">Deleted all meals</string>
 </resources>

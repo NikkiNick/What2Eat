@@ -11,16 +11,13 @@ import android.com.what2eat.viewmodels.MaaltijdOverzichtViewModel
 import android.com.what2eat.viewmodels.MaaltijdOverzichtViewModelFactory
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.navArgs
 
 class MaaltijdOverzichtFragment : Fragment() {
 
@@ -41,8 +38,6 @@ class MaaltijdOverzichtFragment : Fragment() {
             it.findNavController().navigate(R.id.action_maaltijdOverzichtFragment_to_addMaaltijdActivity)
         }
 
-        binding.setLifecycleOwner(this)
-
         viewModelFactory = MaaltijdOverzichtViewModelFactory(dataSource, application)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdOverzichtViewModel::class.java)
 
@@ -51,15 +46,17 @@ class MaaltijdOverzichtFragment : Fragment() {
         val activity = getActivity() as MainActivity
         activity.setCustomActionBar("maaltijdoverzicht")
 
+        this.setHasOptionsMenu(true)
+
+        binding.setLifecycleOwner(this)
+
         return binding.root
 
     }
 
     override fun onStart() {
         super.onStart()
-        Log.i("Observe", "Start observing maaltijden")
         viewModel.maaltijden.observe(this, Observer{ lijst ->
-            Log.i("Aantal", "Changes observed")
             lijst?.let{
                 val iter = lijst.iterator()
                 val str = StringBuilder()
@@ -71,7 +68,26 @@ class MaaltijdOverzichtFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        Log.i("Observe", "Stop observing maaltijden")
         viewModel.maaltijden.removeObservers(this)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.maaltijdoverzicht_overflowmenu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.deleteAll_menuItem -> {
+                viewModel.clearMaaltijden()
+                Toast.makeText(
+                    application.applicationContext,
+                    resources.getString(R.string.deletedAllMeals),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 }
