@@ -38,7 +38,7 @@ class MaaltijdOverzichtFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_overzicht, container, false)
 
-        val adapter = MaaltijdAdapter()
+        val adapter = MaaltijdAdapter(this.context!!)
         binding.recyclerMaaltijden.adapter = adapter
         val itemDecor = DividerItemDecoration(context, HORIZONTAL)
         binding.recyclerMaaltijden.addItemDecoration(itemDecor)

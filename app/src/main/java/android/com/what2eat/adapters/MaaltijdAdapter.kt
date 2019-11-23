@@ -1,13 +1,17 @@
 import android.com.what2eat.R
 import android.com.what2eat.model.Maaltijd
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import java.text.SimpleDateFormat
+import java.util.*
 
-class MaaltijdAdapter: RecyclerView.Adapter<MaaltijdAdapter.ViewHolder>(){
+
+class MaaltijdAdapter(val context: Context): RecyclerView.Adapter<MaaltijdAdapter.ViewHolder>(){
     var data = listOf<Maaltijd>()
         set(value){ field = value
             notifyDataSetChanged()
@@ -18,6 +22,13 @@ class MaaltijdAdapter: RecyclerView.Adapter<MaaltijdAdapter.ViewHolder>(){
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         holder.maaltijd_naam.text = item.naam
+
+        if(item.dateLast != null){
+            val pattern = "dd-MM-yyyy"
+            val simpleDateFormat = SimpleDateFormat(pattern)
+            val date = simpleDateFormat.format(item.dateLast)
+            holder.maaltijd_lastDate.text = "${context.resources.getString(R.string.last_eaten)} ${date}"
+        }
         when(item.rating) {
             1 -> holder.maaltijd_rating1.setImageResource(android.R.drawable.star_big_on)
             2 -> {
@@ -58,5 +69,7 @@ class MaaltijdAdapter: RecyclerView.Adapter<MaaltijdAdapter.ViewHolder>(){
         val maaltijd_rating3: ImageView = itemView.findViewById(R.id.maaltijd_rating3)
         val maaltijd_rating4: ImageView = itemView.findViewById(R.id.maaltijd_rating4)
         val maaltijd_rating5: ImageView = itemView.findViewById(R.id.maaltijd_rating5)
+        val maaltijd_lastDate: TextView = itemView.findViewById(R.id.last_date)
+
     }
 }

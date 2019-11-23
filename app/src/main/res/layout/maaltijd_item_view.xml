@@ -37,16 +37,14 @@
     <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="@dimen/mini_margin"
+        android:layout_marginTop="4dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/maaltijd_naam"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/maaltijd_naam">
 
         <ImageView
             android:id="@+id/maaltijd_rating1"
@@ -54,8 +52,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/mini_margin"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/star_big_off"
-            android:contentDescription="@string/rating1"/>
+            android:contentDescription="@string/rating1"
+            app:srcCompat="@android:drawable/star_big_off" />
 
         <ImageView
             android:id="@+id/maaltijd_rating2"
@@ -63,8 +61,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/mini_margin"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/star_big_off"
-            android:contentDescription="@string/rating2"/>
+            android:contentDescription="@string/rating2"
+            app:srcCompat="@android:drawable/star_big_off" />
 
         <ImageView
             android:id="@+id/maaltijd_rating3"
@@ -72,8 +70,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/mini_margin"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/star_big_off"
-            android:contentDescription="@string/rating3"/>
+            android:contentDescription="@string/rating3"
+            app:srcCompat="@android:drawable/star_big_off" />
 
         <ImageView
             android:id="@+id/maaltijd_rating4"
@@ -81,8 +79,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/mini_margin"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/star_big_off"
-            android:contentDescription="@string/rating4"/>
+            android:contentDescription="@string/rating4"
+            app:srcCompat="@android:drawable/star_big_off" />
 
         <ImageView
             android:id="@+id/maaltijd_rating5"
@@ -90,7 +88,20 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/mini_margin"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/star_big_off"
-            android:contentDescription="@string/rating5"/>
+            android:contentDescription="@string/rating5"
+            app:srcCompat="@android:drawable/star_big_off" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/last_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/not_eaten_yet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
