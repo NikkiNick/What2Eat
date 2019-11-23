@@ -14,23 +14,13 @@
         android:layout_height="match_parent"
         tools:context=".fragments.MaaltijdOverzichtFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_maaltijden"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/medium_margin"
-            android:layout_marginEnd="@dimen/medium_margin">
-
-            <TextView
-                android:id="@+id/maaltijden_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/medium_margin"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_marginEnd="@dimen/medium_margin"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_meal_button"
@@ -38,7 +28,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
-            app:backgroundTint="#03A9F4"
             app:srcCompat="@mipmap/baseline_add_circle_black_48dp" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

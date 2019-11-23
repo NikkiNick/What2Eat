@@ -21,4 +21,7 @@
     <string name="rating5">Excellent</string>
     <string name="delete_all_meals">Delete all meals</string>
     <string name="deletedAllMeals">Deleted all meals</string>
+    <string name="confirmation_delete_title">Are you sure?</string>
+    <string name="confirmation_delete_content">By hitting OK you will permanently delete all your saved meals</string>
+    <string name="meal">Meal</string>
 </resources>

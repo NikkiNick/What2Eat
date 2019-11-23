@@ -1,4 +1,4 @@
-package android.com.what2eat.fragments.AddMaaltijd
+package android.com.what2eat.fragments
 
 
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import android.com.what2eat.R
+import android.com.what2eat.activities.MainActivity
 import android.com.what2eat.database.MaaltijdDatabase
 import android.com.what2eat.databinding.FragmentAddMaaltijdStartBinding
 import android.com.what2eat.viewmodels.MaaltijdViewModel
@@ -17,6 +18,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import android.content.Context.INPUT_METHOD_SERVICE
+import androidx.core.content.ContextCompat.getSystemService
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
+
 
 /**
  * A simple [Fragment] subclass.
@@ -33,15 +39,18 @@ class AddMaaltijd_StartFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val dataSource = MaaltijdDatabase.getInstance(application).maaltijdDatabaseDao
         val viewModelFactory = MaaltijdViewModelFactory(dataSource, application)
-        this.viewModel = ViewModelProviders.of(this.activity!!, viewModelFactory).get(MaaltijdViewModel::class.java)
+        this.viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdViewModel::class.java)
 
         this.binding.maaltijd = this.viewModel
 
         this.binding.setLifecycleOwner(this)
 
+        this.binding.maaltijdNaam.setOnFocusChangeListener { v, hasFocus ->
+            val imm = activity!!.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0)
+        }
         this.binding.cancelButton.setOnClickListener {
-            //findNavController().navigate(R.id.action_addMaaltijd_Start_to_maaltijdOverzichtFragment)
-            activity!!.finish()
+            findNavController().navigate(R.id.action_addMaaltijd_StartFragment_to_maaltijdOverzichtFragment)
         }
         this.binding.saveButton.setOnClickListener {
             this.viewModel.setNaam(binding.maaltijdNaam.text.toString())
@@ -51,11 +60,14 @@ class AddMaaltijd_StartFragment : Fragment() {
                 "${this.binding.maaltijdNaam.text.toString()} ${resources.getString(R.string.added)}",
                 Toast.LENGTH_LONG
             ).show()
-            activity!!.finish()
+            findNavController().navigate(R.id.action_addMaaltijd_StartFragment_to_maaltijdOverzichtFragment)
         }
         viewModel.changeRatingDisplay.observe(this, Observer{
             changeRatingDisplay(it)
         })
+
+        val act = activity as MainActivity
+        act.setCustomActionBar("add_new_meal")
 
         return this.binding.root
     }
