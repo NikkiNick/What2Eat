@@ -3,4 +3,20 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="welcome">Welcome</string>
     <string name="about">About</string>
+    <string name="my_meals">My meals</string>
+    <string name="add_new_meal">Add new meal</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="name">name</string>
+    <string name="meal_parts">Meal parts</string>
+
+    <string name="added">added</string>
+
+    <string name="rating">Rating:</string>
+    <string name="rating0">None</string>
+    <string name="rating1">Very poor</string>
+    <string name="rating2">Poor</string>
+    <string name="rating3">Fair</string>
+    <string name="rating4">Good</string>
+    <string name="rating5">Excellent</string>
 </resources>
