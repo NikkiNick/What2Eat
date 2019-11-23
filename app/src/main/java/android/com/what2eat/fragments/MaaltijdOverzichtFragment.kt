@@ -9,17 +9,18 @@ import android.com.what2eat.database.MaaltijdDatabaseDao
 import android.com.what2eat.databinding.FragmentMaaltijdOverzichtBinding
 import android.com.what2eat.viewmodels.MaaltijdOverzichtViewModel
 import android.com.what2eat.viewmodels.MaaltijdOverzichtViewModelFactory
-import android.com.what2eat.viewmodels.MaaltijdViewModel
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 
 class MaaltijdOverzichtFragment : Fragment() {
 
@@ -41,6 +42,7 @@ class MaaltijdOverzichtFragment : Fragment() {
         }
 
         binding.setLifecycleOwner(this)
+
         viewModelFactory = MaaltijdOverzichtViewModelFactory(dataSource, application)
         viewModel = ViewModelProviders.of(this.activity!!, viewModelFactory).get(MaaltijdOverzichtViewModel::class.java)
 
@@ -62,5 +64,6 @@ class MaaltijdOverzichtFragment : Fragment() {
         return binding.root
 
     }
+
 
 }

@@ -12,10 +12,10 @@ import android.com.what2eat.database.MaaltijdDatabase
 import android.com.what2eat.databinding.FragmentAddMaaltijdStartBinding
 import android.com.what2eat.viewmodels.MaaltijdViewModel
 import android.com.what2eat.viewmodels.MaaltijdViewModelFactory
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 
 /**
@@ -46,7 +46,12 @@ class AddMaaltijd_StartFragment : Fragment() {
         this.binding.saveButton.setOnClickListener {
             this.viewModel.setNaam(binding.maaltijdNaam.text.toString())
             this.viewModel.saveMaaltijd()
-            findNavController().navigate(R.id.action_addMaaltijd_Start_to_maaltijdOverzichtFragment)
+            Toast.makeText(
+                application.applicationContext,
+                "${this.binding.maaltijdNaam.text.toString()} ${resources.getString(R.string.added)}",
+                Toast.LENGTH_LONG
+            ).show()
+            activity!!.finish()
         }
         viewModel.changeRatingDisplay.observe(this, Observer{
             changeRatingDisplay(it)

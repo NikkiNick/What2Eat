@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileSdkVersion 29
@@ -38,8 +39,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     // Navigation
-    implementation "android.arch.navigation:navigation-fragment-ktx:$version_navigation"
-    implementation "android.arch.navigation:navigation-ui-ktx:$version_navigation"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.0.0-rc02'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.0.0-rc02'
 
     // Lifecycle Extentions implementation
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
@@ -53,7 +54,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
 
     // Room
-    implementation 'android.arch.persistence.room:rxjava2:2.2.1'
+    implementation 'androidx.room:room-rxjava2:2.0.0'
     implementation 'androidx.room:room-runtime:2.2.1'
     kapt 'androidx.room:room-compiler:2.2.1'
     implementation'androidx.room:room-ktx:2.2.1'

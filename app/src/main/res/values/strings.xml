@@ -10,6 +10,8 @@
     <string name="name">name</string>
     <string name="meal_parts">Meal parts</string>
 
+    <string name="added">added</string>
+
     <string name="rating">Rating:</string>
     <string name="rating0">None</string>
     <string name="rating1">Very poor</string>
