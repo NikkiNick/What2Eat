@@ -27,4 +27,5 @@
     <string name="last_eaten">Last eaten:</string>
     <string name="not_eaten_yet">Not eaten yet</string>
     <string name="ok">OK</string>
+    <string name="date_added">Date added</string>
 </resources>

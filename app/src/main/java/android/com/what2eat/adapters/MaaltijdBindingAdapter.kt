@@ -27,13 +27,24 @@ fun LinearLayout.setRating(maaltijd: Maaltijd){
     }
 }
 @BindingAdapter("maaltijd_date_lastEaten")
-fun TextView.setDateAdded(maaltijd: Maaltijd){
+fun TextView.setDateLastEaten(maaltijd: Maaltijd){
     maaltijd?.let {
         maaltijd.dateLast?.let {
             val pattern = "dd-MM-yyyy"
             val simpleDateFormat = SimpleDateFormat(pattern)
-            val date = simpleDateFormat.format(maaltijd.dateLast)
+            val date = simpleDateFormat.format(it)
             text = "${resources.getString(R.string.last_eaten)} ${date}"
+        }
+    }
+}
+@BindingAdapter("maaltijd_date_added")
+fun TextView.setDateAdded(maaltijd: Maaltijd){
+    maaltijd?.let {
+        maaltijd.dateAdded?.let {
+            val pattern = "dd-MM-yyyy"
+            val simpleDateFormat = SimpleDateFormat(pattern)
+            val date = simpleDateFormat.format(it)
+            text = "${resources.getString(R.string.date_added)}: ${date}"
         }
     }
 }
