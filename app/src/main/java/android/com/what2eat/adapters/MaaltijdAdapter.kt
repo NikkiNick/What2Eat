@@ -1,75 +1,55 @@
+package android.com.what2eat.adapters
+
 import android.com.what2eat.R
+import android.com.what2eat.databinding.MaaltijdItemViewBinding
 import android.com.what2eat.model.Maaltijd
 import android.content.Context
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
-import java.util.*
 
 
-class MaaltijdAdapter(val context: Context): RecyclerView.Adapter<MaaltijdAdapter.ViewHolder>(){
-    var data = listOf<Maaltijd>()
-        set(value){ field = value
-            notifyDataSetChanged()
-        }
-    override fun getItemCount(): Int {
-        return data.size
-    }
+class MaaltijdAdapter : ListAdapter<Maaltijd, MaaltijdAdapter.ViewHolder>(MaaltijdDiffCallback()){
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = data[position]
-        holder.maaltijd_naam.text = item.naam
-
-        if(item.dateLast != null){
-            val pattern = "dd-MM-yyyy"
-            val simpleDateFormat = SimpleDateFormat(pattern)
-            val date = simpleDateFormat.format(item.dateLast)
-            holder.maaltijd_lastDate.text = "${context.resources.getString(R.string.last_eaten)} ${date}"
-        }
-        when(item.rating) {
-            1 -> holder.maaltijd_rating1.setImageResource(android.R.drawable.star_big_on)
-            2 -> {
-                holder.maaltijd_rating1.setImageResource(android.R.drawable.star_big_on)
-                holder.maaltijd_rating2.setImageResource(android.R.drawable.star_big_on)
-            }
-            3 -> {
-                holder.maaltijd_rating1.setImageResource(android.R.drawable.star_big_on)
-                holder.maaltijd_rating2.setImageResource(android.R.drawable.star_big_on)
-                holder.maaltijd_rating3.setImageResource(android.R.drawable.star_big_on)
-            }
-            4 -> {
-                holder.maaltijd_rating1.setImageResource(android.R.drawable.star_big_on)
-                holder.maaltijd_rating2.setImageResource(android.R.drawable.star_big_on)
-                holder.maaltijd_rating3.setImageResource(android.R.drawable.star_big_on)
-                holder.maaltijd_rating4.setImageResource(android.R.drawable.star_big_on)
-            }
-            5 -> {
-                holder.maaltijd_rating1.setImageResource(android.R.drawable.star_big_on)
-                holder.maaltijd_rating2.setImageResource(android.R.drawable.star_big_on)
-                holder.maaltijd_rating3.setImageResource(android.R.drawable.star_big_on)
-                holder.maaltijd_rating4.setImageResource(android.R.drawable.star_big_on)
-                holder.maaltijd_rating5.setImageResource(android.R.drawable.star_big_on)
-            }
-
-        }
+        val item = getItem(position)
+        holder.bind(item)
 
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.maaltijd_item_view, parent, false)
-        return ViewHolder(view)
+        return ViewHolder.from(parent)
     }
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val maaltijd_naam: TextView = itemView.findViewById(R.id.maaltijd_naam)
-        val maaltijd_rating1: ImageView = itemView.findViewById(R.id.maaltijd_rating1)
-        val maaltijd_rating2: ImageView = itemView.findViewById(R.id.maaltijd_rating2)
-        val maaltijd_rating3: ImageView = itemView.findViewById(R.id.maaltijd_rating3)
-        val maaltijd_rating4: ImageView = itemView.findViewById(R.id.maaltijd_rating4)
-        val maaltijd_rating5: ImageView = itemView.findViewById(R.id.maaltijd_rating5)
-        val maaltijd_lastDate: TextView = itemView.findViewById(R.id.last_date)
 
+    class ViewHolder private constructor(val binding: MaaltijdItemViewBinding): RecyclerView.ViewHolder(binding.root){
+
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = MaaltijdItemViewBinding.inflate(layoutInflater, parent, false)
+                return ViewHolder(binding)
+            }
+        }
+
+        fun bind(item: Maaltijd) {
+            binding.maaltijd = item
+            binding.executePendingBindings()
+        }
+    }
+
+}
+class MaaltijdDiffCallback: DiffUtil.ItemCallback<Maaltijd>(){
+    override fun areItemsTheSame(oldItem: Maaltijd, newItem: Maaltijd): Boolean {
+        return oldItem.maaltijdId == newItem.maaltijdId
+    }
+    override fun areContentsTheSame(oldItem: Maaltijd, newItem: Maaltijd): Boolean {
+        return oldItem.equals(newItem)
     }
 }

@@ -1,10 +1,9 @@
 package android.com.what2eat.fragments
 
-
-import MaaltijdAdapter
 import android.app.Application
 import android.com.what2eat.R
 import android.com.what2eat.activities.MainActivity
+import android.com.what2eat.adapters.MaaltijdAdapter
 import android.com.what2eat.database.MaaltijdDatabase
 import android.com.what2eat.database.MaaltijdDatabaseDao
 import android.com.what2eat.databinding.FragmentMaaltijdOverzichtBinding
@@ -38,7 +37,7 @@ class MaaltijdOverzichtFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_overzicht, container, false)
 
-        val adapter = MaaltijdAdapter(this.context!!)
+        val adapter = MaaltijdAdapter()
         binding.recyclerMaaltijden.adapter = adapter
         val itemDecor = DividerItemDecoration(context, HORIZONTAL)
         binding.recyclerMaaltijden.addItemDecoration(itemDecor)
@@ -48,7 +47,9 @@ class MaaltijdOverzichtFragment : Fragment() {
         binding.maaltijden = viewModel
 
         viewModel.maaltijden.observe(this, Observer{ lijst ->
-                adapter.data = lijst
+                lijst?.let{
+                    adapter.submitList(lijst)
+                }
         })
 
         binding.addMealButton.setOnClickListener{
@@ -89,7 +90,7 @@ class MaaltijdOverzichtFragment : Fragment() {
         MaterialAlertDialogBuilder(context)
             .setTitle(R.string.confirmation_delete_title)
             .setMessage(R.string.confirmation_delete_content)
-            .setPositiveButton("Ok"){ dialog, num ->
+            .setPositiveButton(resources.getString(R.string.ok)){ dialog, num ->
                 viewModel.clearMaaltijden()
                 Toast.makeText(
                     application.applicationContext,
@@ -97,7 +98,7 @@ class MaaltijdOverzichtFragment : Fragment() {
                     Toast.LENGTH_LONG
                 ).show()
             }
-            .setNegativeButton("niet ok"){ dialog, num -> }
+            .setNegativeButton(resources.getString(R.string.cancel)){ dialog, num -> }
             .show()
 
     }

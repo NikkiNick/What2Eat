@@ -32,6 +32,7 @@ class Maaltijd() {
     init {
         dateAdded = Date()
     }
+
     /*
     fun addMaaltijdOnderdeel(maaltijdOnderdeel: MaaltijdOnderdeel){
         this.maaltijdOnderdelen.add(maaltijdOnderdeel)
@@ -40,6 +41,7 @@ class Maaltijd() {
         this.maaltijdOnderdelen.remove(maaltijdOnderdeel)
     }
      */
-
-
+    override fun equals(other: Any?): Boolean {
+        return super.equals(other)
+    }
 }
