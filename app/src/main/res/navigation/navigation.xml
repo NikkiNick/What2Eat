@@ -19,11 +19,17 @@
         android:name="android.com.what2eat.fragments.MaaltijdOverzichtFragment"
         android:label="@string/my_meals" >
         <action
-            android:id="@+id/action_maaltijdOverzichtFragment_to_addMaaltijdActivity"
-            app:destination="@id/addMaaltijdActivity" />
+            android:id="@+id/action_maaltijdOverzichtFragment_to_addMaaltijd_StartFragment"
+            app:destination="@id/addMaaltijd_StartFragment" />
     </fragment>
-    <activity
-        android:id="@+id/addMaaltijdActivity"
-        android:name="android.com.what2eat.activities.AddMaaltijdActivity"
-        android:label="AddMaaltijdActivity" />
+    <fragment
+        android:id="@+id/addMaaltijd_StartFragment"
+        android:name="android.com.what2eat.fragments.AddMaaltijd_StartFragment"
+        android:label="AddMaaltijd_StartFragment" >
+        <action
+            android:id="@+id/action_addMaaltijd_StartFragment_to_maaltijdOverzichtFragment"
+            app:destination="@id/maaltijdOverzichtFragment"
+            app:popUpTo="@+id/maaltijdOverzichtFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

@@ -40,7 +40,7 @@ class MaaltijdOverzichtViewModel(val database: MaaltijdDatabaseDao, application:
 
     fun clearMaaltijden(){
         uiScope.launch {
-            _maaltijden.value = null
+            _maaltijden.value = emptyList()
             clearAllMaaltijdenFromDatabase()
         }
     }
