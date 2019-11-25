@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_maaltijdOverzichtFragment_to_addMaaltijd_StartFragment"
             app:destination="@id/addMaaltijd_StartFragment" />
+        <action
+            android:id="@+id/action_maaltijdOverzichtFragment_to_maaltijdDetailFragment"
+            app:destination="@id/maaltijdDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/addMaaltijd_StartFragment"
@@ -31,5 +34,13 @@
             app:destination="@id/maaltijdOverzichtFragment"
             app:popUpTo="@+id/maaltijdOverzichtFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/maaltijdDetailFragment"
+        android:name="android.com.what2eat.fragments.MaaltijdDetailFragment"
+        android:label="MaaltijdDetailFragment" >
+        <argument
+            android:name="maaltijd_id"
+            app:argType="long" />
     </fragment>
 </navigation>

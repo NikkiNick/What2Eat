@@ -2,18 +2,15 @@ package android.com.what2eat.viewmodels
 
 import android.app.Application
 import android.com.what2eat.R
-import android.com.what2eat.database.MaaltijdDatabase
 import android.com.what2eat.database.MaaltijdDatabaseDao
 import android.com.what2eat.model.Maaltijd
-import android.content.res.Resources
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
 
-class MaaltijdViewModel(val db: MaaltijdDatabaseDao, application: Application): AndroidViewModel(application) {
+class MaaltijdDetailViewModel(val maaltijdId: Long, val db: MaaltijdDatabaseDao, application: Application): AndroidViewModel(application) {
     /*
     CoRoutine setup
      */
@@ -30,10 +27,6 @@ class MaaltijdViewModel(val db: MaaltijdDatabaseDao, application: Application): 
     /*
     Rating binding
      */
-    private var _changeRatingDisplay = MutableLiveData<Int>()
-    val changeRatingDisplay: LiveData<Int>
-        get() = _changeRatingDisplay
-
     val ratingStrings = listOf(
         application.applicationContext.getString(R.string.rating0),
         application.applicationContext.getString(R.string.rating1),
@@ -46,30 +39,20 @@ class MaaltijdViewModel(val db: MaaltijdDatabaseDao, application: Application): 
         get() = _ratingString
 
     init{
-        this._maaltijd.value = Maaltijd()
-        this._ratingString.value = ratingStrings.get(0)
-    }
-
-    fun setNaam(naam: String){
-        this._maaltijd.value?.naam = naam
-    }
-    fun setRating(rating: Int){
-        this._maaltijd.value?.rating = rating
-        this._changeRatingDisplay.value = rating
-        this._ratingString.value = ratingStrings.get(rating)
+        initializeMaaltijd()
     }
 
     /*
     Co-Routines
      */
-    fun saveMaaltijd(){
+    fun initializeMaaltijd(){
         uiScope.launch {
-            saveMaaltijdOnDatabase()
+            _maaltijd.value = getMaaltijdFromDatabase()
         }
     }
-    private suspend fun saveMaaltijdOnDatabase(){
+    private suspend fun getMaaltijdFromDatabase(): Maaltijd? {
         return withContext(Dispatchers.IO){
-            db.insert(_maaltijd.value!!)
+            db.get(maaltijdId)
         }
     }
 

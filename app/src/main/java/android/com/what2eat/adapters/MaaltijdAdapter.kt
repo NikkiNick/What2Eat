@@ -16,12 +16,10 @@ import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
 
 
-class MaaltijdAdapter : ListAdapter<Maaltijd, MaaltijdAdapter.ViewHolder>(MaaltijdDiffCallback()){
+class MaaltijdAdapter(val clickListener: MaaltijdListener) : ListAdapter<Maaltijd, MaaltijdAdapter.ViewHolder>(MaaltijdDiffCallback()){
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.bind(item)
-
+        holder.bind(getItem(position)!!, clickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,8 +36,9 @@ class MaaltijdAdapter : ListAdapter<Maaltijd, MaaltijdAdapter.ViewHolder>(Maalti
             }
         }
 
-        fun bind(item: Maaltijd) {
+        fun bind(item: Maaltijd, clickListener: MaaltijdListener) {
             binding.maaltijd = item
+            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
     }
@@ -52,4 +51,8 @@ class MaaltijdDiffCallback: DiffUtil.ItemCallback<Maaltijd>(){
     override fun areContentsTheSame(oldItem: Maaltijd, newItem: Maaltijd): Boolean {
         return oldItem.equals(newItem)
     }
+}
+
+class MaaltijdListener(val clickListener: (maaltijdId: Long) -> Unit) {
+    fun onClick(maaltijds: Maaltijd) = clickListener(maaltijds.maaltijdId)
 }

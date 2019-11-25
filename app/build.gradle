@@ -60,7 +60,7 @@ dependencies {
     implementation 'androidx.room:room-rxjava2:2.2.2'
     implementation 'androidx.room:room-runtime:2.2.2'
     kapt 'androidx.room:room-compiler:2.2.2'
-    implementation'androidx.room:room-ktx:2.2.2'
+    implementation 'androidx.room:room-ktx:2.2.2'
 
     // Co-routine
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0'

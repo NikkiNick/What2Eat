@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/maaltijdEditFragment"
+        android:title="@string/edit_meal" />
+    <item
+        android:id="@+id/delete_menuItem"
+        android:title="@string/delete_meal" />
+</menu>
