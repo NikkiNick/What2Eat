@@ -20,6 +20,7 @@ import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 
 /**
@@ -51,20 +52,15 @@ class MaaltijdDetailFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.maaltijd = viewModel
 
+        binding.editMealButton.setOnClickListener{
+            it.findNavController().navigate(MaaltijdDetailFragmentDirections.actionMaaltijdDetailFragmentToMaaltijdEditFragment(viewModel.maaltijdId))
+        }
+
         val act = activity as MainActivity
         act.setCustomActionBar("maaltijddetail")
 
-        setHasOptionsMenu(true)
         return binding.root
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.maaltijddetail_overflowmenu, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return NavigationUI.onNavDestinationSelected(item, view!!.findNavController()) || super.onOptionsItemSelected(item)
-    }
 
 }

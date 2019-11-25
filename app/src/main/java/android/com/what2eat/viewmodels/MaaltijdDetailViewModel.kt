@@ -17,16 +17,14 @@ class MaaltijdDetailViewModel(val maaltijdId: Long, val db: MaaltijdDatabaseDao,
     var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    /*
-    Main object binding
-     */
     private var _maaltijd = MutableLiveData<Maaltijd>()
     val maaltijd: LiveData<Maaltijd>
         get() = _maaltijd
 
-    /*
-    Rating binding
-     */
+    private var _changeRatingDisplay = MutableLiveData<Int>()
+    val changeRatingDisplay: LiveData<Int>
+        get() = _changeRatingDisplay
+
     val ratingStrings = listOf(
         application.applicationContext.getString(R.string.rating0),
         application.applicationContext.getString(R.string.rating1),
@@ -55,7 +53,34 @@ class MaaltijdDetailViewModel(val maaltijdId: Long, val db: MaaltijdDatabaseDao,
             db.get(maaltijdId)
         }
     }
-
+    fun saveMaaltijd(){
+        uiScope.launch {
+            saveMaaltijdToDatabase()
+        }
+    }
+    private suspend fun saveMaaltijdToDatabase(){
+        return withContext(Dispatchers.IO){
+            db.update(_maaltijd.value!!)
+        }
+    }
+    fun deleteMaaltijd(){
+        uiScope.launch {
+            deleteMaaltijdFromDatabase()
+        }
+    }
+    private suspend fun deleteMaaltijdFromDatabase(){
+        return withContext(Dispatchers.IO){
+            db.delete(_maaltijd.value!!)
+        }
+    }
+    fun setNaam(naam: String){
+        _maaltijd.value?.naam = naam
+    }
+    fun setRating(rating: Int){
+        _maaltijd.value?.rating = rating
+        _changeRatingDisplay.value = rating
+        _ratingString.value = ratingStrings.get(rating)
+    }
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()

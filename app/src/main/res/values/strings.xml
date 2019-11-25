@@ -23,6 +23,7 @@
     <string name="deletedAllMeals">Deleted all meals</string>
     <string name="confirmation_delete_title">Are you sure?</string>
     <string name="confirmation_delete_content">By hitting OK you will permanently delete all your saved meals</string>
+    <string name="confirmation_delete_meal_content">By hitting OK you will permanently delete this meal</string>
     <string name="meal">Meal</string>
     <string name="last_eaten">Last eaten:</string>
     <string name="not_eaten_yet">Not eaten yet</string>
@@ -30,4 +31,9 @@
     <string name="date_added">Date added</string>
     <string name="edit_meal">Edit meal</string>
     <string name="delete_meal">Delete meal</string>
+    <string name="my_meal">My meal</string>
+
+    <string name="rating_string_format">Rating: %s</string>
+    <string name="edited">edited</string>
+    <string name="deleted">deleted</string>
 </resources>
