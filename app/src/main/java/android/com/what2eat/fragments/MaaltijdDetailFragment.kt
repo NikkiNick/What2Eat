@@ -4,11 +4,9 @@ package android.com.what2eat.fragments
 import android.app.Application
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 
 import android.com.what2eat.R
+import android.com.what2eat.activities.MainActivity
 import android.com.what2eat.adapters.MaaltijdAdapter
 import android.com.what2eat.database.MaaltijdDatabase
 import android.com.what2eat.database.MaaltijdDatabaseDao
@@ -18,8 +16,11 @@ import android.com.what2eat.viewmodels.MaaltijdDetailViewModelFactory
 import android.com.what2eat.viewmodels.MaaltijdViewModel
 import android.com.what2eat.viewmodels.MaaltijdViewModelFactory
 import android.util.Log
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 
 /**
  * A simple [Fragment] subclass.
@@ -50,7 +51,20 @@ class MaaltijdDetailFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.maaltijd = viewModel
 
+        val act = activity as MainActivity
+        act.setCustomActionBar("maaltijddetail")
+
+        setHasOptionsMenu(true)
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.maaltijddetail_overflowmenu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return NavigationUI.onNavDestinationSelected(item, view!!.findNavController()) || super.onOptionsItemSelected(item)
     }
 
 }

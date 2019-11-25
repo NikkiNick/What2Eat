@@ -28,4 +28,6 @@
     <string name="not_eaten_yet">Not eaten yet</string>
     <string name="ok">OK</string>
     <string name="date_added">Date added</string>
+    <string name="edit_meal">Edit meal</string>
+    <string name="delete_meal">Delete meal</string>
 </resources>
