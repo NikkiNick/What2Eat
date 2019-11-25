@@ -4,6 +4,7 @@ import android.app.Application
 import android.com.what2eat.R
 import android.com.what2eat.activities.MainActivity
 import android.com.what2eat.adapters.MaaltijdAdapter
+import android.com.what2eat.adapters.MaaltijdListener
 import android.com.what2eat.database.MaaltijdDatabase
 import android.com.what2eat.database.MaaltijdDatabaseDao
 import android.com.what2eat.databinding.FragmentMaaltijdOverzichtBinding
@@ -19,6 +20,9 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import android.graphics.drawable.ClipDrawable.HORIZONTAL
+import android.util.Log
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
@@ -37,7 +41,9 @@ class MaaltijdOverzichtFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_overzicht, container, false)
 
-        val adapter = MaaltijdAdapter()
+        val adapter = MaaltijdAdapter(MaaltijdListener{
+                maaltijdId -> viewModel.onMaaltijdClicked(maaltijdId)
+        })
         binding.recyclerMaaltijden.adapter = adapter
         val itemDecor = DividerItemDecoration(context, HORIZONTAL)
         binding.recyclerMaaltijden.addItemDecoration(itemDecor)
@@ -51,7 +57,12 @@ class MaaltijdOverzichtFragment : Fragment() {
                     adapter.submitList(lijst)
                 }
         })
-
+        viewModel.navigateToMaaltijdDetail.observe(this, Observer{maaltijd ->
+            maaltijd?.let{
+                this.findNavController().navigate(MaaltijdOverzichtFragmentDirections.actionMaaltijdOverzichtFragmentToMaaltijdDetailFragment(maaltijd))
+                viewModel.onDetailNavigated()
+            }
+        })
         binding.addMealButton.setOnClickListener{
             it.findNavController().navigate(R.id.action_maaltijdOverzichtFragment_to_addMaaltijd_StartFragment)
         }

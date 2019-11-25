@@ -7,12 +7,16 @@
         <variable
             name="maaltijd"
             type="android.com.what2eat.model.Maaltijd" />
+        <variable
+            name="clickListener"
+            type="android.com.what2eat.adapters.MaaltijdListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:onClick="@{() -> clickListener.onClick(maaltijd)}">
 
         <ImageView
             android:id="@+id/imageView"

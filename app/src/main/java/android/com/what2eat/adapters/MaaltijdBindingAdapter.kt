@@ -10,24 +10,37 @@ import androidx.databinding.BindingAdapter
 import java.text.SimpleDateFormat
 
 @BindingAdapter("maaltijd_naam")
-fun TextView.setNaam(maaltijd: Maaltijd){
+fun TextView.setNaam(maaltijd: Maaltijd?){
     maaltijd?.let {
-        text = maaltijd.naam
+        text = it.naam
     }
 }
 @BindingAdapter("maaltijd_rating")
-fun LinearLayout.setRating(maaltijd: Maaltijd){
+fun LinearLayout.setRating(maaltijd: Maaltijd?){
     maaltijd?.let{
         var counter = 0
-        while(counter < maaltijd.rating) {
+        while(counter < it.rating) {
             val ratingImage = getChildAt(counter) as ImageView
             ratingImage.setImageResource(android.R.drawable.star_big_on)
             counter++
         }
     }
 }
+@BindingAdapter("maaltijd_ratingString")
+fun TextView.setRatingString(maaltijd: Maaltijd?){
+    maaltijd?.let{
+        val ratingStrings = listOf(
+            context.getString(R.string.rating0),
+            context.getString(R.string.rating1),
+            context.getString(R.string.rating2),
+            context.getString(R.string.rating3),
+            context.getString(R.string.rating4),
+            context.getString(R.string.rating5))
+        text = ratingStrings.get(it.rating)
+    }
+}
 @BindingAdapter("maaltijd_date_lastEaten")
-fun TextView.setDateLastEaten(maaltijd: Maaltijd){
+fun TextView.setDateLastEaten(maaltijd: Maaltijd?){
     maaltijd?.let {
         maaltijd.dateLast?.let {
             val pattern = "dd-MM-yyyy"
@@ -38,9 +51,9 @@ fun TextView.setDateLastEaten(maaltijd: Maaltijd){
     }
 }
 @BindingAdapter("maaltijd_date_added")
-fun TextView.setDateAdded(maaltijd: Maaltijd){
+fun TextView.setDateAdded(maaltijd: Maaltijd?){
     maaltijd?.let {
-        maaltijd.dateAdded?.let {
+        it.dateAdded?.let {
             val pattern = "dd-MM-yyyy"
             val simpleDateFormat = SimpleDateFormat(pattern)
             val date = simpleDateFormat.format(it)

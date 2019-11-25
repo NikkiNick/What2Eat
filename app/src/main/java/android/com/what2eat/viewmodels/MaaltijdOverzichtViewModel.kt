@@ -21,6 +21,20 @@ class MaaltijdOverzichtViewModel(val database: MaaltijdDatabaseDao, application:
     val maaltijden: LiveData<List<Maaltijd>>
         get() = _maaltijden
 
+    /*
+    Navigation to detail binding
+     */
+    private val _navigateToMaaltijdDetail = MutableLiveData<Long>()
+    val navigateToMaaltijdDetail
+        get() = _navigateToMaaltijdDetail
+
+    fun onMaaltijdClicked(id: Long){
+        _navigateToMaaltijdDetail.value = id
+    }
+    fun onDetailNavigated(){
+        _navigateToMaaltijdDetail.value = null
+    }
+
     init{
         initializeMaaltijden()
     }
