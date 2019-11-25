@@ -40,6 +40,8 @@ class MaaltijdOverzichtFragment : Fragment() {
         dataSource = MaaltijdDatabase.getInstance(application).maaltijdDatabaseDao
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_overzicht, container, false)
+        viewModelFactory = MaaltijdOverzichtViewModelFactory(dataSource, application)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdOverzichtViewModel::class.java)
 
         val adapter = MaaltijdAdapter(MaaltijdListener{
                 maaltijdId -> viewModel.onMaaltijdClicked(maaltijdId)
@@ -48,9 +50,8 @@ class MaaltijdOverzichtFragment : Fragment() {
         val itemDecor = DividerItemDecoration(context, HORIZONTAL)
         binding.recyclerMaaltijden.addItemDecoration(itemDecor)
 
-        viewModelFactory = MaaltijdOverzichtViewModelFactory(dataSource, application)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdOverzichtViewModel::class.java)
         binding.maaltijden = viewModel
+        viewModel.initMaaltijden()
 
         viewModel.maaltijden.observe(this, Observer{ lijst ->
                 lijst?.let{

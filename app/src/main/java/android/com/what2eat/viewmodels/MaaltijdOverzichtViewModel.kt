@@ -35,7 +35,7 @@ class MaaltijdOverzichtViewModel(val database: MaaltijdDatabaseDao, application:
         _navigateToMaaltijdDetail.value = null
     }
 
-    init{
+    fun initMaaltijden(){
         initializeMaaltijden()
     }
 
