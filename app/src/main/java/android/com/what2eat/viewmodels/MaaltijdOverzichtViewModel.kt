@@ -10,6 +10,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
+import java.util.*
 
 class MaaltijdOverzichtViewModel(val database: MaaltijdDatabaseDao, application: Application) : AndroidViewModel(application){
 
@@ -35,13 +36,22 @@ class MaaltijdOverzichtViewModel(val database: MaaltijdDatabaseDao, application:
         _navigateToMaaltijdDetail.value = null
     }
 
+    private val originalListMaaltijden: MutableList<Maaltijd> = mutableListOf()
+
+
     fun initMaaltijden(){
         initializeMaaltijden()
     }
-
+    fun filterMaaltijden(filter: String){
+        val filterString = filter.toLowerCase(Locale.ROOT).trim()
+        _maaltijden.value = mutableListOf()
+        _maaltijden.value = originalListMaaltijden.filter{maaltijd -> maaltijd.naam.contains(filterString)}
+    }
     private fun initializeMaaltijden() {
         uiScope.launch {
             _maaltijden.value = getAllMaaltijdenFromDatabase()
+            originalListMaaltijden.clear()
+            originalListMaaltijden.addAll(_maaltijden.value!!)
         }
     }
 

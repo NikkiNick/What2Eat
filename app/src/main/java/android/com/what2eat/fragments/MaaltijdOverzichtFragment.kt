@@ -10,20 +10,21 @@ import android.com.what2eat.database.MaaltijdDatabaseDao
 import android.com.what2eat.databinding.FragmentMaaltijdOverzichtBinding
 import android.com.what2eat.viewmodels.MaaltijdOverzichtViewModel
 import android.com.what2eat.viewmodels.MaaltijdOverzichtViewModelFactory
+import android.graphics.drawable.ClipDrawable.HORIZONTAL
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
-import android.graphics.drawable.ClipDrawable.HORIZONTAL
-import android.util.Log
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.android.synthetic.main.fragment_maaltijd_add.view.*
 
 
 class MaaltijdOverzichtFragment : Fragment() {
@@ -67,6 +68,17 @@ class MaaltijdOverzichtFragment : Fragment() {
         binding.addMealButton.setOnClickListener{
             it.findNavController().navigate(R.id.action_maaltijdOverzichtFragment_to_addMaaltijd_StartFragment)
         }
+        val searchView: SearchView = binding.searchView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean { // do something on text submit
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean { // do something when text changes
+                viewModel.filterMaaltijden(newText)
+                return false
+            }
+        })
 
         binding.setLifecycleOwner(this)
 
@@ -113,5 +125,11 @@ class MaaltijdOverzichtFragment : Fragment() {
             .setNegativeButton(resources.getString(R.string.cancel)){ dialog, num -> }
             .show()
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.searchView.setQuery("", false)
+        binding.searchView.clearFocus()
     }
 }
