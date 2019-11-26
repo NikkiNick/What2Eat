@@ -20,14 +20,18 @@
         android:label="@string/my_meals" >
         <action
             android:id="@+id/action_maaltijdOverzichtFragment_to_addMaaltijd_StartFragment"
-            app:destination="@id/addMaaltijd_StartFragment" />
+            app:destination="@id/addMaaltijd_StartFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_maaltijdOverzichtFragment_to_maaltijdDetailFragment"
-            app:destination="@id/maaltijdDetailFragment" />
+            app:destination="@id/maaltijdDetailFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/addMaaltijd_StartFragment"
-        android:name="android.com.what2eat.fragments.AddMaaltijd_StartFragment"
+        android:name="android.com.what2eat.fragments.MaaltijdAddFragment"
         android:label="AddMaaltijd_StartFragment" >
         <action
             android:id="@+id/action_addMaaltijd_StartFragment_to_maaltijdOverzichtFragment"
@@ -42,5 +46,28 @@
         <argument
             android:name="maaltijd_id"
             app:argType="long" />
+        <action
+            android:id="@+id/action_maaltijdDetailFragment_to_maaltijdEditFragment"
+            app:destination="@id/maaltijdEditFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/maaltijdEditFragment"
+        android:name="android.com.what2eat.fragments.MaaltijdEditFragment"
+        android:label="MaaltijdEditFragment" >
+        <argument
+            android:name="maaltijd_id"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_maaltijdEditFragment_to_maaltijdDetailFragment"
+            app:destination="@id/maaltijdDetailFragment"
+            app:popUpTo="@+id/maaltijdDetailFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_maaltijdEditFragment_to_maaltijdOverzichtFragment"
+            app:destination="@id/maaltijdOverzichtFragment"
+            app:popUpTo="@+id/maaltijdOverzichtFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

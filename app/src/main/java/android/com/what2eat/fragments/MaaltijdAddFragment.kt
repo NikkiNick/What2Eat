@@ -7,10 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
+
 import android.com.what2eat.R
 import android.com.what2eat.activities.MainActivity
 import android.com.what2eat.database.MaaltijdDatabase
-import android.com.what2eat.databinding.FragmentAddMaaltijdStartBinding
+import android.com.what2eat.databinding.FragmentMaaltijdAddBinding
 import android.com.what2eat.viewmodels.MaaltijdViewModel
 import android.com.what2eat.viewmodels.MaaltijdViewModelFactory
 import android.widget.Toast
@@ -19,23 +20,22 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import android.content.Context.INPUT_METHOD_SERVICE
-import androidx.core.content.ContextCompat.getSystemService
-import android.content.Context
+import android.view.Gravity
 import android.view.inputmethod.InputMethodManager
 
 
 /**
  * A simple [Fragment] subclass.
  */
-class AddMaaltijd_StartFragment : Fragment() {
+class MaaltijdAddFragment : Fragment() {
 
-    private lateinit var binding: FragmentAddMaaltijdStartBinding
+    private lateinit var binding: FragmentMaaltijdAddBinding
     private lateinit var viewModel: MaaltijdViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
-        this.binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_maaltijd__start, container, false)
+        this.binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_add, container, false)
         val application = requireNotNull(this.activity).application
         val dataSource = MaaltijdDatabase.getInstance(application).maaltijdDatabaseDao
         val viewModelFactory = MaaltijdViewModelFactory(dataSource, application)
@@ -49,17 +49,16 @@ class AddMaaltijd_StartFragment : Fragment() {
             val imm = activity!!.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0)
         }
-        this.binding.cancelButton.setOnClickListener {
-            findNavController().navigate(R.id.action_addMaaltijd_StartFragment_to_maaltijdOverzichtFragment)
-        }
-        this.binding.saveButton.setOnClickListener {
+
+        this.binding.addMealButton.setOnClickListener {
             this.viewModel.setNaam(binding.maaltijdNaam.text.toString())
             this.viewModel.saveMaaltijd()
-            Toast.makeText(
-                application.applicationContext,
-                "${this.binding.maaltijdNaam.text.toString()} ${resources.getString(R.string.added)}",
-                Toast.LENGTH_LONG
-            ).show()
+            val toast = Toast.makeText(
+                            application.applicationContext,
+                            "${this.binding.maaltijdNaam.text.toString()} ${resources.getString(R.string.added)}",
+                            Toast.LENGTH_LONG)
+            toast.setGravity(Gravity.CENTER,0,0)
+            toast.show()
             findNavController().navigate(R.id.action_addMaaltijd_StartFragment_to_maaltijdOverzichtFragment)
         }
         viewModel.changeRatingDisplay.observe(this, Observer{
