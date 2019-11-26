@@ -7,6 +7,10 @@
         android:title="@string/welcome" />
     <item
         android:id="@+id/aboutFragment"
-        android:icon="@drawable/round_info_black_18"
+        android:icon="@mipmap/round_info_black_18"
         android:title="@string/about" />
+    <item
+        android:id="@+id/maaltijdOverzichtFragment"
+        android:icon="@mipmap/baseline_fastfood_black_48dp"
+        android:title="@string/my_meals" />
 </menu>
