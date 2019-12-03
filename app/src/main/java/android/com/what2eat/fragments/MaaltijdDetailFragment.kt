@@ -14,7 +14,10 @@ import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.databinding.FragmentMaaltijdDetailBinding
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModel
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModelFactory
+import android.util.Log
 import android.view.*
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -58,9 +61,15 @@ class MaaltijdDetailFragment : Fragment() {
             it.findNavController().navigate(MaaltijdDetailFragmentDirections.actionMaaltijdDetailFragmentToMaaltijdEditFragment(viewModel.maaltijdId))
         }
         viewModel.maaltijdOnderdelen.observe(this, Observer {
-            val str = StringBuilder()
-            it?.forEach { mo -> str.append(mo.naam) }
-            binding.maaltijdonderdelenText.text = str
+            if(it?.size == 0){
+                binding.maaltijdOnderdelenTitleText.visibility = GONE
+                binding.maaltijdonderdelenText.text = resources.getString(R.string.no_mealparts_available)
+            } else {
+                binding.maaltijdOnderdelenTitleText.visibility = VISIBLE
+                val str = StringBuilder()
+                it?.forEach { mo -> str.append(mo.naam) }
+                binding.maaltijdonderdelenText.text = str
+            }
         })
         val act = activity as MainActivity
         act.setCustomActionBar("maaltijddetail")
