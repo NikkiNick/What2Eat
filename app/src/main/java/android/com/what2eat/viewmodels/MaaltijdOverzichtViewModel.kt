@@ -1,18 +1,15 @@
 package android.com.what2eat.viewmodels
 
 import android.app.Application
-import android.com.what2eat.database.MaaltijdDatabase
-import android.com.what2eat.database.MaaltijdDatabaseDao
+import android.com.what2eat.database.MaaltijdDao
 import android.com.what2eat.model.Maaltijd
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
 import java.util.*
 
-class MaaltijdOverzichtViewModel(val database: MaaltijdDatabaseDao, application: Application) : AndroidViewModel(application){
+class MaaltijdOverzichtViewModel(val database: MaaltijdDao, application: Application) : AndroidViewModel(application){
 
 
     var viewModelJob = Job()

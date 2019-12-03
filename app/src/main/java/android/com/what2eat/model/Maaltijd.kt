@@ -1,10 +1,7 @@
 package android.com.what2eat.model
 
 import android.com.what2eat.utils.DateConverter
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
+import androidx.room.*
 import java.sql.Time
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -23,7 +20,8 @@ class Maaltijd() {
     @ColumnInfo(name = "maaltijd_naam")
     var  naam: String = ""
 
-    //ar maaltijdOnderdelen = mutableListOf<MaaltijdOnderdeel>()
+    @Ignore
+    var maaltijdOnderdelen = mutableListOf<MaaltijdOnderdeel>()
 
     @ColumnInfo(name = "maaltijd_rating")
     var rating: Int = 0
@@ -34,15 +32,12 @@ class Maaltijd() {
     init {
         dateAdded = Date()
     }
-
-    /*
     fun addMaaltijdOnderdeel(maaltijdOnderdeel: MaaltijdOnderdeel){
         this.maaltijdOnderdelen.add(maaltijdOnderdeel)
     }
     fun removeMaaltijdOnderdeel(maaltijdOnderdeel: MaaltijdOnderdeel){
         this.maaltijdOnderdelen.remove(maaltijdOnderdeel)
     }
-     */
     override fun equals(other: Any?): Boolean {
         return super.equals(other)
     }
