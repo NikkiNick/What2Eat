@@ -63,7 +63,7 @@ class MaaltijdOverzichtFragment : Fragment() {
                 viewModel.onDetailNavigated()
             }
         })
-        binding.addMealButton.setOnClickListener{
+        binding.addMaaltijdButton.setOnClickListener{
             it.findNavController().navigate(R.id.action_maaltijdOverzichtFragment_to_addMaaltijd_StartFragment)
         }
         val searchView: SearchView = binding.searchView as SearchView

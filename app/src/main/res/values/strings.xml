@@ -38,4 +38,5 @@
     <string name="deleted">deleted</string>
     <string name="no_mealparts_available">No mealparts available</string>
     <string name="add_mealpart">Add mealpart</string>
+    <string name="meal_part">Meal part</string>
 </resources>

@@ -69,5 +69,12 @@
             app:destination="@id/maaltijdOverzichtFragment"
             app:popUpTo="@+id/maaltijdOverzichtFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_maaltijdEditFragment_to_maaltijdOnderdeelOverzichtFragment"
+            app:destination="@id/maaltijdOnderdeelOverzichtFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/maaltijdOnderdeelOverzichtFragment"
+        android:name="android.com.what2eat.fragments.MaaltijdOnderdeelOverzichtFragment"
+        android:label="MaaltijdOnderdeelOverzichtFragment" />
 </navigation>

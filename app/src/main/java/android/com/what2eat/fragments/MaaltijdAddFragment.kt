@@ -50,7 +50,7 @@ class MaaltijdAddFragment : Fragment() {
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0)
         }
 
-        this.binding.addMealButton.setOnClickListener {
+        this.binding.addMaaltijdButton.setOnClickListener {
             this.viewModel.setNaam(binding.maaltijdNaam.text.toString())
             this.viewModel.saveMaaltijd()
             val toast = Toast.makeText(

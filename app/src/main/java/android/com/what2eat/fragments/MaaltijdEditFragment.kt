@@ -23,6 +23,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 /**
@@ -74,6 +75,9 @@ class MaaltijdEditFragment : Fragment() {
             toast.setGravity(Gravity.CENTER,0,0)
             toast.show()
             it.findNavController().navigate(MaaltijdEditFragmentDirections.actionMaaltijdEditFragmentToMaaltijdDetailFragment(viewModel.maaltijdId))
+        }
+        binding.addMealpartButton.setOnClickListener {
+            it.findNavController().navigate(R.id.action_maaltijdEditFragment_to_maaltijdOnderdeelOverzichtFragment)
         }
         binding.deleteMealButton.setOnClickListener {
             MaterialAlertDialogBuilder(context)
