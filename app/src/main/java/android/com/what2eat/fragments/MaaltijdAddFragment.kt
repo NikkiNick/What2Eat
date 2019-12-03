@@ -37,7 +37,7 @@ class MaaltijdAddFragment : Fragment() {
         savedInstanceState: Bundle?): View? {
         this.binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_add, container, false)
         val application = requireNotNull(this.activity).application
-        val dataSource = MaaltijdDatabase.getInstance(application).maaltijdDatabaseDao
+        val dataSource = MaaltijdDatabase.getInstance(application).maaltijdDao
         val viewModelFactory = MaaltijdViewModelFactory(dataSource, application)
         this.viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdViewModel::class.java)
 
@@ -64,7 +64,9 @@ class MaaltijdAddFragment : Fragment() {
         viewModel.changeRatingDisplay.observe(this, Observer{
             changeRatingDisplay(it)
         })
-
+        viewModel.ratingString.observe(this, Observer{
+            binding.maaltijdRatingString.text = it
+        })
         val act = activity as MainActivity
         act.setCustomActionBar("add_new_meal")
 

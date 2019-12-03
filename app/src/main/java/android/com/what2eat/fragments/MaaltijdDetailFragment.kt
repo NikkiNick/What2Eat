@@ -7,21 +7,19 @@ import androidx.fragment.app.Fragment
 
 import android.com.what2eat.R
 import android.com.what2eat.activities.MainActivity
-import android.com.what2eat.adapters.MaaltijdAdapter
 import android.com.what2eat.database.MaaltijdDatabase
-import android.com.what2eat.database.MaaltijdDatabaseDao
+import android.com.what2eat.database.MaaltijdDao
+import android.com.what2eat.database.MaaltijdMaaltijdOnderdeelDao
+import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.databinding.FragmentMaaltijdDetailBinding
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModel
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModelFactory
-import android.com.what2eat.viewmodels.MaaltijdViewModel
-import android.com.what2eat.viewmodels.MaaltijdViewModelFactory
-import android.util.Log
 import android.view.*
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
+import java.lang.StringBuilder
 
 /**
  * A simple [Fragment] subclass.
@@ -32,13 +30,17 @@ class MaaltijdDetailFragment : Fragment() {
     private lateinit var viewModelFactory: MaaltijdDetailViewModelFactory
     private lateinit var viewModel: MaaltijdDetailViewModel
     private lateinit var application: Application
-    private lateinit var dataSource: MaaltijdDatabaseDao
+    private lateinit var maaaltijdDataSource: MaaltijdDao
+    private lateinit var maaltijdOnderdeelDataSource: MaaltijdOnderdeelDao
+    private lateinit var maaltijdMaaltijdOnderdeelDataSource: MaaltijdMaaltijdOnderdeelDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         application = requireNotNull(this.activity).application
-        dataSource = MaaltijdDatabase.getInstance(application).maaltijdDatabaseDao
+        maaaltijdDataSource = MaaltijdDatabase.getInstance(application).maaltijdDao
+        maaltijdOnderdeelDataSource = MaaltijdDatabase.getInstance(application).maaltijdOnderdeelDao
+        maaltijdMaaltijdOnderdeelDataSource = MaaltijdDatabase.getInstance(application).maaltijdMaaltijdOnderdeelDao
         val args = MaaltijdDetailFragmentArgs.fromBundle(arguments!!)
-        viewModelFactory = MaaltijdDetailViewModelFactory(args.maaltijdId, dataSource, application)
+        viewModelFactory = MaaltijdDetailViewModelFactory(args.maaltijdId, maaaltijdDataSource,maaltijdOnderdeelDataSource, maaltijdMaaltijdOnderdeelDataSource, application)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdDetailViewModel::class.java)
         super.onCreate(savedInstanceState)
     }
@@ -55,7 +57,11 @@ class MaaltijdDetailFragment : Fragment() {
         binding.editMealButton.setOnClickListener{
             it.findNavController().navigate(MaaltijdDetailFragmentDirections.actionMaaltijdDetailFragmentToMaaltijdEditFragment(viewModel.maaltijdId))
         }
-
+        viewModel.maaltijdOnderdelen.observe(this, Observer {
+            val str = StringBuilder()
+            it?.forEach { mo -> str.append(mo.naam) }
+            binding.maaltijdonderdelenText.text = str
+        })
         val act = activity as MainActivity
         act.setCustomActionBar("maaltijddetail")
 

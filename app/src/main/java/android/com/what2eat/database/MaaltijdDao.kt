@@ -1,11 +1,10 @@
 package android.com.what2eat.database
 
 import android.com.what2eat.model.Maaltijd
-import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
-interface MaaltijdDatabaseDao {
+interface MaaltijdDao {
 
     @Insert
     fun insert(maaltijd: Maaltijd)
@@ -16,6 +15,7 @@ interface MaaltijdDatabaseDao {
     @Delete
     fun delete(maaltijd: Maaltijd)
 
+    @Transaction
     @Query("SELECT * FROM table_maaltijden WHERE maaltijdId = :id")
     fun get(id: Long): Maaltijd?
 

@@ -2,18 +2,16 @@ package android.com.what2eat.viewmodels
 
 import android.app.Application
 import android.com.what2eat.R
-import android.com.what2eat.database.MaaltijdDatabase
-import android.com.what2eat.database.MaaltijdDatabaseDao
+import android.com.what2eat.database.MaaltijdDao
 import android.com.what2eat.model.Maaltijd
-import android.content.res.Resources
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
 
-class MaaltijdViewModel(val db: MaaltijdDatabaseDao, application: Application): AndroidViewModel(application) {
+class MaaltijdViewModel(val maaltijdDbSource: MaaltijdDao,
+                        application: Application)
+    : AndroidViewModel(application) {
     /*
     CoRoutine setup
      */
@@ -58,18 +56,17 @@ class MaaltijdViewModel(val db: MaaltijdDatabaseDao, application: Application): 
         this._changeRatingDisplay.value = rating
         this._ratingString.value = ratingStrings.get(rating)
     }
-
     /*
     Co-Routines
      */
     fun saveMaaltijd(){
         uiScope.launch {
-            saveMaaltijdOnDatabase()
+            saveMaaltijdToDatabase()
         }
     }
-    private suspend fun saveMaaltijdOnDatabase(){
+    private suspend fun saveMaaltijdToDatabase(){
         return withContext(Dispatchers.IO){
-            db.insert(_maaltijd.value!!)
+            maaltijdDbSource.insert(_maaltijd.value!!)
         }
     }
 
