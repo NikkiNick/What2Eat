@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         when(fragment){
             "welcome" -> supportActionBar?.setCustomView(R.layout.actionbar_welcome)
             "maaltijdoverzicht" -> supportActionBar?.setCustomView(R.layout.actionbar_my_meals)
+            "maaltijdonderdelenoverzicht" -> supportActionBar?.setCustomView(R.layout.actionbar_my_meal_parts)
             "about" -> supportActionBar?.setCustomView(R.layout.actionbar_about)
             "add_new_meal" -> supportActionBar?.setCustomView(R.layout.actionbar_add_new_meal)
             "maaltijddetail" -> supportActionBar?.setCustomView(R.layout.actionbar_my_meal)
