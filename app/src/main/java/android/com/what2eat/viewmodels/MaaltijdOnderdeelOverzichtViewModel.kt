@@ -1,16 +1,18 @@
 package android.com.what2eat.viewmodels
 
 import android.app.Application
+import android.com.what2eat.database.MaaltijdMaaltijdOnderdeelDao
 import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.model.Maaltijd
 import android.com.what2eat.model.MaaltijdOnderdeel
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
 import java.util.*
 
-class MaaltijdOnderdeelOverzichtViewModel(val database: MaaltijdOnderdeelDao, application: Application) : AndroidViewModel(application){
+class MaaltijdOnderdeelOverzichtViewModel(val maaltijdOnderdeelDbSource: MaaltijdOnderdeelDao, val maaltijdId: Long, application: Application) : AndroidViewModel(application){
 
 
     var viewModelJob = Job()
@@ -32,15 +34,15 @@ class MaaltijdOnderdeelOverzichtViewModel(val database: MaaltijdOnderdeelDao, ap
     }
     private fun initializeMaaltijdOnderdelen() {
         uiScope.launch {
-            _maaltijdOnderdelen.value = getAllMaaltijdOnderdelenFromDatabase()
+            _maaltijdOnderdelen.value = getAllMaaltijdOnderdelenNotFromMaaltijdFromDatabase()
             originalListMaaltijdOnderdelen.clear()
             originalListMaaltijdOnderdelen.addAll(_maaltijdOnderdelen.value!!)
         }
     }
 
-    private suspend fun getAllMaaltijdOnderdelenFromDatabase(): List<MaaltijdOnderdeel>?{
+    private suspend fun getAllMaaltijdOnderdelenNotFromMaaltijdFromDatabase(): List<MaaltijdOnderdeel>?{
         return withContext(Dispatchers.IO){
-            val maaltijdOnderdelen = database.getAll()
+            val maaltijdOnderdelen = maaltijdOnderdeelDbSource.getMaaltijdOnderdelenNietVanMaaltijd(maaltijdId)
             maaltijdOnderdelen
         }
     }

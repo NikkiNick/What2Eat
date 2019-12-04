@@ -6,6 +6,7 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "table_maaltijdMaaltijdOnderdeel",
+        primaryKeys = ["maaltijdId", "maaltijdOnderdeelId"],
         foreignKeys = [
             ForeignKey( entity = Maaltijd::class,
                         parentColumns = ["maaltijdId"],
@@ -15,7 +16,6 @@ import androidx.room.PrimaryKey
                         childColumns = ["maaltijdOnderdeelId"])
 ], indices = [Index("maaltijdOnderdeelId")])
 class MaaltijdMaaltijdOnderdeel(
-    @PrimaryKey
     var maaltijdId: Long,
     var maaltijdOnderdeelId: Long
 )

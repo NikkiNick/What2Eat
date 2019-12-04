@@ -22,6 +22,12 @@ interface MaaltijdOnderdeelDao {
     @Query("SELECT * FROM table_maaltijdonderdelen ORDER BY maaltijdOnderdeelId DESC")
     fun getAll(): List<MaaltijdOnderdeel>?
 
+    @Query("SELECT * FROM table_maaltijdonderdelen AS mo INNER JOIN table_maaltijdMaaltijdOnderdeel AS mmo ON mo.maaltijdOnderdeelId = mmo.maaltijdOnderdeelId WHERE mmo.maaltijdId = :maaltijdId")
+    fun getMaaltijdOnderdelenVanMaaltijd(maaltijdId: Long): List<MaaltijdOnderdeel>?
+
+    @Query("SELECT * FROM table_maaltijdonderdelen WHERE maaltijdOnderdeelId NOT IN (SELECT maaltijdOnderdeelId FROM table_maaltijdMaaltijdOnderdeel WHERE maaltijdId = :maaltijdId)")
+    fun getMaaltijdOnderdelenNietVanMaaltijd(maaltijdId: Long): List<MaaltijdOnderdeel>?
+
     @Query("DELETE FROM table_maaltijdonderdelen")
     fun deleteAll()
 }

@@ -7,6 +7,9 @@
         <variable
             name="maaltijdOnderdeel"
             type="android.com.what2eat.model.MaaltijdOnderdeel" />
+        <variable
+            name="clickListener"
+            type="android.com.what2eat.adapters.MaaltijdOnderdeelListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +19,7 @@
 
         <CheckBox
             android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
@@ -25,7 +28,8 @@
             tools:text="Maaltijdonderdeel naam"
             app:maaltijdOnderdeel_naam="@{maaltijdOnderdeel}"
             android:textSize="@dimen/medium_text"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:onClick="@{() -> clickListener.onClick(maaltijdOnderdeel)}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -7,7 +7,7 @@ import androidx.room.*
 @Dao
 interface MaaltijdMaaltijdOnderdeelDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(maaltijd: MaaltijdMaaltijdOnderdeel)
 
     @Update
@@ -16,6 +16,10 @@ interface MaaltijdMaaltijdOnderdeelDao {
     @Delete
     fun delete(maaltijd: MaaltijdMaaltijdOnderdeel)
 
-    @Query("SELECT * FROM table_maaltijdonderdelen AS mo INNER JOIN table_maaltijdMaaltijdOnderdeel AS mmo ON mo.maaltijdOnderdeelId = mmo.maaltijdOnderdeelId WHERE mmo.maaltijdId = :maaltijdId")
-    fun getMaaltijdOnderdelenVanMaaltijd(maaltijdId: Long): List<MaaltijdOnderdeel>?
+    @Query("SELECT * FROM table_maaltijdMaaltijdOnderdeel")
+    fun getAll(): List<MaaltijdMaaltijdOnderdeel>?
+
+    @Query("SELECT * FROM table_maaltijdMaaltijdOnderdeel WHERE maaltijdId = :maaltijdId")
+    fun getFromMaaltijd(maaltijdId: Long): List<MaaltijdMaaltijdOnderdeel>?
+
 }

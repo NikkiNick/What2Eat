@@ -59,6 +59,27 @@ class MaaltijdDetailViewModel(
         uiScope.launch {
             _maaltijd.value = getMaaltijdFromDatabase()
             _maaltijdOnderdelen.value = getMaaltijdOnderdelenFromDatabase()
+            var con = getAllConnections()
+            Log.i("TestN", "All connections: "+con.toString())
+            /*var mos = mutableListOf<MaaltijdOnderdeel>()
+            var mo1 = MaaltijdOnderdeel()
+            mo1.naam = "Onderdeel 2"
+            mos.add(mo1)
+            var mo2 = MaaltijdOnderdeel()
+            mo2.naam = "Onderdeel 3"
+            mos.add(mo2)
+            var mo3 = MaaltijdOnderdeel()
+            mo3.naam = "Onderdeel 4"
+            mos.add(mo3)
+            var mo4 = MaaltijdOnderdeel()
+            mo4.naam = "Onderdeel 5"
+            mos.add(mo4)
+            mos.forEach { mo -> addMO(mo) }*/
+        }
+    }
+    suspend fun addMO(mo: MaaltijdOnderdeel){
+        withContext(Dispatchers.IO){
+            maaltijdOnderdeelDbSource.insert(mo)
         }
     }
     fun saveMaaltijd(){
@@ -71,23 +92,34 @@ class MaaltijdDetailViewModel(
             deleteMaaltijdFromDatabase()
         }
     }
-    fun addMaaltijdOnderdeel(maaltijdOnderdeel: MaaltijdOnderdeel){
-        uiScope.launch {
-            addMaaltijdOnderdeelToDatabase(maaltijdOnderdeel)
+    suspend fun getAllConnections(): List<MaaltijdMaaltijdOnderdeel>?{
+        return withContext(Dispatchers.IO){
+            maaltijdMaaltijdOnderdeelDbSource.getAll()
         }
     }
-    private suspend fun addMaaltijdOnderdeelToDatabase(maaltijdOnderdeel: MaaltijdOnderdeel){
-        withContext(Dispatchers.IO){
-            val maaltijdOnderdeelId: Long = maaltijdOnderdeelDbSource.insert(maaltijdOnderdeel)
+    fun addMaaltijdOnderdeelToMaaltijd(maaltijdOnderdeelId: Long){
+        uiScope.launch {
+            var maaltijdOnderdeel = getMaaltijdOnderdeelFromDatabase(maaltijdOnderdeelId)
+            maaltijdOnderdeel?.let {
+                addMaaltijdOnderdeelToMaaltijdToDatabase(it.maaltijdOnderdeelId)
+            }
+        }
+    }
+    private suspend fun addMaaltijdOnderdeelToMaaltijdToDatabase(maaltijdOnderdeelId: Long){
+        withContext(Dispatchers.IO) {
             maaltijdMaaltijdOnderdeelDbSource.insert(MaaltijdMaaltijdOnderdeel(maaltijdId, maaltijdOnderdeelId))
+        }
+    }
+    private suspend fun getMaaltijdOnderdeelFromDatabase(id: Long): MaaltijdOnderdeel?{
+        return withContext(Dispatchers.IO){
+            maaltijdOnderdeelDbSource.get(id)
         }
     }
     private suspend fun getMaaltijdOnderdelenFromDatabase(): List<MaaltijdOnderdeel>? {
         return withContext(Dispatchers.IO){
-            maaltijdMaaltijdOnderdeelDbSource.getMaaltijdOnderdelenVanMaaltijd(maaltijdId)
+            maaltijdOnderdeelDbSource.getMaaltijdOnderdelenVanMaaltijd(maaltijdId)
         }
     }
-
     private suspend fun getMaaltijdFromDatabase(): Maaltijd? {
         return withContext(Dispatchers.IO){
             maaltijdDbSource.get(maaltijdId)

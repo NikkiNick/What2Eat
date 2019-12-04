@@ -1,9 +1,6 @@
 package android.com.what2eat.model
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 @Entity(tableName = "table_maaltijdonderdelen")
 class MaaltijdOnderdeel {
@@ -12,6 +9,8 @@ class MaaltijdOnderdeel {
     var maaltijdOnderdeelId: Long = 0L
     @ColumnInfo(name = "maaltijdOnderdeel_naam")
     var naam: String = ""
+    @Ignore
+    var isSelected: Boolean? = false
     /*
     var ingredienten = mutableListOf<Ingredient>()
 
