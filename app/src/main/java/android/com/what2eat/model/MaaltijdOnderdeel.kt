@@ -21,5 +21,7 @@ class MaaltijdOnderdeel {
         this.ingredienten.remove(ingredient)
     }
      */
-
+    override fun equals(other: Any?): Boolean {
+        return super.equals(other)
+    }
 }

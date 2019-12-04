@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import android.com.what2eat.R
 import android.com.what2eat.activities.MainActivity
 import android.com.what2eat.adapters.MaaltijdListener
-import android.com.what2eat.adapters.MaaltijdOnderdeelAdapter
+import android.com.what2eat.adapters.MaaltijdOnderdeelCheckBoxAdapter
 import android.com.what2eat.adapters.MaaltijdOnderdeelListener
 import android.com.what2eat.database.MaaltijdDatabase
 import android.com.what2eat.database.MaaltijdMaaltijdOnderdeelDao
@@ -43,13 +43,13 @@ class MaaltijdOnderdeelOverzichtFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_onderdeel_overzicht, container, false)
         val args = MaaltijdOnderdeelOverzichtFragmentArgs.fromBundle(arguments!!)
-        Log.i("TestN", "MaaltijdId "+args.maaltijdId+" selected")
+
         viewModelFactory = MaaltijdOnderdeelOverzichtViewModelFactory(dataSource, args.maaltijdId,  application)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdOnderdeelOverzichtViewModel::class.java)
 
         var tempCheckedIds = mutableListOf<Long>()
 
-        val adapter = MaaltijdOnderdeelAdapter(MaaltijdOnderdeelListener {
+        val adapter = MaaltijdOnderdeelCheckBoxAdapter(MaaltijdOnderdeelListener {
             if(tempCheckedIds.contains(it)){
                 tempCheckedIds.remove(it)
             }else {
@@ -63,7 +63,6 @@ class MaaltijdOnderdeelOverzichtFragment : Fragment() {
         val itemDecor = DividerItemDecoration(context, ClipDrawable.HORIZONTAL)
         binding.recyclerMaaltijdOnderdelen.addItemDecoration(itemDecor)
 
-        binding.maaltijdOnderdelen = viewModel
         viewModel.initMaaltijdOnderdelen()
 
         viewModel.maaltijdOnderdelen.observe(this, Observer{ lijst ->
