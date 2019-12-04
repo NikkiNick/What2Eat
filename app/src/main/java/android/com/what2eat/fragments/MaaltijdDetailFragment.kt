@@ -58,7 +58,7 @@ class MaaltijdDetailFragment : Fragment() {
         binding.maaltijd = viewModel
 
         binding.editMealButton.setOnClickListener{
-            it.findNavController().navigate(MaaltijdDetailFragmentDirections.actionMaaltijdDetailFragmentToMaaltijdEditFragment(viewModel.maaltijdId))
+            it.findNavController().navigate(MaaltijdDetailFragmentDirections.actionMaaltijdDetailFragmentToMaaltijdEditFragment(viewModel.maaltijdId, null))
         }
         viewModel.maaltijdOnderdelen.observe(this, Observer {
             if(it?.size == 0){
@@ -66,8 +66,11 @@ class MaaltijdDetailFragment : Fragment() {
                 binding.maaltijdonderdelenText.text = resources.getString(R.string.no_mealparts_available)
             } else {
                 binding.maaltijdOnderdelenTitleText.visibility = VISIBLE
-                val str = StringBuilder()
-                it?.forEach { mo -> str.append(mo.naam) }
+                Log.i("TestN", "Found "+it?.size+" mos" )
+                var str = ""
+                it?.forEach { mo ->
+                    str = str.plus(mo.naam)
+                }
                 binding.maaltijdonderdelenText.text = str
             }
         })

@@ -7,18 +7,25 @@ import androidx.fragment.app.Fragment
 
 import android.com.what2eat.R
 import android.com.what2eat.activities.MainActivity
+import android.com.what2eat.adapters.MaaltijdListener
 import android.com.what2eat.adapters.MaaltijdOnderdeelAdapter
+import android.com.what2eat.adapters.MaaltijdOnderdeelListener
 import android.com.what2eat.database.MaaltijdDatabase
+import android.com.what2eat.database.MaaltijdMaaltijdOnderdeelDao
 import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.databinding.FragmentMaaltijdOnderdeelOverzichtBinding
 import android.com.what2eat.viewmodels.MaaltijdOnderdeelOverzichtViewModel
 import android.com.what2eat.viewmodels.MaaltijdOnderdeelOverzichtViewModelFactory
+import android.com.what2eat.viewmodels.MaaltijdViewModel
+import android.com.what2eat.viewmodels.MaaltijdViewModelFactory
 import android.graphics.drawable.ClipDrawable
+import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 
 class MaaltijdOnderdeelOverzichtFragment : Fragment() {
@@ -35,10 +42,23 @@ class MaaltijdOnderdeelOverzichtFragment : Fragment() {
         dataSource = MaaltijdDatabase.getInstance(application).maaltijdOnderdeelDao
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_onderdeel_overzicht, container, false)
-        viewModelFactory = MaaltijdOnderdeelOverzichtViewModelFactory(dataSource, application)
+        val args = MaaltijdOnderdeelOverzichtFragmentArgs.fromBundle(arguments!!)
+        Log.i("TestN", "MaaltijdId "+args.maaltijdId+" selected")
+        viewModelFactory = MaaltijdOnderdeelOverzichtViewModelFactory(dataSource, args.maaltijdId,  application)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdOnderdeelOverzichtViewModel::class.java)
 
-        val adapter = MaaltijdOnderdeelAdapter()
+        var tempCheckedIds = mutableListOf<Long>()
+
+        val adapter = MaaltijdOnderdeelAdapter(MaaltijdOnderdeelListener {
+            if(tempCheckedIds.contains(it)){
+                tempCheckedIds.remove(it)
+            }else {
+                tempCheckedIds.add(it)
+            }
+        })
+        binding.addMaaltijdOnderdelenButton.setOnClickListener{
+            it.findNavController().navigate(MaaltijdOnderdeelOverzichtFragmentDirections.actionMaaltijdOnderdeelOverzichtFragmentToMaaltijdEditFragment(args.maaltijdId, tempCheckedIds.toLongArray()))
+        }
         binding.recyclerMaaltijdOnderdelen.adapter = adapter
         val itemDecor = DividerItemDecoration(context, ClipDrawable.HORIZONTAL)
         binding.recyclerMaaltijdOnderdelen.addItemDecoration(itemDecor)

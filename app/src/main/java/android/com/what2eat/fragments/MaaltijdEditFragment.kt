@@ -17,6 +17,7 @@ import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.databinding.FragmentMaaltijdEditBinding
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModel
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModelFactory
+import android.util.Log
 import android.view.Gravity
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -24,6 +25,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 /**
@@ -57,8 +59,28 @@ class MaaltijdEditFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_edit, container, false)
         binding.lifecycleOwner = this
+
+        val args = MaaltijdEditFragmentArgs.fromBundle(arguments!!)
+        args.addMaaltijdOnderdelenIds?.let {
+            it.forEach { mo ->
+                viewModel.addMaaltijdOnderdeelToMaaltijd(mo)
+            }
+        }
         binding.maaltijd = viewModel
 
+        viewModel.maaltijdOnderdelen.observe(this, Observer {
+            if(it?.size == 0){
+                binding.maaltijdOnderdelenTitleText.visibility = View.GONE
+                binding.maaltijdonderdelenText2.text = resources.getString(R.string.no_mealparts_available)
+            } else {
+                binding.maaltijdOnderdelenTitleText.visibility = View.VISIBLE
+                var str = ""
+                it?.forEach { mo ->
+                    str = str.plus(mo.naam)
+                }
+                binding.maaltijdonderdelenText2.text = str
+            }
+        })
         viewModel.changeRatingDisplay.observe(this, Observer{
             changeRatingDisplay(it)
         })
@@ -77,7 +99,7 @@ class MaaltijdEditFragment : Fragment() {
             it.findNavController().navigate(MaaltijdEditFragmentDirections.actionMaaltijdEditFragmentToMaaltijdDetailFragment(viewModel.maaltijdId))
         }
         binding.addMealpartButton.setOnClickListener {
-            it.findNavController().navigate(R.id.action_maaltijdEditFragment_to_maaltijdOnderdeelOverzichtFragment)
+            it.findNavController().navigate(MaaltijdEditFragmentDirections.actionMaaltijdEditFragmentToMaaltijdOnderdeelOverzichtFragment(viewModel.maaltijdId))
         }
         binding.deleteMealButton.setOnClickListener {
             MaterialAlertDialogBuilder(context)
