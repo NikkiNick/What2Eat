@@ -10,6 +10,9 @@ import android.view.ViewGroup
 
 import android.com.what2eat.R
 import android.com.what2eat.activities.MainActivity
+import android.com.what2eat.adapters.MaaltijdOnderdeelAdapter
+import android.com.what2eat.adapters.MaaltijdOnderdeelListener
+import android.com.what2eat.adapters.MaaltijdOnderdeelRemoveAdapter
 import android.com.what2eat.database.MaaltijdDatabase
 import android.com.what2eat.database.MaaltijdDao
 import android.com.what2eat.database.MaaltijdMaaltijdOnderdeelDao
@@ -17,8 +20,11 @@ import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.databinding.FragmentMaaltijdEditBinding
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModel
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModelFactory
+import android.graphics.drawable.ClipDrawable
 import android.util.Log
 import android.view.Gravity
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -26,6 +32,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 /**
@@ -62,23 +69,21 @@ class MaaltijdEditFragment : Fragment() {
 
         val args = MaaltijdEditFragmentArgs.fromBundle(arguments!!)
         args.addMaaltijdOnderdelenIds?.let {
-            it.forEach { mo ->
-                viewModel.addMaaltijdOnderdeelToMaaltijd(mo)
-            }
+            viewModel.addMaaltijdOnderdelenToMaaltijd(it)
         }
+        val adapter = MaaltijdOnderdeelRemoveAdapter(MaaltijdOnderdeelListener {
+            Log.i("TestN", "Asked to remove MaaltijdOnderdeel "+it.toString())
+            viewModel.removeMaaltijdOnderdeelFromMaaltijd(it)
+        })
+        binding.maaltijdOnderdelenRecycler.adapter = adapter
+        val itemDecor = DividerItemDecoration(context, ClipDrawable.HORIZONTAL)
+        binding.maaltijdOnderdelenRecycler.addItemDecoration(itemDecor)
+
         binding.maaltijd = viewModel
 
-        viewModel.maaltijdOnderdelen.observe(this, Observer {
-            if(it?.size == 0){
-                binding.maaltijdOnderdelenTitleText.visibility = View.GONE
-                binding.maaltijdonderdelenText2.text = resources.getString(R.string.no_mealparts_available)
-            } else {
-                binding.maaltijdOnderdelenTitleText.visibility = View.VISIBLE
-                var str = ""
-                it?.forEach { mo ->
-                    str = str.plus(mo.naam)
-                }
-                binding.maaltijdonderdelenText2.text = str
+        viewModel.maaltijdOnderdelen.observe(viewLifecycleOwner, Observer {lijst ->
+            lijst?.let {
+                adapter.submitList(it)
             }
         })
         viewModel.changeRatingDisplay.observe(this, Observer{
@@ -100,7 +105,7 @@ class MaaltijdEditFragment : Fragment() {
         }
         binding.addMealpartButton.setOnClickListener {
             it.findNavController().navigate(MaaltijdEditFragmentDirections.actionMaaltijdEditFragmentToMaaltijdOnderdeelOverzichtFragment(viewModel.maaltijdId))
-        }
+        }/*
         binding.deleteMealButton.setOnClickListener {
             MaterialAlertDialogBuilder(context)
                 .setTitle(R.string.confirmation_delete_title)
@@ -115,7 +120,7 @@ class MaaltijdEditFragment : Fragment() {
                 .setNegativeButton(resources.getString(R.string.cancel)){ dialog, num -> }
                 .show()
 
-        }
+        }*/
         val act = activity as MainActivity
         act.setCustomActionBar("edit_meal")
 

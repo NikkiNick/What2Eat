@@ -13,219 +13,210 @@
         android:layout_height="match_parent"
         tools:context=".fragments.MaaltijdEditFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/maaltijd_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:contentDescription="@string/meal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/dish" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:hint="@string/name"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/maaltijd_image">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/maaltijd_naam"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    app:maaltijd_edit_naam="@{maaltijd.maaltijd}"
-                    tools:text="Maaltijd naam" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <LinearLayout
-                android:id="@+id/rating_parent"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-                app:maaltijd_rating="@{maaltijd.maaltijd}">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/maaltijd_rating1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/mini_margin"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/rating1"
-                    android:onClick="@{() -> maaltijd.setRating(1)}"
-                    app:srcCompat="@android:drawable/star_big_off" />
+                    android:id="@+id/maaltijd_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:contentDescription="@string/meal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/dish" />
 
-                <ImageView
-                    android:id="@+id/maaltijd_rating2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/mini_margin"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/rating2"
-                    android:onClick="@{() -> maaltijd.setRating(2)}"
-                    app:srcCompat="@android:drawable/star_big_off" />
-
-                <ImageView
-                    android:id="@+id/maaltijd_rating3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/mini_margin"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/rating3"
-                    android:onClick="@{() -> maaltijd.setRating(3)}"
-                    app:srcCompat="@android:drawable/star_big_off" />
-
-                <ImageView
-                    android:id="@+id/maaltijd_rating4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/mini_margin"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/rating4"
-                    android:onClick="@{() -> maaltijd.setRating(4)}"
-                    app:srcCompat="@android:drawable/star_big_off" />
-
-                <ImageView
-                    android:id="@+id/maaltijd_rating5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/mini_margin"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/rating5"
-                    android:onClick="@{() -> maaltijd.setRating(5)}"
-                    app:srcCompat="@android:drawable/star_big_off" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ratingText_linear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rating_parent">
-
-                <TextView
-                    android:id="@+id/textView3"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:layout_weight="1"
-                    android:text="@string/rating" />
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:hint="@string/name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/maaltijd_image">
 
-                <TextView
-                    android:id="@+id/rating_text"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/maaltijd_naam"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        app:maaltijd_edit_naam="@{maaltijd.maaltijd}"
+                        tools:text="Maaltijd naam" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:id="@+id/rating_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+                    app:maaltijd_rating="@{maaltijd.maaltijd}">
+
+                    <ImageView
+                        android:id="@+id/maaltijd_rating1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/mini_margin"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/rating1"
+                        android:onClick="@{() -> maaltijd.setRating(1)}"
+                        app:srcCompat="@android:drawable/star_big_off" />
+
+                    <ImageView
+                        android:id="@+id/maaltijd_rating2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/mini_margin"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/rating2"
+                        android:onClick="@{() -> maaltijd.setRating(2)}"
+                        app:srcCompat="@android:drawable/star_big_off" />
+
+                    <ImageView
+                        android:id="@+id/maaltijd_rating3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/mini_margin"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/rating3"
+                        android:onClick="@{() -> maaltijd.setRating(3)}"
+                        app:srcCompat="@android:drawable/star_big_off" />
+
+                    <ImageView
+                        android:id="@+id/maaltijd_rating4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/mini_margin"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/rating4"
+                        android:onClick="@{() -> maaltijd.setRating(4)}"
+                        app:srcCompat="@android:drawable/star_big_off" />
+
+                    <ImageView
+                        android:id="@+id/maaltijd_rating5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/mini_margin"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/rating5"
+                        android:onClick="@{() -> maaltijd.setRating(5)}"
+                        app:srcCompat="@android:drawable/star_big_off" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ratingText_linear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    app:maaltijd_ratingString="@{maaltijd.maaltijd}"
-                    tools:text="Excellent" />
-            </LinearLayout>
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rating_parent">
 
-            <View
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginStart="@dimen/medium_margin"
-                android:layout_marginTop="@dimen/small_margin"
-                android:layout_marginEnd="@dimen/medium_margin"
-                android:background="#009688"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ratingText_linear" />
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
+                        android:text="@string/rating" />
 
-            <TextView
-                android:id="@+id/maaltijdOnderdelenTitle_Text"
-                style="@style/subtitle_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/meal_parts"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider" />
+                    <TextView
+                        android:id="@+id/rating_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        app:maaltijd_ratingString="@{maaltijd.maaltijd}"
+                        tools:text="Excellent" />
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/maaltijdonderdelen_text2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/no_mealparts_available"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/maaltijdOnderdelenTitle_Text"
-                tools:text="test" />
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:layout_marginEnd="@dimen/medium_margin"
+                    android:background="#009688"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ratingText_linear" />
+
+                <TextView
+                    android:id="@+id/maaltijdOnderdelenTitle_Text"
+                    style="@style/subtitle_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/meal_parts"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider" />
 
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/add_mealpart_button"
-                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/add_mealpart"
-                android:textColor="#FFFFFF"
-                app:backgroundTint="#8BC34A"
-                app:cornerRadius="20sp"
-                app:icon="@drawable/baseline_add_black_48"
-                app:iconSize="16dp"
-                app:iconTint="#FFFFFF"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/maaltijdonderdelen_text2" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/maaltijdOnderdelen_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/maaltijdOnderdelenTitle_Text">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/delete_meal_button"
-                style="@style/Widget.MaterialComponents.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="87dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:text="@string/delete_meal"
-                app:backgroundTint="#F44336"
-                app:cornerRadius="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/add_mealpart_button"
-                app:layout_constraintVertical_bias="1.0" />
+                </androidx.recyclerview.widget.RecyclerView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/add_mealpart_button"
+                    style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/add_mealpart"
+                    android:textColor="#FFFFFF"
+                    app:backgroundTint="#8BC34A"
+                    app:cornerRadius="20sp"
+                    app:icon="@drawable/baseline_add_black_48"
+                    app:iconSize="16dp"
+                    app:iconTint="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/maaltijdOnderdelen_recycler"
+                    app:layout_constraintVertical_bias="1.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/edit_meal_button"

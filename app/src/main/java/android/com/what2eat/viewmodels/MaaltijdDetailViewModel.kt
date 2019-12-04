@@ -90,22 +90,28 @@ class MaaltijdDetailViewModel(
             deleteMaaltijdFromDatabase()
         }
     }
-    fun addMaaltijdOnderdeelToMaaltijd(maaltijdOnderdeelId: Long){
+    fun addMaaltijdOnderdelenToMaaltijd(maaltijdOnderdeelIds: LongArray){
         uiScope.launch {
-            var maaltijdOnderdeel = getMaaltijdOnderdeelFromDatabase(maaltijdOnderdeelId)
-            maaltijdOnderdeel?.let {
-                addMaaltijdOnderdeelToMaaltijdToDatabase(it.maaltijdOnderdeelId)
+            maaltijdOnderdeelIds.forEach { id ->
+                addMaaltijdOnderdeelToMaaltijdToDatabase(id)
             }
+            initializeMaaltijd()
+        }
+    }
+    fun removeMaaltijdOnderdeelFromMaaltijd(maaltijdOnderdeelId: Long){
+        uiScope.launch {
+            removeMaaltijdOnderdeelFromMaaltijdFromDatabase(maaltijdOnderdeelId)
+        }
+    }
+    private suspend fun removeMaaltijdOnderdeelFromMaaltijdFromDatabase(maaltijdOnderdeelId: Long){
+        withContext(Dispatchers.IO){
+            maaltijdMaaltijdOnderdeelDbSource.delete(MaaltijdMaaltijdOnderdeel(maaltijdId, maaltijdOnderdeelId))
+            initializeMaaltijd()
         }
     }
     private suspend fun addMaaltijdOnderdeelToMaaltijdToDatabase(maaltijdOnderdeelId: Long){
         withContext(Dispatchers.IO) {
             maaltijdMaaltijdOnderdeelDbSource.insert(MaaltijdMaaltijdOnderdeel(maaltijdId, maaltijdOnderdeelId))
-        }
-    }
-    private suspend fun getMaaltijdOnderdeelFromDatabase(id: Long): MaaltijdOnderdeel?{
-        return withContext(Dispatchers.IO){
-            maaltijdOnderdeelDbSource.get(id)
         }
     }
     private suspend fun getMaaltijdOnderdelenFromDatabase(): List<MaaltijdOnderdeel>? {
