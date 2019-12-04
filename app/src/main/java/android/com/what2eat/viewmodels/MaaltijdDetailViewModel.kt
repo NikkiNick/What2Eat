@@ -48,19 +48,17 @@ class MaaltijdDetailViewModel(
     val ratingString: LiveData<String>
         get() = _ratingString
 
-    init{
-        initializeMaaltijd()
-    }
-
     /*
     Co-Routines
      */
-    fun initializeMaaltijd(){
+    init{
+        initializeMaaltijd()
+    }
+    private fun initializeMaaltijd(){
         uiScope.launch {
             _maaltijd.value = getMaaltijdFromDatabase()
             _maaltijdOnderdelen.value = getMaaltijdOnderdelenFromDatabase()
-            var con = getAllConnections()
-            Log.i("TestN", "All connections: "+con.toString())
+
             /*var mos = mutableListOf<MaaltijdOnderdeel>()
             var mo1 = MaaltijdOnderdeel()
             mo1.naam = "Onderdeel 2"
@@ -92,11 +90,6 @@ class MaaltijdDetailViewModel(
             deleteMaaltijdFromDatabase()
         }
     }
-    suspend fun getAllConnections(): List<MaaltijdMaaltijdOnderdeel>?{
-        return withContext(Dispatchers.IO){
-            maaltijdMaaltijdOnderdeelDbSource.getAll()
-        }
-    }
     fun addMaaltijdOnderdeelToMaaltijd(maaltijdOnderdeelId: Long){
         uiScope.launch {
             var maaltijdOnderdeel = getMaaltijdOnderdeelFromDatabase(maaltijdOnderdeelId)
@@ -126,12 +119,12 @@ class MaaltijdDetailViewModel(
         }
     }
     private suspend fun saveMaaltijdToDatabase(){
-        return withContext(Dispatchers.IO){
+        withContext(Dispatchers.IO){
             maaltijdDbSource.update(_maaltijd.value!!)
         }
     }
     private suspend fun deleteMaaltijdFromDatabase(){
-        return withContext(Dispatchers.IO){
+        withContext(Dispatchers.IO){
             maaltijdDbSource.delete(_maaltijd.value!!)
         }
     }
