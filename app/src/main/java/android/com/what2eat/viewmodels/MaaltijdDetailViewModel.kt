@@ -2,15 +2,23 @@ package android.com.what2eat.viewmodels
 
 import android.app.Application
 import android.com.what2eat.R
-import android.com.what2eat.database.MaaltijdDatabaseDao
+import android.com.what2eat.database.MaaltijdDao
+import android.com.what2eat.database.MaaltijdMaaltijdOnderdeelDao
+import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.model.Maaltijd
+import android.com.what2eat.model.MaaltijdMaaltijdOnderdeel
+import android.com.what2eat.model.MaaltijdOnderdeel
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.*
 import kotlinx.coroutines.*
 
-class MaaltijdDetailViewModel(val maaltijdId: Long, val db: MaaltijdDatabaseDao, application: Application): AndroidViewModel(application) {
+class MaaltijdDetailViewModel(
+    val maaltijdId: Long,
+    val maaltijdDbSource: MaaltijdDao,
+    val maaltijdOnderdeelDbSource: MaaltijdOnderdeelDao,
+    val maaltijdMaaltijdOnderdeelDbSource: MaaltijdMaaltijdOnderdeelDao,
+    application: Application)
+    : AndroidViewModel(application) {
     /*
     CoRoutine setup
      */
@@ -20,6 +28,10 @@ class MaaltijdDetailViewModel(val maaltijdId: Long, val db: MaaltijdDatabaseDao,
     private var _maaltijd = MutableLiveData<Maaltijd>()
     val maaltijd: LiveData<Maaltijd>
         get() = _maaltijd
+
+    private var _maaltijdOnderdelen = MutableLiveData<List<MaaltijdOnderdeel>?>()
+    val maaltijdOnderdelen: LiveData<List<MaaltijdOnderdeel>?>
+        get() = _maaltijdOnderdelen
 
     private var _changeRatingDisplay = MutableLiveData<Int>()
     val changeRatingDisplay: LiveData<Int>
@@ -36,21 +48,21 @@ class MaaltijdDetailViewModel(val maaltijdId: Long, val db: MaaltijdDatabaseDao,
     val ratingString: LiveData<String>
         get() = _ratingString
 
-    init{
-        initializeMaaltijd()
-    }
-
     /*
     Co-Routines
      */
-    fun initializeMaaltijd(){
+    init{
+        initializeMaaltijd()
+    }
+    private fun initializeMaaltijd(){
         uiScope.launch {
             _maaltijd.value = getMaaltijdFromDatabase()
+            _maaltijdOnderdelen.value = getMaaltijdOnderdelenFromDatabase()
         }
     }
-    private suspend fun getMaaltijdFromDatabase(): Maaltijd? {
-        return withContext(Dispatchers.IO){
-            db.get(maaltijdId)
+    suspend fun addMO(mo: MaaltijdOnderdeel){
+        withContext(Dispatchers.IO){
+            maaltijdOnderdeelDbSource.insert(mo)
         }
     }
     fun saveMaaltijd(){
@@ -58,19 +70,53 @@ class MaaltijdDetailViewModel(val maaltijdId: Long, val db: MaaltijdDatabaseDao,
             saveMaaltijdToDatabase()
         }
     }
-    private suspend fun saveMaaltijdToDatabase(){
-        return withContext(Dispatchers.IO){
-            db.update(_maaltijd.value!!)
-        }
-    }
     fun deleteMaaltijd(){
         uiScope.launch {
             deleteMaaltijdFromDatabase()
         }
     }
-    private suspend fun deleteMaaltijdFromDatabase(){
+    fun addMaaltijdOnderdelenToMaaltijd(maaltijdOnderdeelIds: LongArray){
+        uiScope.launch {
+            maaltijdOnderdeelIds.forEach { id ->
+                addMaaltijdOnderdeelToMaaltijdToDatabase(id)
+            }
+            initializeMaaltijd()
+        }
+    }
+    fun removeMaaltijdOnderdeelFromMaaltijd(maaltijdOnderdeelId: Long){
+        uiScope.launch {
+            removeMaaltijdOnderdeelFromMaaltijdFromDatabase(maaltijdOnderdeelId)
+        }
+    }
+    private suspend fun removeMaaltijdOnderdeelFromMaaltijdFromDatabase(maaltijdOnderdeelId: Long){
+        withContext(Dispatchers.IO){
+            maaltijdMaaltijdOnderdeelDbSource.delete(MaaltijdMaaltijdOnderdeel(maaltijdId, maaltijdOnderdeelId))
+            initializeMaaltijd()
+        }
+    }
+    private suspend fun addMaaltijdOnderdeelToMaaltijdToDatabase(maaltijdOnderdeelId: Long){
+        withContext(Dispatchers.IO) {
+            maaltijdMaaltijdOnderdeelDbSource.insert(MaaltijdMaaltijdOnderdeel(maaltijdId, maaltijdOnderdeelId))
+        }
+    }
+    private suspend fun getMaaltijdOnderdelenFromDatabase(): List<MaaltijdOnderdeel>? {
         return withContext(Dispatchers.IO){
-            db.delete(_maaltijd.value!!)
+            maaltijdOnderdeelDbSource.getMaaltijdOnderdelenVanMaaltijd(maaltijdId)
+        }
+    }
+    private suspend fun getMaaltijdFromDatabase(): Maaltijd? {
+        return withContext(Dispatchers.IO){
+            maaltijdDbSource.get(maaltijdId)
+        }
+    }
+    private suspend fun saveMaaltijdToDatabase(){
+        withContext(Dispatchers.IO){
+            maaltijdDbSource.update(_maaltijd.value!!)
+        }
+    }
+    private suspend fun deleteMaaltijdFromDatabase(){
+        withContext(Dispatchers.IO){
+            maaltijdDbSource.delete(_maaltijd.value!!)
         }
     }
     fun setNaam(naam: String){

@@ -97,13 +97,13 @@
                         android:textSize="@dimen/medium_text" />
 
                     <TextView
-                        android:id="@+id/textView2"
+                        android:id="@+id/maaltijd_ratingString"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/mini_margin"
-                        android:text="@{maaltijd.ratingString.toString()}"
                         android:textSize="@dimen/medium_text"
-                        tools:text="@string/rating0" />
+                        tools:text="@string/rating0"
+                        app:maaltijd_ratingString="@{ maaltijd.maaltijd }"/>
 
                 </LinearLayout>
 
@@ -161,7 +161,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/add_meal_button"
+            android:id="@+id/add_maaltijd_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"

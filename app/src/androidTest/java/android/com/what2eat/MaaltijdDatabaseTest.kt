@@ -1,9 +1,8 @@
 package android.com.what2eat
 
 import android.com.what2eat.database.MaaltijdDatabase
-import android.com.what2eat.database.MaaltijdDatabaseDao
+import android.com.what2eat.database.MaaltijdDao
 import android.com.what2eat.model.Maaltijd
-import androidx.lifecycle.LiveData
 import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
@@ -17,7 +16,7 @@ import java.io.IOException
 @RunWith(AndroidJUnit4::class)
 class MaaltijdDatabaseTest {
 
-    private lateinit var maaltijdDao: MaaltijdDatabaseDao
+    private lateinit var maaltijdDao: MaaltijdDao
     private lateinit var db: MaaltijdDatabase
 
     @Before
@@ -26,7 +25,7 @@ class MaaltijdDatabaseTest {
         db = Room.inMemoryDatabaseBuilder(context, MaaltijdDatabase::class.java)
                 .allowMainThreadQueries()
                 .build()
-        maaltijdDao = db.maaltijdDatabaseDao
+        maaltijdDao = db.maaltijdDao
     }
 
     @After
@@ -44,8 +43,8 @@ class MaaltijdDatabaseTest {
         maaltijd.maaltijdId = 1L
         maaltijdDao.deleteAll()
         maaltijdDao.insert(maaltijd)
-        val latest: Maaltijd = maaltijdDao.get(1L)
-        val actual = latest.naam
+        val latest: Maaltijd? = maaltijdDao.get(1L)
+        val actual = latest?.naam
         assertEquals(expected, actual)
     }
 }
