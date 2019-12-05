@@ -36,4 +36,8 @@
     <string name="rating_string_format">Rating: %s</string>
     <string name="edited">edited</string>
     <string name="deleted">deleted</string>
+    <string name="no_mealparts_available">No mealparts available</string>
+    <string name="add_mealpart">Add mealpart</string>
+    <string name="meal_part">Meal part</string>
+    <string name="remove">remove</string>
 </resources>

@@ -6,13 +6,14 @@ import android.com.what2eat.activities.MainActivity
 import android.com.what2eat.adapters.MaaltijdAdapter
 import android.com.what2eat.adapters.MaaltijdListener
 import android.com.what2eat.database.MaaltijdDatabase
-import android.com.what2eat.database.MaaltijdDatabaseDao
+import android.com.what2eat.database.MaaltijdDao
+import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.databinding.FragmentMaaltijdOverzichtBinding
+import android.com.what2eat.model.MaaltijdOnderdeel
 import android.com.what2eat.viewmodels.MaaltijdOverzichtViewModel
 import android.com.what2eat.viewmodels.MaaltijdOverzichtViewModelFactory
 import android.graphics.drawable.ClipDrawable.HORIZONTAL
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import android.widget.Toast
@@ -24,7 +25,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import kotlinx.android.synthetic.main.fragment_maaltijd_add.view.*
 
 
 class MaaltijdOverzichtFragment : Fragment() {
@@ -32,13 +32,13 @@ class MaaltijdOverzichtFragment : Fragment() {
     private lateinit var binding: FragmentMaaltijdOverzichtBinding
     private lateinit var viewModelFactory: MaaltijdOverzichtViewModelFactory
     private lateinit var viewModel: MaaltijdOverzichtViewModel
-    private lateinit var dataSource: MaaltijdDatabaseDao
+    private lateinit var dataSource: MaaltijdDao
     private lateinit var application: Application
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         application = requireNotNull(this.activity).application
-        dataSource = MaaltijdDatabase.getInstance(application).maaltijdDatabaseDao
+        dataSource = MaaltijdDatabase.getInstance(application).maaltijdDao
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_overzicht, container, false)
         viewModelFactory = MaaltijdOverzichtViewModelFactory(dataSource, application)
@@ -65,7 +65,7 @@ class MaaltijdOverzichtFragment : Fragment() {
                 viewModel.onDetailNavigated()
             }
         })
-        binding.addMealButton.setOnClickListener{
+        binding.addMaaltijdButton.setOnClickListener{
             it.findNavController().navigate(R.id.action_maaltijdOverzichtFragment_to_addMaaltijd_StartFragment)
         }
         val searchView: SearchView = binding.searchView as SearchView
@@ -108,7 +108,6 @@ class MaaltijdOverzichtFragment : Fragment() {
         }
         return super.onOptionsItemSelected(item)
     }
-
     private fun deleteMaaltijden(){
 
         MaterialAlertDialogBuilder(context)
