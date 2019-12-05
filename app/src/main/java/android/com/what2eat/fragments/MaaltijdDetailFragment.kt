@@ -2,35 +2,36 @@ package android.com.what2eat.fragments
 
 
 import android.app.Application
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-
 import android.com.what2eat.R
 import android.com.what2eat.activities.MainActivity
-import android.com.what2eat.adapters.MaaltijdAdapter
 import android.com.what2eat.adapters.MaaltijdOnderdeelAdapter
-import android.com.what2eat.adapters.MaaltijdOnderdeelCheckBoxAdapter
-import android.com.what2eat.adapters.MaaltijdOnderdeelListener
-import android.com.what2eat.database.MaaltijdDatabase
 import android.com.what2eat.database.MaaltijdDao
+import android.com.what2eat.database.MaaltijdDatabase
 import android.com.what2eat.database.MaaltijdMaaltijdOnderdeelDao
 import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.databinding.FragmentMaaltijdDetailBinding
-import android.com.what2eat.model.Maaltijd
-import android.com.what2eat.model.MaaltijdOnderdeel
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModel
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModelFactory
+import android.content.Context
+import android.graphics.Canvas
 import android.graphics.drawable.ClipDrawable
+import android.graphics.drawable.Drawable
+import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
-import java.lang.StringBuilder
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ItemDecoration
+
 
 /**
  * A simple [Fragment] subclass.
@@ -64,6 +65,7 @@ class MaaltijdDetailFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_detail, container, false)
 
         val adapter = MaaltijdOnderdeelAdapter()
+
         binding.maaltijdOnderdelenRecyclerView.adapter = adapter
         val itemDecor = DividerItemDecoration(context, ClipDrawable.HORIZONTAL)
         binding.maaltijdOnderdelenRecyclerView.addItemDecoration(itemDecor)
@@ -76,11 +78,9 @@ class MaaltijdDetailFragment : Fragment() {
             lijst?.let {
                 Log.i("TestN", "Aantal onderdelen:"+it.size)
                 if(lijst.size == 0){
-                    binding.divider.visibility = GONE
                     binding.maaltijdOnderdelenTitleText.visibility = GONE
-                    //binding.maaltijdOnderdelenRecyclerView.visibility = GONE
+                    binding.maaltijdOnderdelenRecyclerView.visibility = GONE
                 }else {
-                    binding.divider.visibility = VISIBLE
                     binding.maaltijdOnderdelenTitleText.visibility = VISIBLE
                     binding.maaltijdOnderdelenRecyclerView.visibility = VISIBLE
                     adapter.submitList(it)
@@ -95,6 +95,5 @@ class MaaltijdDetailFragment : Fragment() {
 
         return binding.root
     }
-
 
 }

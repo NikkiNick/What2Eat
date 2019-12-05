@@ -7,7 +7,9 @@ import android.com.what2eat.adapters.MaaltijdAdapter
 import android.com.what2eat.adapters.MaaltijdListener
 import android.com.what2eat.database.MaaltijdDatabase
 import android.com.what2eat.database.MaaltijdDao
+import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.databinding.FragmentMaaltijdOverzichtBinding
+import android.com.what2eat.model.MaaltijdOnderdeel
 import android.com.what2eat.viewmodels.MaaltijdOverzichtViewModel
 import android.com.what2eat.viewmodels.MaaltijdOverzichtViewModelFactory
 import android.graphics.drawable.ClipDrawable.HORIZONTAL
@@ -106,7 +108,6 @@ class MaaltijdOverzichtFragment : Fragment() {
         }
         return super.onOptionsItemSelected(item)
     }
-
     private fun deleteMaaltijden(){
 
         MaterialAlertDialogBuilder(context)

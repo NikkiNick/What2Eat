@@ -39,7 +39,16 @@ class MaaltijdOnderdeelOverzichtViewModel(val maaltijdOnderdeelDbSource: Maaltij
             originalListMaaltijdOnderdelen.addAll(_maaltijdOnderdelen.value!!)
         }
     }
-
+    fun addMO(maaltijdOnderdeel: List<MaaltijdOnderdeel>){
+        uiScope.launch {
+            maaltijdOnderdeel.forEach { mo -> addMODatabase(mo) }
+        }
+    }
+    private suspend fun addMODatabase(maaltijdOnderdeel: MaaltijdOnderdeel){
+        withContext(Dispatchers.IO){
+            maaltijdOnderdeelDbSource.insert(maaltijdOnderdeel)
+        }
+    }
     private suspend fun getAllMaaltijdOnderdelenNotFromMaaltijdFromDatabase(): List<MaaltijdOnderdeel>?{
         return withContext(Dispatchers.IO){
             val maaltijdOnderdelen = maaltijdOnderdeelDbSource.getMaaltijdOnderdelenNietVanMaaltijd(maaltijdId)

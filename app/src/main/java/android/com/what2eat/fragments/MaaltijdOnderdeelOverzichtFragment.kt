@@ -14,6 +14,7 @@ import android.com.what2eat.database.MaaltijdDatabase
 import android.com.what2eat.database.MaaltijdMaaltijdOnderdeelDao
 import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.databinding.FragmentMaaltijdOnderdeelOverzichtBinding
+import android.com.what2eat.model.MaaltijdOnderdeel
 import android.com.what2eat.viewmodels.MaaltijdOnderdeelOverzichtViewModel
 import android.com.what2eat.viewmodels.MaaltijdOnderdeelOverzichtViewModelFactory
 import android.com.what2eat.viewmodels.MaaltijdViewModel
@@ -47,7 +48,7 @@ class MaaltijdOnderdeelOverzichtFragment : Fragment() {
         viewModelFactory = MaaltijdOnderdeelOverzichtViewModelFactory(dataSource, args.maaltijdId,  application)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdOnderdeelOverzichtViewModel::class.java)
 
-        var tempCheckedIds = mutableListOf<Long>()
+        val tempCheckedIds = mutableListOf<Long>()
 
         val adapter = MaaltijdOnderdeelCheckBoxAdapter(MaaltijdOnderdeelListener {
             if(tempCheckedIds.contains(it)){
@@ -82,6 +83,7 @@ class MaaltijdOnderdeelOverzichtFragment : Fragment() {
             }
         })
 
+        this.setHasOptionsMenu(true)
         binding.setLifecycleOwner(this)
 
         val activity = getActivity() as MainActivity
@@ -89,6 +91,17 @@ class MaaltijdOnderdeelOverzichtFragment : Fragment() {
 
         return binding.root
 
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.maaltijdonderdelenoverzicht_overflow, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.add_mocks -> addMaaltijdOnderdelenMocks()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroy() {
@@ -100,5 +113,39 @@ class MaaltijdOnderdeelOverzichtFragment : Fragment() {
         super.onStart()
         binding.searchView.setQuery("", false)
         binding.searchView.clearFocus()
+    }
+    private fun addMaaltijdOnderdelenMocks() {
+        val mos = mutableListOf<MaaltijdOnderdeel>()
+        val mo0 = MaaltijdOnderdeel()
+        mo0.naam = "Onderdeel 1"
+        mos.add(mo0)
+        val mo1 = MaaltijdOnderdeel()
+        mo1.naam = "Onderdeel 2"
+        mos.add(mo1)
+        val mo2 = MaaltijdOnderdeel()
+        mo2.naam = "Onderdeel 3"
+        mos.add(mo2)
+        val mo3 = MaaltijdOnderdeel()
+        mo3.naam = "Onderdeel 4"
+        mos.add(mo3)
+        val mo4 = MaaltijdOnderdeel()
+        mo4.naam = "Onderdeel 5"
+        mos.add(mo4)
+        val mo5 = MaaltijdOnderdeel()
+        mo5.naam = "Onderdeel 6"
+        mos.add(mo5)
+        val mo6 = MaaltijdOnderdeel()
+        mo6.naam = "Onderdeel 7"
+        mos.add(mo6)
+        val mo7 = MaaltijdOnderdeel()
+        mo7.naam = "Onderdeel 8"
+        mos.add(mo7)
+        val mo8 = MaaltijdOnderdeel()
+        mo8.naam = "Onderdeel 9"
+        mos.add(mo8)
+        val mo9 = MaaltijdOnderdeel()
+        mo9.naam = "Onderdeel 10"
+        mos.add(mo9)
+        viewModel.addMO(mos)
     }
 }
