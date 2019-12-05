@@ -22,14 +22,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Maaltijdonderdeel naam"
-            app:maaltijdOnderdeel_naam="@{maaltijdOnderdeel}"
+            android:onClick="@{() -> clickListener.onClick(maaltijdOnderdeel)}"
             android:textSize="@dimen/medium_text"
             android:textStyle="bold"
-            android:onClick="@{() -> clickListener.onClick(maaltijdOnderdeel)}"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:maaltijdOnderdeel_naam="@{maaltijdOnderdeel}"
+            tools:text="Maaltijdonderdeel naam" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

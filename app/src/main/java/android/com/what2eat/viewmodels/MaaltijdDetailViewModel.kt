@@ -58,21 +58,6 @@ class MaaltijdDetailViewModel(
         uiScope.launch {
             _maaltijd.value = getMaaltijdFromDatabase()
             _maaltijdOnderdelen.value = getMaaltijdOnderdelenFromDatabase()
-
-            /*var mos = mutableListOf<MaaltijdOnderdeel>()
-            var mo1 = MaaltijdOnderdeel()
-            mo1.naam = "Onderdeel 2"
-            mos.add(mo1)
-            var mo2 = MaaltijdOnderdeel()
-            mo2.naam = "Onderdeel 3"
-            mos.add(mo2)
-            var mo3 = MaaltijdOnderdeel()
-            mo3.naam = "Onderdeel 4"
-            mos.add(mo3)
-            var mo4 = MaaltijdOnderdeel()
-            mo4.naam = "Onderdeel 5"
-            mos.add(mo4)
-            mos.forEach { mo -> addMO(mo) }*/
         }
     }
     suspend fun addMO(mo: MaaltijdOnderdeel){
