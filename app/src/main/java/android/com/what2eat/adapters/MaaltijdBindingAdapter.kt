@@ -6,13 +6,32 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.children
+import androidx.core.view.marginBottom
+import androidx.core.view.marginTop
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
 import java.text.SimpleDateFormat
 
 @BindingAdapter("maaltijd_naam")
 fun TextView.setNaam(maaltijd: Maaltijd?){
     maaltijd?.let {
         text = it.naam
+    }
+}
+@BindingAdapter("maaltijd_photo")
+fun ImageView.setPhoto(maaltijd: Maaltijd?){
+    maaltijd?.let{
+        it.photo_uri?.let {
+            Glide.with(context).load(maaltijd.photo_uri).into(this)
+        }
+    }
+}
+@BindingAdapter("maaltijd_photo_stretched")
+fun ImageView.setPhotoStretched(maaltijd: Maaltijd?){
+    maaltijd?.let{
+        it.photo_uri?.let {
+            Glide.with(context).load(maaltijd.photo_uri).into(this)
+        }
     }
 }
 @BindingAdapter("maaltijd_rating")

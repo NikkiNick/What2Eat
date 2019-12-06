@@ -34,7 +34,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/dish" />
+                    app:srcCompat="@drawable/dish"
+                    app:maaltijd_photo="@{maaltijd.maaltijd}"/>
 
                 <ImageView
                     android:id="@+id/maaltijd_camera_button"
