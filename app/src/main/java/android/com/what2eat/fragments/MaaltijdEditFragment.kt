@@ -14,22 +14,29 @@ import android.com.what2eat.R
 import android.com.what2eat.activities.MainActivity
 import android.com.what2eat.adapters.MaaltijdOnderdeelListener
 import android.com.what2eat.adapters.MaaltijdOnderdeelRemoveAdapter
+import android.com.what2eat.adapters.setPhoto
 import android.com.what2eat.database.MaaltijdDatabase
 import android.com.what2eat.database.MaaltijdDao
 import android.com.what2eat.database.MaaltijdMaaltijdOnderdeelDao
 import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.databinding.FragmentMaaltijdEditBinding
+import android.com.what2eat.utils.RotationTransformUtil
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModel
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModelFactory
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import android.graphics.drawable.ClipDrawable
 import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.Gravity
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -39,9 +46,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.maaltijdonderdeel_remove_item_view.*
 import java.io.File
 import java.io.IOException
+import java.net.URI
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -92,6 +102,11 @@ class MaaltijdEditFragment : Fragment() {
 
         binding.maaltijd = viewModel
 
+        viewModel.maaltijd.observe(this, Observer{
+            it.photo_uri?.let{
+                binding.maaltijdPhotoDeleteButton.visibility = VISIBLE
+            }
+        })
         viewModel.maaltijdOnderdelen.observe(viewLifecycleOwner, Observer {lijst ->
             lijst?.let {
                 adapter.submitList(it)
@@ -124,6 +139,12 @@ class MaaltijdEditFragment : Fragment() {
             else{
                 Toast.makeText(context, "No camera available", Toast.LENGTH_LONG)
             }
+        }
+        binding.maaltijdPhotoDeleteButton.setOnClickListener {
+            viewModel.removeMaaltijdPhoto()
+            binding.maaltijdImage.scaleType = ImageView.ScaleType.CENTER_CROP
+            Glide.with(context!!).load(R.drawable.maaltijd_blank_image_wide).into(binding.maaltijdImage)
+            binding.maaltijdPhotoDeleteButton.visibility = GONE
         }
         /*
         binding.deleteMealButton.setOnClickListener {
@@ -183,6 +204,7 @@ class MaaltijdEditFragment : Fragment() {
                         "com.example.android.fileprovider",
                         it
                     )
+
                     viewModel.setMaaltijdPhoto(currentPhotoPath)
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
                     this.startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO)
@@ -190,8 +212,6 @@ class MaaltijdEditFragment : Fragment() {
             }
         }
     }
-
-
     @Throws(IOException::class)
     private fun createImageFile(): File {
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
@@ -241,4 +261,12 @@ class MaaltijdEditFragment : Fragment() {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if(requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK){
+            binding.maaltijdImage.scaleType = ImageView.ScaleType.CENTER_CROP
+            Glide.with(context!!).load(currentPhotoPath).into(binding.maaltijdImage)
+            binding.maaltijdPhotoDeleteButton.visibility = VISIBLE
+
+        }
+    }
 }

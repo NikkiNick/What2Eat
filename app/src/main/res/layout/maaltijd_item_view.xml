@@ -29,9 +29,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/dish"
-            app:maaltijd_photo="@{maaltijd}"/>
+            app:maaltijd_photo_circle="@{maaltijd}"
+            app:srcCompat="@drawable/dish" />
 
         <TextView
             android:id="@+id/maaltijd_naam"

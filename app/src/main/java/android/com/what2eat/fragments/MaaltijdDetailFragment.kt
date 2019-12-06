@@ -76,7 +76,6 @@ class MaaltijdDetailFragment : Fragment() {
 
         viewModel.maaltijdOnderdelen.observe(viewLifecycleOwner, Observer {lijst ->
             lijst?.let {
-                Log.i("TestN", "Aantal onderdelen:"+it.size)
                 if(lijst.size == 0){
                     binding.maaltijdOnderdelenTitleText.visibility = GONE
                     binding.maaltijdOnderdelenRecyclerView.visibility = GONE
