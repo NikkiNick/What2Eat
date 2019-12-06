@@ -1,12 +1,16 @@
 package android.com.what2eat.activities
 
+import android.Manifest
 import android.com.what2eat.R
 import android.com.what2eat.databinding.ActivityMainBinding
 import android.com.what2eat.viewmodels.ActionbarViewModel
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.ActionBar
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
@@ -37,7 +41,6 @@ class MainActivity : AppCompatActivity() {
                 setCustomActionBar()
             }
         })*/
-
         binding.lifecycleOwner = this
 
     }

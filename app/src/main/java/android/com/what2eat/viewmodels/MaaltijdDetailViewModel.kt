@@ -127,6 +127,9 @@ class MaaltijdDetailViewModel(
         _changeRatingDisplay.value = rating
         _ratingString.value = ratingStrings.get(rating)
     }
+    fun setMaaltijdPhoto(uri: String){
+        _maaltijd.value?.photo_uri = uri
+    }
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
