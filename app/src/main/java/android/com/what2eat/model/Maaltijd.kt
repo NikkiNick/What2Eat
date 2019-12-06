@@ -2,6 +2,7 @@ package android.com.what2eat.model
 
 import android.com.what2eat.utils.DateConverter
 import androidx.room.*
+import java.net.URI
 import java.sql.Time
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -28,6 +29,9 @@ class Maaltijd() {
 
     @ColumnInfo(name = "date_last")
     var dateLast: Date? = null
+
+    @ColumnInfo(name = "maaltijd_photo_uri")
+    var photo_uri: String? = null
 
     init {
         dateAdded = Date()

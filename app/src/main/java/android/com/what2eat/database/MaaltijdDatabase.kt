@@ -8,7 +8,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Maaltijd::class, MaaltijdOnderdeel::class, MaaltijdMaaltijdOnderdeel::class], version = 8, exportSchema = false)
+@Database(entities = [Maaltijd::class, MaaltijdOnderdeel::class, MaaltijdMaaltijdOnderdeel::class], version = 9, exportSchema = false)
 abstract class MaaltijdDatabase: RoomDatabase() {
 
     abstract val maaltijdDao: MaaltijdDao

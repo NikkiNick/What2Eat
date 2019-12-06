@@ -1,6 +1,8 @@
 package android.com.what2eat.fragments
 
 
+import android.Manifest
+import android.app.Activity.RESULT_OK
 import android.app.Application
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,7 +12,6 @@ import android.view.ViewGroup
 
 import android.com.what2eat.R
 import android.com.what2eat.activities.MainActivity
-import android.com.what2eat.adapters.MaaltijdOnderdeelAdapter
 import android.com.what2eat.adapters.MaaltijdOnderdeelListener
 import android.com.what2eat.adapters.MaaltijdOnderdeelRemoveAdapter
 import android.com.what2eat.database.MaaltijdDatabase
@@ -20,20 +21,29 @@ import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.databinding.FragmentMaaltijdEditBinding
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModel
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModelFactory
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.drawable.ClipDrawable
+import android.net.Uri
+import android.os.Environment
+import android.provider.MediaStore
 import android.util.Log
 import android.view.Gravity
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.android.synthetic.main.maaltijdonderdeel_remove_item_view.*
+import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -47,6 +57,9 @@ class MaaltijdEditFragment : Fragment() {
     private lateinit var maaaltijdDataSource: MaaltijdDao
     private lateinit var maaltijdOnderdeelDataSource: MaaltijdOnderdeelDao
     private lateinit var maaltijdMaaltijdOnderdeelDataSource: MaaltijdMaaltijdOnderdeelDao
+    val REQUEST_IMAGE_CAPTURE = 1
+    val REQUEST_TAKE_PHOTO = 1
+    private lateinit var currentPhotoPath: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         application = requireNotNull(this.activity).application
@@ -63,7 +76,6 @@ class MaaltijdEditFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_edit, container, false)
         binding.lifecycleOwner = this
 
@@ -72,7 +84,6 @@ class MaaltijdEditFragment : Fragment() {
             viewModel.addMaaltijdOnderdelenToMaaltijd(it)
         }
         val adapter = MaaltijdOnderdeelRemoveAdapter(MaaltijdOnderdeelListener {
-            Log.i("TestN", "Asked to remove MaaltijdOnderdeel "+it.toString())
             viewModel.removeMaaltijdOnderdeelFromMaaltijd(it)
         })
         binding.maaltijdOnderdelenRecycler.adapter = adapter
@@ -105,7 +116,16 @@ class MaaltijdEditFragment : Fragment() {
         }
         binding.addMealpartButton.setOnClickListener {
             it.findNavController().navigate(MaaltijdEditFragmentDirections.actionMaaltijdEditFragmentToMaaltijdOnderdeelOverzichtFragment(viewModel.maaltijdId))
-        }/*
+        }
+        binding.maaltijdCameraButton.setOnClickListener{
+            if(activity!!.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
+                takePhoto()
+            }
+            else{
+                Toast.makeText(context, "No camera available", Toast.LENGTH_LONG)
+            }
+        }
+        /*
         binding.deleteMealButton.setOnClickListener {
             MaterialAlertDialogBuilder(context)
                 .setTitle(R.string.confirmation_delete_title)
@@ -125,6 +145,64 @@ class MaaltijdEditFragment : Fragment() {
         act.setCustomActionBar("edit_meal")
 
         return binding.root
+    }
+
+    private fun takePhoto(){
+        val permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+
+        fun hasNoPermissions(): Boolean{
+            return ContextCompat.checkSelfPermission(context!!, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                    ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                    ContextCompat.checkSelfPermission(context!!, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+        }
+
+        fun requestPermission(){
+            ActivityCompat.requestPermissions(activity!!, permissions,0)
+        }
+        if(hasNoPermissions()){
+            requestPermission()
+        }
+        dispatchTakePictureIntent()
+
+    }
+
+    private fun dispatchTakePictureIntent() {
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            // Ensure that there's a camera activity to handle the intent
+            takePictureIntent.resolveActivity(activity!!.packageManager)?.also {
+                // Create the File where the photo should go
+                val photoFile: File? = try {
+                    createImageFile()
+                } catch (ex: IOException) {
+                    null
+                }
+                // Continue only if the File was successfully created
+                photoFile?.also {
+                    val photoURI: Uri = FileProvider.getUriForFile(
+                        context!!,
+                        "com.example.android.fileprovider",
+                        it
+                    )
+                    viewModel.setMaaltijdPhoto(currentPhotoPath)
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                    this.startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO)
+                }
+            }
+        }
+    }
+
+
+    @Throws(IOException::class)
+    private fun createImageFile(): File {
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val storageDir: File = context!!.getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!
+        return File.createTempFile(
+            "JPEG_${timeStamp}_", /* prefix */
+            ".jpg", /* suffix */
+            storageDir /* directory */
+        ).apply {
+            currentPhotoPath = absolutePath
+        }
     }
 
     private fun changeRatingDisplay(aantal: Int) {
@@ -162,4 +240,5 @@ class MaaltijdEditFragment : Fragment() {
             }
         }
     }
+
 }
