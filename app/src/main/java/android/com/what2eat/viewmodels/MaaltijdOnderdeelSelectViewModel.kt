@@ -12,7 +12,7 @@ import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
 import java.util.*
 
-class MaaltijdOnderdeelOverzichtViewModel(val maaltijdOnderdeelDbSource: MaaltijdOnderdeelDao, val maaltijdId: Long, application: Application) : AndroidViewModel(application){
+class MaaltijdOnderdeelSelectViewModel(val maaltijdOnderdeelDbSource: MaaltijdOnderdeelDao, val maaltijdId: Long, application: Application) : AndroidViewModel(application){
 
 
     var viewModelJob = Job()

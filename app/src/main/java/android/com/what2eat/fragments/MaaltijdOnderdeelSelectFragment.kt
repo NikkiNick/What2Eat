@@ -13,8 +13,8 @@ import android.com.what2eat.database.MaaltijdDatabase
 import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.databinding.FragmentMaaltijdOnderdeelSelectBinding
 import android.com.what2eat.model.MaaltijdOnderdeel
-import android.com.what2eat.viewmodels.MaaltijdOnderdeelOverzichtViewModel
-import android.com.what2eat.viewmodels.MaaltijdOnderdeelOverzichtViewModelFactory
+import android.com.what2eat.viewmodels.MaaltijdOnderdeelSelectViewModel
+import android.com.what2eat.viewmodels.MaaltijdOnderdeelSelectViewModelFactory
 import android.graphics.drawable.ClipDrawable
 import android.view.*
 import android.widget.SearchView
@@ -27,8 +27,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 class MaaltijdOnderdeelSelectFragment : Fragment() {
 
     private lateinit var binding: FragmentMaaltijdOnderdeelSelectBinding
-    private lateinit var viewModelFactory: MaaltijdOnderdeelOverzichtViewModelFactory
-    private lateinit var viewModel: MaaltijdOnderdeelOverzichtViewModel
+    private lateinit var viewModelFactory: MaaltijdOnderdeelSelectViewModelFactory
+    private lateinit var viewModel: MaaltijdOnderdeelSelectViewModel
     private lateinit var dataSource: MaaltijdOnderdeelDao
     private lateinit var application: Application
 
@@ -40,8 +40,8 @@ class MaaltijdOnderdeelSelectFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_onderdeel_select, container, false)
         val args = MaaltijdOnderdeelSelectFragmentArgs.fromBundle(arguments!!)
 
-        viewModelFactory = MaaltijdOnderdeelOverzichtViewModelFactory(dataSource, args.maaltijdId,  application)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdOnderdeelOverzichtViewModel::class.java)
+        viewModelFactory = MaaltijdOnderdeelSelectViewModelFactory(dataSource, args.maaltijdId,  application)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdOnderdeelSelectViewModel::class.java)
 
         val tempCheckedIds = mutableListOf<Long>()
 
