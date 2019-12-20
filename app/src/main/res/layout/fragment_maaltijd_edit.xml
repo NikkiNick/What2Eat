@@ -26,7 +26,7 @@
                 <RelativeLayout
                     android:id="@+id/relative"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="200dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -34,7 +34,7 @@
                     <ImageView
                         android:id="@+id/maaltijd_image"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
+                        android:layout_height="200dp"
                         android:background="#D0F1BB"
                         android:contentDescription="@string/meal"
                         android:src="@drawable/maaltijd_blank_image_wide"
@@ -49,8 +49,10 @@
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
                         android:clickable="true"
+                        android:focusable="true"
                         android:tint="@color/colorPrimary"
-                        app:srcCompat="@drawable/baseline_photo_camera_black_48" />
+                        app:srcCompat="@drawable/baseline_photo_camera_black_48"
+                        android:contentDescription="Take picture icon"/>
 
                     <ImageView
                         android:id="@+id/maaltijd_photo_delete_button"
@@ -62,7 +64,8 @@
                         android:layout_marginEnd="8dp"
                         app:srcCompat="@android:drawable/ic_delete"
                         android:visibility="gone"
-                        tools:visibility="visible"/>
+                        tools:visibility="visible"
+                        android:contentDescription="Delete picture icon"/>
 
                 </RelativeLayout>
 

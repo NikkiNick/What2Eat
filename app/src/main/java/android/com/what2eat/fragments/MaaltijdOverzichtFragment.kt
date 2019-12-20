@@ -92,11 +92,6 @@ class MaaltijdOverzichtFragment : Fragment() {
     }
 
 
-    override fun onDestroy() {
-        super.onDestroy()
-        viewModel.maaltijden.removeObservers(this)
-    }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.maaltijdoverzicht_overflowmenu, menu)
         super.onCreateOptionsMenu(menu, inflater)
