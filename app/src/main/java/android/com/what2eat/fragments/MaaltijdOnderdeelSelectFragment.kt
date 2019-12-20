@@ -7,31 +7,26 @@ import androidx.fragment.app.Fragment
 
 import android.com.what2eat.R
 import android.com.what2eat.activities.MainActivity
-import android.com.what2eat.adapters.MaaltijdListener
 import android.com.what2eat.adapters.MaaltijdOnderdeelCheckBoxAdapter
 import android.com.what2eat.adapters.MaaltijdOnderdeelListener
 import android.com.what2eat.database.MaaltijdDatabase
-import android.com.what2eat.database.MaaltijdMaaltijdOnderdeelDao
 import android.com.what2eat.database.MaaltijdOnderdeelDao
-import android.com.what2eat.databinding.FragmentMaaltijdOnderdeelOverzichtBinding
+import android.com.what2eat.databinding.FragmentMaaltijdOnderdeelSelectBinding
 import android.com.what2eat.model.MaaltijdOnderdeel
 import android.com.what2eat.viewmodels.MaaltijdOnderdeelOverzichtViewModel
 import android.com.what2eat.viewmodels.MaaltijdOnderdeelOverzichtViewModelFactory
-import android.com.what2eat.viewmodels.MaaltijdViewModel
-import android.com.what2eat.viewmodels.MaaltijdViewModelFactory
 import android.graphics.drawable.ClipDrawable
-import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 
-class MaaltijdOnderdeelOverzichtFragment : Fragment() {
+class MaaltijdOnderdeelSelectFragment : Fragment() {
 
-    private lateinit var binding: FragmentMaaltijdOnderdeelOverzichtBinding
+    private lateinit var binding: FragmentMaaltijdOnderdeelSelectBinding
     private lateinit var viewModelFactory: MaaltijdOnderdeelOverzichtViewModelFactory
     private lateinit var viewModel: MaaltijdOnderdeelOverzichtViewModel
     private lateinit var dataSource: MaaltijdOnderdeelDao
@@ -42,8 +37,8 @@ class MaaltijdOnderdeelOverzichtFragment : Fragment() {
         application = requireNotNull(this.activity).application
         dataSource = MaaltijdDatabase.getInstance(application).maaltijdOnderdeelDao
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_onderdeel_overzicht, container, false)
-        val args = MaaltijdOnderdeelOverzichtFragmentArgs.fromBundle(arguments!!)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_onderdeel_select, container, false)
+        val args = MaaltijdOnderdeelSelectFragmentArgs.fromBundle(arguments!!)
 
         viewModelFactory = MaaltijdOnderdeelOverzichtViewModelFactory(dataSource, args.maaltijdId,  application)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdOnderdeelOverzichtViewModel::class.java)
@@ -58,7 +53,7 @@ class MaaltijdOnderdeelOverzichtFragment : Fragment() {
             }
         })
         binding.addMaaltijdOnderdelenButton.setOnClickListener{
-            it.findNavController().navigate(MaaltijdOnderdeelOverzichtFragmentDirections.actionMaaltijdOnderdeelOverzichtFragmentToMaaltijdEditFragment(args.maaltijdId, tempCheckedIds.toLongArray()))
+            findNavController().navigate(MaaltijdOnderdeelSelectFragmentDirections.actionMaaltijdOnderdeelSelectFragmentToMaaltijdEditFragment(args.maaltijdId, tempCheckedIds.toLongArray()))
         }
         binding.recyclerMaaltijdOnderdelen.adapter = adapter
         val itemDecor = DividerItemDecoration(context, ClipDrawable.HORIZONTAL)
@@ -71,7 +66,7 @@ class MaaltijdOnderdeelOverzichtFragment : Fragment() {
                 adapter.submitList(lijst)
             }
         })
-        val searchView: SearchView = binding.searchView as SearchView
+        val searchView: SearchView = binding.searchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean { // do something on text submit
                 return false

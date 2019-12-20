@@ -72,11 +72,6 @@
             app:destination="@id/maaltijdOverzichtFragment"
             app:popUpTo="@+id/maaltijdOverzichtFragment"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_maaltijdEditFragment_to_maaltijdOnderdeelOverzichtFragment"
-            app:destination="@id/maaltijdOnderdeelOverzichtFragment"
-            app:popUpTo="@+id/maaltijdOnderdeelOverzichtFragment"
-            app:popUpToInclusive="true" />
         <argument
             android:name="add_maaltijdOnderdelen_ids"
             app:argType="long[]"
@@ -84,19 +79,9 @@
         <action
             android:id="@+id/action_maaltijdEditFragment_to_maaltijdImageShowFragment"
             app:destination="@id/maaltijdImageShowFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/maaltijdOnderdeelOverzichtFragment"
-        android:name="android.com.what2eat.fragments.MaaltijdOnderdeelOverzichtFragment"
-        android:label="MaaltijdOnderdeelOverzichtFragment" >
         <action
-            android:id="@+id/action_maaltijdOnderdeelOverzichtFragment_to_maaltijdEditFragment"
-            app:destination="@id/maaltijdEditFragment"
-            app:popUpTo="@+id/maaltijdEditFragment"
-            app:popUpToInclusive="true" />
-        <argument
-            android:name="maaltijdId"
-            app:argType="long" />
+            android:id="@+id/action_maaltijdEditFragment_to_maaltijdOnderdeelSelectFragment"
+            app:destination="@id/maaltijdOnderdeelSelectFragment" />
     </fragment>
     <fragment
         android:id="@+id/maaltijdImageShowFragment"
@@ -106,5 +91,16 @@
         <argument
             android:name="maaltijd_photo_uri"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/maaltijdOnderdeelSelectFragment"
+        android:name="android.com.what2eat.fragments.MaaltijdOnderdeelSelectFragment"
+        android:label="MaaltijdOnderdeelSelectFragment" >
+        <action
+            android:id="@+id/action_maaltijdOnderdeelSelectFragment_to_maaltijdEditFragment"
+            app:destination="@id/maaltijdEditFragment" />
+        <argument
+            android:name="maaltijdId"
+            app:argType="long" />
     </fragment>
 </navigation>

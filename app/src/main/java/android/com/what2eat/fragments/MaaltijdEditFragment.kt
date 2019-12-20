@@ -131,7 +131,7 @@ class MaaltijdEditFragment : Fragment() {
             it.findNavController().navigate(MaaltijdEditFragmentDirections.actionMaaltijdEditFragmentToMaaltijdDetailFragment(viewModel.maaltijdId))
         }
         binding.addMealpartButton.setOnClickListener {
-            it.findNavController().navigate(MaaltijdEditFragmentDirections.actionMaaltijdEditFragmentToMaaltijdOnderdeelOverzichtFragment(viewModel.maaltijdId))
+            it.findNavController().navigate(MaaltijdEditFragmentDirections.actionMaaltijdEditFragmentToMaaltijdOnderdeelSelectFragment(viewModel.maaltijdId))
         }
         binding.maaltijdCameraButton.setOnClickListener{
             if(activity!!.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
