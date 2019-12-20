@@ -103,4 +103,8 @@
             android:name="maaltijdId"
             app:argType="long" />
     </fragment>
+    <fragment
+        android:id="@+id/maaltijdOnderdeelOverzichtFragment"
+        android:name="android.com.what2eat.fragments.MaaltijdOnderdeelOverzichtFragment"
+        android:label="MaaltijdOnderdeelOverzichtFragment" />
 </navigation>

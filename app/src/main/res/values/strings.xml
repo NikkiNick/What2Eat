@@ -40,4 +40,5 @@
     <string name="add_mealpart">Add mealpart</string>
     <string name="meal_part">Meal part</string>
     <string name="remove">remove</string>
+    <string name="my_meal_parts">My meal parts</string>
 </resources>
