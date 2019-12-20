@@ -28,6 +28,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
@@ -73,10 +74,13 @@ class MaaltijdDetailFragment : Fragment() {
         binding.editMealButton.setOnClickListener{
             it.findNavController().navigate(MaaltijdDetailFragmentDirections.actionMaaltijdDetailFragmentToMaaltijdEditFragment(viewModel.maaltijdId, null))
         }
-
+        binding.maaltijdImage.setOnClickListener {
+            viewModel.maaltijd.value?.photo_uri?.let{
+                findNavController().navigate(MaaltijdDetailFragmentDirections.actionMaaltijdDetailFragmentToMaaltijdImageShowFragment(it))
+            }
+        }
         viewModel.maaltijdOnderdelen.observe(viewLifecycleOwner, Observer {lijst ->
             lijst?.let {
-                Log.i("TestN", "Aantal onderdelen:"+it.size)
                 if(lijst.size == 0){
                     binding.maaltijdOnderdelenTitleText.visibility = GONE
                     binding.maaltijdOnderdelenRecyclerView.visibility = GONE

@@ -54,7 +54,7 @@ class MaaltijdDetailViewModel(
     init{
         initializeMaaltijd()
     }
-    private fun initializeMaaltijd(){
+    fun initializeMaaltijd(){
         uiScope.launch {
             _maaltijd.value = getMaaltijdFromDatabase()
             _maaltijdOnderdelen.value = getMaaltijdOnderdelenFromDatabase()
@@ -126,6 +126,12 @@ class MaaltijdDetailViewModel(
         _maaltijd.value?.rating = rating
         _changeRatingDisplay.value = rating
         _ratingString.value = ratingStrings.get(rating)
+    }
+    fun setMaaltijdPhoto(uri: String){
+        _maaltijd.value?.photo_uri = uri
+    }
+    fun removeMaaltijdPhoto(){
+        _maaltijd.value?.photo_uri = null
     }
     override fun onCleared() {
         super.onCleared()

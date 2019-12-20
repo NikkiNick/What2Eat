@@ -2,17 +2,46 @@ package android.com.what2eat.adapters
 
 import android.com.what2eat.R
 import android.com.what2eat.model.Maaltijd
+import android.com.what2eat.utils.RotationTransformUtil
+import android.graphics.Matrix
+import android.media.Image
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.children
+import androidx.core.view.marginBottom
+import androidx.core.view.marginTop
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import java.text.SimpleDateFormat
 
 @BindingAdapter("maaltijd_naam")
 fun TextView.setNaam(maaltijd: Maaltijd?){
     maaltijd?.let {
         text = it.naam
+    }
+}
+@BindingAdapter("maaltijd_photo")
+fun ImageView.setPhoto(maaltijd: Maaltijd?){
+    maaltijd?.let{
+        if(it.photo_uri != null && it.photo_uri != ""){
+            this.scaleType = ImageView.ScaleType.CENTER_CROP
+            Glide.with(context).load(maaltijd.photo_uri).into(this)
+        }else{
+            this.scaleType = ImageView.ScaleType.FIT_CENTER
+            Glide.with(context).load(R.drawable.maaltijd_blank_image_wide).into(this)
+        }
+    }
+}
+@BindingAdapter("maaltijd_photo_circle")
+fun ImageView.setPhotoCircle(maaltijd: Maaltijd?){
+    maaltijd?.let{
+        it.photo_uri?.let {
+            var options: RequestOptions = RequestOptions()
+            options.circleCrop()
+            Glide.with(context).load(maaltijd.photo_uri).apply(options).into(this)
+        }
     }
 }
 @BindingAdapter("maaltijd_rating")

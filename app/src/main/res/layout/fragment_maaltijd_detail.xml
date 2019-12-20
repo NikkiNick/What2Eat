@@ -26,16 +26,15 @@
 
                 <ImageView
                     android:id="@+id/maaltijd_image"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#D0F1BB"
                     android:contentDescription="@string/meal"
+                    android:src="@drawable/maaltijd_blank_image_wide"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/dish" />
+                    app:maaltijd_photo="@{maaltijd.maaltijd}"/>
 
                 <TextView
                     android:id="@+id/maaltijd_naam"

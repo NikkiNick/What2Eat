@@ -51,6 +51,9 @@
             app:destination="@id/maaltijdEditFragment"
             app:enterAnim="@anim/nav_default_pop_enter_anim"
             app:exitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_maaltijdDetailFragment_to_maaltijdImageShowFragment"
+            app:destination="@id/maaltijdImageShowFragment" />
     </fragment>
     <fragment
         android:id="@+id/maaltijdEditFragment"
@@ -78,6 +81,9 @@
             android:name="add_maaltijdOnderdelen_ids"
             app:argType="long[]"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_maaltijdEditFragment_to_maaltijdImageShowFragment"
+            app:destination="@id/maaltijdImageShowFragment" />
     </fragment>
     <fragment
         android:id="@+id/maaltijdOnderdeelOverzichtFragment"
@@ -91,5 +97,14 @@
         <argument
             android:name="maaltijdId"
             app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/maaltijdImageShowFragment"
+        android:name="android.com.what2eat.fragments.MaaltijdImageShowFragment"
+        android:label="fragment_maaltijd_image_show"
+        tools:layout="@layout/fragment_maaltijd_image_show" >
+        <argument
+            android:name="maaltijd_photo_uri"
+            app:argType="string" />
     </fragment>
 </navigation>
