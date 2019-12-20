@@ -45,6 +45,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -137,14 +138,19 @@ class MaaltijdEditFragment : Fragment() {
                 takePhoto()
             }
             else{
-                Toast.makeText(context, "No camera available", Toast.LENGTH_LONG)
+                Toast.makeText(context, "No camera available", Toast.LENGTH_LONG).show()
             }
         }
         binding.maaltijdPhotoDeleteButton.setOnClickListener {
             viewModel.removeMaaltijdPhoto()
-            binding.maaltijdImage.scaleType = ImageView.ScaleType.CENTER_CROP
+            binding.maaltijdImage.scaleType = ImageView.ScaleType.FIT_CENTER
             Glide.with(context!!).load(R.drawable.maaltijd_blank_image_wide).into(binding.maaltijdImage)
             binding.maaltijdPhotoDeleteButton.visibility = GONE
+        }
+        binding.maaltijdImage.setOnClickListener {
+            viewModel.maaltijd.value?.photo_uri?.let{
+                findNavController().navigate(MaaltijdEditFragmentDirections.actionMaaltijdEditFragmentToMaaltijdImageShowFragment(it))
+            }
         }
         /*
         binding.deleteMealButton.setOnClickListener {
