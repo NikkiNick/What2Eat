@@ -28,6 +28,4 @@ interface MaaltijdOnderdeelDao {
     @Query("SELECT * FROM table_maaltijdonderdelen WHERE maaltijdOnderdeelId NOT IN (SELECT maaltijdOnderdeelId FROM table_maaltijdMaaltijdOnderdeel WHERE maaltijdId = :maaltijdId)")
     fun getMaaltijdOnderdelenNietVanMaaltijd(maaltijdId: Long): List<MaaltijdOnderdeel>?
 
-    @Query("DELETE FROM table_maaltijdonderdelen")
-    fun deleteAll()
 }

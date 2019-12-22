@@ -116,6 +116,7 @@ class MaaltijdDetailViewModel(
     }
     private suspend fun deleteMaaltijdFromDatabase(){
         withContext(Dispatchers.IO){
+            maaltijdMaaltijdOnderdeelDbSource.deleteFromMaaltijd(maaltijdId)
             maaltijdDbSource.delete(_maaltijd.value!!)
         }
     }

@@ -25,6 +25,9 @@ interface MaaltijdDao {
     @Query("DELETE FROM table_maaltijden")
     fun deleteAll()
 
+    @Query("SELECT * FROM table_maaltijden WHERE maaltijdId IN (SELECT maaltijdId FROM table_maaltijdMaaltijdOnderdeel WHERE maaltijdOnderdeelId = :maaltijdOnderdeelId)")
+    fun getMaaltijdenFromMaaltijdOnderdeel(maaltijdOnderdeelId: Long): List<Maaltijd>?
+
     //@Query("SELECT * FROM table_maaltijden ORDER BY date_added DESC LIMIT 1")
     //fun getLatest(): Maaltijd
 }

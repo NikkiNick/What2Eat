@@ -24,6 +24,7 @@
     <string name="confirmation_delete_title">Are you sure?</string>
     <string name="confirmation_delete_content">By hitting OK you will permanently delete all your saved meals</string>
     <string name="confirmation_delete_meal_content">By hitting OK you will permanently delete this meal</string>
+    <string name="confirmation_delete_mealpart_content">By hitting OK you will permanently delete this mealpart</string>
     <string name="meal">Meal</string>
     <string name="last_eaten">Last eaten:</string>
     <string name="not_eaten_yet">Not eaten yet</string>
@@ -41,4 +42,6 @@
     <string name="meal_part">Meal part</string>
     <string name="remove">remove</string>
     <string name="my_meal_parts">My meal parts</string>
+    <string name="delete_mealpart">Delete mealpart</string>
+    <string name="mealpart_name">Mealpart name</string>
 </resources>
