@@ -18,15 +18,20 @@ import android.com.what2eat.viewmodels.MaaltijdOnderdeelSelectViewModel
 import android.com.what2eat.viewmodels.MaaltijdOnderdeelSelectViewModelFactory
 import android.graphics.drawable.ClipDrawable
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.SearchView
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 
 /**
@@ -57,7 +62,7 @@ class MaaltijdOnderdeelOverzichtFragment : Fragment() {
             .get(MaaltijdOnderdeelOverzichtViewModel::class.java)
 
         val adapter = MaaltijdOnderdeelClickableAdapter(MaaltijdOnderdeelListener {
-            Log.i("TestN", it.toString()+" clicked")
+            findNavController().navigate(MaaltijdOnderdeelOverzichtFragmentDirections.actionMaaltijdOnderdeelOverzichtFragmentToMaaltijdOnderdeelDetailFragment(it))
         })
 
         binding.recyclerMaaltijdOnderdelen.adapter = adapter
@@ -82,6 +87,32 @@ class MaaltijdOnderdeelOverzichtFragment : Fragment() {
                 return false
             }
         })
+        binding.addMaaltijdOnderdeelButton.setOnClickListener {
+
+            val builder = AlertDialog.Builder(this.context!!)
+            builder.setTitle(R.string.mealpart_name)
+
+            val input = EditText(this.context!!)
+            input.inputType = InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
+            input.setSingleLine(true)
+            input.setTextColor(
+                ContextCompat.getColor(
+                    context!!,
+                    R.color.colorPrimaryDark
+                )
+            )
+            builder.setView(input)
+
+            builder.setPositiveButton(R.string.save) { _, _ ->
+                viewModel.addMaaltijdOnderdeel(input.text.toString())
+            }
+            builder.setNegativeButton(R.string.cancel) { dialog, _ ->
+                dialog.cancel()
+            }
+
+            builder.show()
+            input.requestFocus()
+        }
 
         this.setHasOptionsMenu(true)
         binding.setLifecycleOwner(this)

@@ -6,34 +6,25 @@ import android.app.Activity.RESULT_OK
 import android.app.Application
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 
 import android.com.what2eat.R
 import android.com.what2eat.activities.MainActivity
 import android.com.what2eat.adapters.MaaltijdOnderdeelListener
 import android.com.what2eat.adapters.MaaltijdOnderdeelRemoveAdapter
-import android.com.what2eat.adapters.setPhoto
 import android.com.what2eat.database.MaaltijdDatabase
 import android.com.what2eat.database.MaaltijdDao
 import android.com.what2eat.database.MaaltijdMaaltijdOnderdeelDao
 import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.databinding.FragmentMaaltijdEditBinding
-import android.com.what2eat.utils.RotationTransformUtil
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModel
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModelFactory
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Matrix
 import android.graphics.drawable.ClipDrawable
 import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
-import android.view.Gravity
+import android.view.*
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageView
@@ -48,11 +39,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import kotlinx.android.synthetic.main.maaltijdonderdeel_remove_item_view.*
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.io.File
 import java.io.IOException
-import java.net.URI
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -151,8 +140,7 @@ class MaaltijdEditFragment : Fragment() {
             viewModel.maaltijd.value?.photo_uri?.let{
                 findNavController().navigate(MaaltijdEditFragmentDirections.actionMaaltijdEditFragmentToMaaltijdImageShowFragment(it))
             }
-        }
-        /*
+        }/*
         binding.deleteMealButton.setOnClickListener {
             MaterialAlertDialogBuilder(context)
                 .setTitle(R.string.confirmation_delete_title)
@@ -171,9 +159,35 @@ class MaaltijdEditFragment : Fragment() {
         val act = activity as MainActivity
         act.setCustomActionBar("edit_meal")
 
+        setHasOptionsMenu(true)
+
         return binding.root
     }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.detail_menu_delete, menu)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.delete_menuitem -> {
+                MaterialAlertDialogBuilder(context)
+                    .setTitle(R.string.confirmation_delete_title)
+                    .setMessage(R.string.confirmation_delete_meal_content)
+                    .setPositiveButton(resources.getString(R.string.ok)){ dialog, num ->
+                        Toast.makeText(application.applicationContext,
+                            "${this.binding.maaltijdNaam.text.toString()} ${resources.getString(R.string.deleted)}",
+                            Toast.LENGTH_LONG).show()
+                        viewModel.deleteMaaltijd()
+                        findNavController().navigate(R.id.action_maaltijdEditFragment_to_maaltijdOverzichtFragment)
+                    }
+                    .setNegativeButton(resources.getString(R.string.cancel)){ dialog, num -> }
+                    .show()
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
     private fun takePhoto(){
         val permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
 

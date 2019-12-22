@@ -48,4 +48,18 @@ class MaaltijdOnderdeelOverzichtViewModel(val maaltijdOnderdeelDbSource: Maaltij
         viewModelJob.cancel()
     }
 
+    fun addMaaltijdOnderdeel(naam: String) {
+        uiScope.launch {
+            var mo = MaaltijdOnderdeel()
+            mo.naam = naam
+            addMaaltijdOnderdeelToDatabase(mo)
+        }
+    }
+    private suspend fun addMaaltijdOnderdeelToDatabase(maaltijdOnderdeel: MaaltijdOnderdeel){
+        withContext(Dispatchers.IO){
+            maaltijdOnderdeelDbSource.insert(maaltijdOnderdeel)
+            initMaaltijdOnderdelen()
+        }
+    }
+
 }

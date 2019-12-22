@@ -22,4 +22,10 @@ interface MaaltijdMaaltijdOnderdeelDao {
     @Query("SELECT * FROM table_maaltijdMaaltijdOnderdeel WHERE maaltijdId = :maaltijdId")
     fun getFromMaaltijd(maaltijdId: Long): List<MaaltijdMaaltijdOnderdeel>?
 
+    @Query("SELECT * FROM table_maaltijdMaaltijdOnderdeel WHERE maaltijdOnderdeelId = :maaltijdOnderdeelId")
+    fun getFromMaaltijdOnderdeel(maaltijdOnderdeelId: Long): List<MaaltijdMaaltijdOnderdeel>?
+
+    @Query("DELETE FROM table_maaltijdMaaltijdOnderdeel WHERE maaltijdId = :maaltijdId")
+    fun deleteFromMaaltijd(maaltijdId: Long)
+
 }
