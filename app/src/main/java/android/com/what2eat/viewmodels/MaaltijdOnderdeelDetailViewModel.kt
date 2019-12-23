@@ -24,9 +24,9 @@ class MaaltijdOnderdeelDetailViewModel(
     val maaltijdOnderdeel: LiveData<MaaltijdOnderdeel>
         get() = _maaltijdOnderdeel
 
-    private var _showToast = MutableLiveData<String>()
-    val showToast: LiveData<String>
-        get() = _showToast
+    private var _showSnackBar = MutableLiveData<String>()
+    val showSnackBar: LiveData<String>
+        get() = _showSnackBar
 
     init{
         initializeMaaltijdOnderdeel()
@@ -52,11 +52,11 @@ class MaaltijdOnderdeelDetailViewModel(
         withContext(Dispatchers.IO){
             maaltijdDbSource.getMaaltijdenFromMaaltijdOnderdeel(maaltijdOnderdeel_id)?.let{
                 if(it.size > 0){
-                    _showToast.postValue("Maaltijdonderdeel is verbonden met maaltijden")
+                    _showSnackBar.postValue("Maaltijdonderdeel is verbonden met maaltijden")
                 }
                 else{
                     maaltijdOnderdeelDbSource.delete(_maaltijdOnderdeel.value!!)
-                    _showToast.postValue("Maaltijdonderdeel verwijderd")
+                    _showSnackBar.postValue("Maaltijdonderdeel verwijderd")
                 }
             }
         }

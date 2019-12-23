@@ -7,7 +7,7 @@ import androidx.room.*
 interface MaaltijdDao {
 
     @Insert
-    fun insert(maaltijd: Maaltijd)
+    fun insert(maaltijd: Maaltijd): Long
 
     @Update
     fun update(maaltijd: Maaltijd)
