@@ -23,28 +23,45 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
-
+/**
+ * [Fragment] voor een maaltijdonderdeeloverzicht met multiple selection
+ */
 class MaaltijdOnderdeelSelectFragment : Fragment() {
-
+    /**
+     * [Fragment] Properties
+     */
     private lateinit var binding: FragmentMaaltijdOnderdeelSelectBinding
     private lateinit var viewModelFactory: MaaltijdOnderdeelSelectViewModelFactory
     private lateinit var viewModel: MaaltijdOnderdeelSelectViewModel
     private lateinit var dataSource: MaaltijdOnderdeelDao
     private lateinit var application: Application
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
+    val tempCheckedIds = mutableListOf<Long>()
+    private lateinit var args: MaaltijdOnderdeelSelectFragmentArgs
+        /**
+     * Functie die wordt opgeroepen wanneer het [Fragment] aangemaakt wordt en in CREATED lifecycle state is.
+     * Fragment properties worden hier geïnstantieerd.
+     */
+    override fun onCreate(savedInstanceState: Bundle?) {
         application = requireNotNull(this.activity).application
         dataSource = MaaltijdDatabase.getInstance(application).maaltijdOnderdeelDao
-
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_onderdeel_select, container, false)
-        val args = MaaltijdOnderdeelSelectFragmentArgs.fromBundle(arguments!!)
-
+        args = MaaltijdOnderdeelSelectFragmentArgs.fromBundle(arguments!!)
         viewModelFactory = MaaltijdOnderdeelSelectViewModelFactory(dataSource, args.maaltijdId,  application)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdOnderdeelSelectViewModel::class.java)
-
-        val tempCheckedIds = mutableListOf<Long>()
-
+        super.onCreate(savedInstanceState)
+    }
+    /**
+     * Functie die wordt opgeroepen wanneer het [Fragment] aangemaakt wordt en in CREATED lifecycle state is.
+     */
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        /**
+         * DataBinding : layout inflation, viewModel binding
+         */
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_onderdeel_select, container, false)
+        binding.setLifecycleOwner(this)
+        viewModel.initMaaltijdOnderdelen()
+        /**
+         * RecyclerView SetUp
+         */
         val adapter = MaaltijdOnderdeelCheckBoxAdapter(MaaltijdOnderdeelListener {
             if(tempCheckedIds.contains(it)){
                 tempCheckedIds.remove(it)
@@ -52,20 +69,28 @@ class MaaltijdOnderdeelSelectFragment : Fragment() {
                 tempCheckedIds.add(it)
             }
         })
-        binding.addMaaltijdOnderdelenButton.setOnClickListener{
-            findNavController().navigate(MaaltijdOnderdeelSelectFragmentDirections.actionMaaltijdOnderdeelSelectFragmentToMaaltijdEditFragment(args.maaltijdId, tempCheckedIds.toLongArray()))
-        }
         binding.recyclerMaaltijdOnderdelen.adapter = adapter
         val itemDecor = DividerItemDecoration(context, ClipDrawable.HORIZONTAL)
         binding.recyclerMaaltijdOnderdelen.addItemDecoration(itemDecor)
-
-        viewModel.initMaaltijdOnderdelen()
+        /**
+         * UI onClickListener voor Add button om terug te keren naar maaltijd Edit fragment en de geselecteerde onderdelen
+         * toe te voegen aan de maaltijd. Communicatie verloopt via SafeArgs (LongArray van id's)
+         */
+        binding.addMaaltijdOnderdelenButton.setOnClickListener{
+            findNavController().navigate(MaaltijdOnderdeelSelectFragmentDirections.actionMaaltijdOnderdeelSelectFragmentToMaaltijdEditFragment(args.maaltijdId, tempCheckedIds.toLongArray()))
+        }
+        /**
+         * ViewModel Observer voor de maaltijdOnderdelen
+         */
 
         viewModel.maaltijdOnderdelen.observe(this, Observer{ lijst ->
             lijst?.let{
                 adapter.submitList(lijst)
             }
         })
+        /**
+         * SearchView
+         */
         val searchView: SearchView = binding.searchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean { // do something on text submit
@@ -77,26 +102,17 @@ class MaaltijdOnderdeelSelectFragment : Fragment() {
                 return false
             }
         })
-
-        this.setHasOptionsMenu(true)
-        binding.setLifecycleOwner(this)
-
+        /**
+         * ActionBar title
+         */
         val activity = getActivity() as MainActivity
         activity.setCustomActionBar("maaltijdonderdelenoverzicht")
+        /**
+         * Other
+         */
 
         return binding.root
 
-    }
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.maaltijdonderdelenoverzicht_overflow, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.add_mocks -> addMaaltijdOnderdelenMocks()
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroy() {
@@ -108,39 +124,5 @@ class MaaltijdOnderdeelSelectFragment : Fragment() {
         super.onStart()
         binding.searchView.setQuery("", false)
         binding.searchView.clearFocus()
-    }
-    private fun addMaaltijdOnderdelenMocks() {
-        val mos = mutableListOf<MaaltijdOnderdeel>()
-        val mo0 = MaaltijdOnderdeel()
-        mo0.naam = "Onderdeel 1"
-        mos.add(mo0)
-        val mo1 = MaaltijdOnderdeel()
-        mo1.naam = "Onderdeel 2"
-        mos.add(mo1)
-        val mo2 = MaaltijdOnderdeel()
-        mo2.naam = "Onderdeel 3"
-        mos.add(mo2)
-        val mo3 = MaaltijdOnderdeel()
-        mo3.naam = "Onderdeel 4"
-        mos.add(mo3)
-        val mo4 = MaaltijdOnderdeel()
-        mo4.naam = "Onderdeel 5"
-        mos.add(mo4)
-        val mo5 = MaaltijdOnderdeel()
-        mo5.naam = "Onderdeel 6"
-        mos.add(mo5)
-        val mo6 = MaaltijdOnderdeel()
-        mo6.naam = "Onderdeel 7"
-        mos.add(mo6)
-        val mo7 = MaaltijdOnderdeel()
-        mo7.naam = "Onderdeel 8"
-        mos.add(mo7)
-        val mo8 = MaaltijdOnderdeel()
-        mo8.naam = "Onderdeel 9"
-        mos.add(mo8)
-        val mo9 = MaaltijdOnderdeel()
-        mo9.naam = "Onderdeel 10"
-        mos.add(mo9)
-        viewModel.addMO(mos)
     }
 }

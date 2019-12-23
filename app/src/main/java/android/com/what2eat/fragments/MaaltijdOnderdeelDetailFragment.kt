@@ -12,10 +12,11 @@ import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.databinding.FragmentMaaltijdOnderdeelDetailBinding
 import android.com.what2eat.viewmodels.MaaltijdOnderdeelDetailViewModel
 import android.com.what2eat.viewmodels.MaaltijdOnderdeelDetailViewModelFactory
+import android.os.Build
 import android.text.InputType
 import android.view.*
 import android.widget.EditText
-import android.widget.Toast
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -23,19 +24,25 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 
 /**
- * A simple [Fragment] subclass.
+ * [Fragment] voor een maaltijdonderdeel detail.
  */
 class MaaltijdOnderdeelDetailFragment : Fragment() {
-
+    /**
+     * [Fragment] Properties
+     */
     private lateinit var binding: FragmentMaaltijdOnderdeelDetailBinding
     private lateinit var viewModelFactory: MaaltijdOnderdeelDetailViewModelFactory
     private lateinit var viewModel: MaaltijdOnderdeelDetailViewModel
     private lateinit var application: Application
     private lateinit var maaltijdOnderdeelDataSource: MaaltijdOnderdeelDao
     private lateinit var maaltijdDataSource: MaaltijdDao
-
+    /**
+     * Functie die wordt opgeroepen wanneer het [Fragment] aangemaakt wordt en in CREATED lifecycle state is.
+     * Fragment properties worden hier geïnstantieerd.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
 
         application = requireNotNull(this.activity).application
@@ -47,74 +54,111 @@ class MaaltijdOnderdeelDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
     }
+    /**
+     * Functie die wordt opgeroepen wanneer het [Fragment] aangemaakt wordt en in CREATED lifecycle state is.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        /**
+         * DataBinding : layout inflation, viewModel binding
+         */
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_onderdeel_detail, container, false)
-
         binding.setLifecycleOwner(this)
         binding.maaltijdOnderdeel = viewModel
-
-        viewModel.showToast.observe(this, Observer{
-            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+        /**
+         * ViewModel Observer:
+         *      Observatie voor het tonen van een SnackBar afkomstig van ViewModel en navigatie naar het overzichtfragment
+         */
+        viewModel.showSnackBar.observe(this, Observer{
+            showSnackBar(it)
             findNavController().navigate(R.id.action_maaltijdOnderdeelDetailFragment_to_maaltijdOnderdeelOverzichtFragment)
         })
-
+        /**
+         * UI OnClickListener voor de Edit button om de naam van het maaltijdOnderdeel aan te passen
+         */
         binding.editMealpartButton.setOnClickListener{
-            val oudeNaam = viewModel.maaltijdOnderdeel.value?.naam ?: ""
-
-            val builder = AlertDialog.Builder(this.context!!)
-            builder.setTitle(R.string.mealpart_name)
-
-            val input = EditText(this.context!!)
-            input.inputType = InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
-            input.setSingleLine(true)
-            input.setText(oudeNaam)
-            input.setTextColor(
-                ContextCompat.getColor(
-                    context!!,
-                    R.color.colorPrimaryDark
-                )
-            )
-            builder.setView(input)
-
-            builder.setPositiveButton(R.string.save) { _, _ ->
-                binding.maaltijdOnderdeelNaamText.text = input.text.toString()
-                viewModel.setNaam(input.text.toString())
-            }
-            builder.setNegativeButton(R.string.cancel) { dialog, _ ->
-                dialog.cancel()
-            }
-
-            builder.show()
-            input.requestFocus()
+            editMaaltijdOnderdeel()
         }
-
+        /**
+         * Other
+         */
         setHasOptionsMenu(true)
+
         return binding.root
     }
+    /**
+     * Deze functie wordt gebruikt om een SnackBar met bericht weer te geven
+     */
+    private fun showSnackBar(message: String){
+        val snackbar: Snackbar = Snackbar.make(getActivity()!!.findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
+        val view: View = snackbar.view
+        val textView: TextView = view.findViewById(R.id.snackbar_text)
+        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER)
+        snackbar.show()
+    }
+    /**
+     * Deze functie toont een [AlertDialog] waarbij de naam van het maaltijdOnderdeel gewijzigd kan worden.
+     */
+    private fun editMaaltijdOnderdeel(){
+        val oudeNaam = viewModel.maaltijdOnderdeel.value?.naam ?: ""
 
+        val builder = AlertDialog.Builder(this.context!!)
+        builder.setTitle(R.string.mealpart_name)
+
+        val input = EditText(this.context!!)
+        input.inputType = InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
+        input.setSingleLine(true)
+        input.setText(oudeNaam)
+        input.setTextColor(
+            ContextCompat.getColor(
+                context!!,
+                R.color.colorPrimaryDark
+            )
+        )
+        builder.setView(input)
+
+        builder.setPositiveButton(R.string.save) { _, _ ->
+            binding.maaltijdOnderdeelNaamText.text = input.text.toString()
+            viewModel.setNaam(input.text.toString())
+        }
+        builder.setNegativeButton(R.string.cancel) { dialog, _ ->
+            dialog.cancel()
+        }
+
+        builder.show()
+        input.requestFocus()
+    }
+    /**
+     * Deze functie wordt gebruikt om het overflow menu weer te geven.
+     * Overflowmenu is een delete icon om het maaltijdOnderdeel te verwijderen.
+     */
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.detail_menu_delete, menu)
     }
-
+    /**
+     * Deze functie wordt gebruikt om de gebruikte [MenuItem] uit het overflowmenu af te handelen.
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.delete_menuitem -> {
-                MaterialAlertDialogBuilder(context)
-                    .setTitle(R.string.confirmation_delete_title)
-                    .setMessage(R.string.confirmation_delete_mealpart_content)
-                    .setPositiveButton(resources.getString(R.string.ok)){ dialog, num ->
-                        viewModel.deleteMaaltijdOnderdeel()
-                    }
-                    .setNegativeButton(resources.getString(R.string.cancel)){ dialog, num -> }
-                    .show()
-                return true
-            }
-            else -> super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            R.id.delete_menuitem -> deleteMaaltijdOnderdeel()
         }
+        return super.onOptionsItemSelected(item)
+    }
+    /**
+     * Deze functie wordt gebruikt om een [AlertDialog] weer te geven waarbij de gebruiker toestemming
+     * geeft om huidige maaltijdOnderdeel te verwijderen.
+     */
+    private fun deleteMaaltijdOnderdeel(){
+        MaterialAlertDialogBuilder(context)
+            .setTitle(R.string.confirmation_delete_title)
+            .setMessage(R.string.confirmation_delete_mealpart_content)
+            .setPositiveButton(resources.getString(R.string.ok)) { dialog, num ->
+                viewModel.deleteMaaltijdOnderdeel()
+            }
+            .setNegativeButton(resources.getString(R.string.cancel)) { dialog, num -> }
+            .show()
     }
 }
