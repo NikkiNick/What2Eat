@@ -50,4 +50,5 @@
     <string name="delete_picture_icon">Delete picture icon</string>
     <string name="no_items_available">No items available</string>
     <string name="no_items_search">No meals found within this search</string>
+    <string name="found_in_meals">Found in meals</string>
 </resources>
