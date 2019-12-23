@@ -13,11 +13,16 @@ import android.com.what2eat.database.MaaltijdDatabase
 import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.databinding.FragmentMaaltijdOnderdeelSelectBinding
 import android.com.what2eat.model.MaaltijdOnderdeel
+import android.com.what2eat.viewmodels.MaaltijdOnderdeelOverzichtViewModel
 import android.com.what2eat.viewmodels.MaaltijdOnderdeelSelectViewModel
 import android.com.what2eat.viewmodels.MaaltijdOnderdeelSelectViewModelFactory
 import android.graphics.drawable.ClipDrawable
+import android.text.InputType
 import android.view.*
+import android.widget.EditText
 import android.widget.SearchView
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -110,11 +115,57 @@ class MaaltijdOnderdeelSelectFragment : Fragment() {
         /**
          * Other
          */
+        setHasOptionsMenu(true)
 
         return binding.root
 
     }
+    /**
+     * Deze functie wordt gebruikt om het overflow menu weer te geven.
+     * Overflowmenu is een delete icon om alle maaltijden te verwijderen.
+     */
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.maaltijdonderdeeloverzicht_select_overflowmenu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+    /**
+     * Deze functie wordt gebruikt om de gebruikte [MenuItem] uit het overflowmenu af te handelen.
+     */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.add_maaltijdonderdeel_button -> addMaaltijdOnderdeel()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+    /**
+     * Deze functie toont een [AlertDialog] waarbij de naam van het nieuw maaltijdonderdeel gevraagd wordt.
+     * Het maaltijdonderdeel wordt aangemaakt en gepersisteerd via [MaaltijdOnderdeelSelectViewModel].
+     */
+    private fun addMaaltijdOnderdeel(){
+        val builder = AlertDialog.Builder(this.context!!)
+        builder.setTitle(R.string.mealpart_name)
 
+        val input = EditText(this.context!!)
+        input.inputType = InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
+        input.setSingleLine(true)
+        input.setTextColor(
+            ContextCompat.getColor(
+                context!!,
+                R.color.colorPrimaryDark
+            )
+        )
+        builder.setView(input)
+
+        builder.setPositiveButton(R.string.save) { _, _ ->
+            viewModel.addMaaltijdOnderdeel(input.text.toString())
+        }
+        builder.setNegativeButton(R.string.cancel) { dialog, _ ->
+            dialog.cancel()
+        }
+
+        builder.show()
+        input.requestFocus()
+    }
     override fun onDestroy() {
         super.onDestroy()
         viewModel.maaltijdOnderdelen.removeObservers(this)
