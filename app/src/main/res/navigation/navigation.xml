@@ -127,6 +127,11 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popUpTo="@+id/maaltijdOnderdeelOverzichtFragment"
-            app:popUpToInclusive="false" />
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_maaltijdOnderdeelDetailFragment_to_maaltijdDetailFragment"
+            app:destination="@id/maaltijdDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
 </navigation>

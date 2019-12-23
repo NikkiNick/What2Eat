@@ -24,6 +24,10 @@ class MaaltijdOnderdeelDetailViewModel(
     val maaltijdOnderdeel: LiveData<MaaltijdOnderdeel>
         get() = _maaltijdOnderdeel
 
+    private var _maaltijden = MutableLiveData<List<Maaltijd>?>()
+    val maaltijden: LiveData<List<Maaltijd>?>
+        get() = _maaltijden
+
     private var _showSnackBar = MutableLiveData<String>()
     val showSnackBar: LiveData<String>
         get() = _showSnackBar
@@ -35,6 +39,7 @@ class MaaltijdOnderdeelDetailViewModel(
     fun initializeMaaltijdOnderdeel(){
         uiScope.launch {
             _maaltijdOnderdeel.value = getMaaltijdOnderdeelFromDatabase()
+            _maaltijden.value = getMaaltijdenFromMaaltijdOnderdeelFromDatabase()
         }
     }
     private fun updateMaaltijdOnderdeel(){
@@ -71,6 +76,11 @@ class MaaltijdOnderdeelDetailViewModel(
     private suspend fun getMaaltijdOnderdeelFromDatabase(): MaaltijdOnderdeel? {
         return withContext(Dispatchers.IO){
             maaltijdOnderdeelDbSource.get(maaltijdOnderdeel_id)
+        }
+    }
+    private suspend fun getMaaltijdenFromMaaltijdOnderdeelFromDatabase(): List<Maaltijd>?{
+        return withContext(Dispatchers.IO){
+            maaltijdDbSource.getMaaltijdenFromMaaltijdOnderdeel(maaltijdOnderdeel_id)
         }
     }
     fun setNaam(naam: String){

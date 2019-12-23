@@ -6,23 +6,30 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 
 import android.com.what2eat.R
+import android.com.what2eat.adapters.MaaltijdAdapter
+import android.com.what2eat.adapters.MaaltijdListener
 import android.com.what2eat.database.MaaltijdDao
 import android.com.what2eat.database.MaaltijdDatabase
 import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.databinding.FragmentMaaltijdOnderdeelDetailBinding
 import android.com.what2eat.viewmodels.MaaltijdOnderdeelDetailViewModel
 import android.com.what2eat.viewmodels.MaaltijdOnderdeelDetailViewModelFactory
+import android.graphics.drawable.ClipDrawable
 import android.os.Build
 import android.text.InputType
 import android.view.*
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.EditText
 import android.widget.TextView
+import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 
@@ -68,12 +75,37 @@ class MaaltijdOnderdeelDetailFragment : Fragment() {
         binding.setLifecycleOwner(this)
         binding.maaltijdOnderdeel = viewModel
         /**
+         * RecyclerView setup voor het tonen van de [RecyclerView] van maaltijden waartoe het huidige maaltijdonderdeel behoort.
+         */
+        val adapter = MaaltijdAdapter(MaaltijdListener {
+            findNavController().navigate(MaaltijdOnderdeelDetailFragmentDirections.actionMaaltijdOnderdeelDetailFragmentToMaaltijdDetailFragment(it))
+        })
+        binding.maaltijdenRecyclerView.adapter = adapter
+        val itemDecor = DividerItemDecoration(context, ClipDrawable.HORIZONTAL)
+        binding.maaltijdenRecyclerView.addItemDecoration(itemDecor)
+        /**
          * ViewModel Observer:
-         *      Observatie voor het tonen van een SnackBar afkomstig van ViewModel en navigatie naar het overzichtfragment
+         *      Observatie voor het tonen van een SnackBar afkomstig van ViewModel en navigatie naar het overzichtfragment.
+         *      Observeren van de maaltijden waartoe maaltijdOnderdeel behoort.
          */
         viewModel.showSnackBar.observe(this, Observer{
             showSnackBar(it)
             findNavController().navigate(R.id.action_maaltijdOnderdeelDetailFragment_to_maaltijdOnderdeelOverzichtFragment)
+        })
+        viewModel.maaltijden.observe(this, Observer{ lijst ->
+            lijst?.let{
+                if(it.size > 0){
+                    setHasOptionsMenu(false)
+                    binding.maaltijdenTitleText.visibility = VISIBLE
+                    binding.maaltijdenRecyclerView.visibility = VISIBLE
+                    adapter.submitList(it)
+                }
+                else{
+                    setHasOptionsMenu(true)
+                    binding.maaltijdenTitleText.visibility = GONE
+                    binding.maaltijdenRecyclerView.visibility = GONE
+                }
+            }
         })
         /**
          * UI OnClickListener voor de Edit button om de naam van het maaltijdOnderdeel aan te passen
@@ -84,7 +116,6 @@ class MaaltijdOnderdeelDetailFragment : Fragment() {
         /**
          * Other
          */
-        setHasOptionsMenu(true)
 
         return binding.root
     }
