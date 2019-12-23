@@ -10,11 +10,7 @@ import android.view.ViewGroup
 import android.com.what2eat.R
 import android.com.what2eat.activities.MainActivity
 import android.com.what2eat.databinding.FragmentWelcomeBinding
-import android.com.what2eat.viewmodels.ActionbarViewModel
-import android.com.what2eat.viewmodels.MaaltijdViewModel
-import android.com.what2eat.viewmodels.MaaltijdViewModelFactory
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
 
 class WelcomeFragment : Fragment() {
 

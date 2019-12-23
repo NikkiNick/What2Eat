@@ -37,17 +37,6 @@ class MaaltijdDetailViewModel(
     val changeRatingDisplay: LiveData<Int>
         get() = _changeRatingDisplay
 
-    val ratingStrings = listOf(
-        application.applicationContext.getString(R.string.rating0),
-        application.applicationContext.getString(R.string.rating1),
-        application.applicationContext.getString(R.string.rating2),
-        application.applicationContext.getString(R.string.rating3),
-        application.applicationContext.getString(R.string.rating4),
-        application.applicationContext.getString(R.string.rating5))
-    var _ratingString = MutableLiveData<String>()
-    val ratingString: LiveData<String>
-        get() = _ratingString
-
     /*
     Co-Routines
      */
@@ -116,6 +105,7 @@ class MaaltijdDetailViewModel(
     }
     private suspend fun deleteMaaltijdFromDatabase(){
         withContext(Dispatchers.IO){
+            maaltijdMaaltijdOnderdeelDbSource.deleteFromMaaltijd(maaltijdId)
             maaltijdDbSource.delete(_maaltijd.value!!)
         }
     }
@@ -125,7 +115,6 @@ class MaaltijdDetailViewModel(
     fun setRating(rating: Int){
         _maaltijd.value?.rating = rating
         _changeRatingDisplay.value = rating
-        _ratingString.value = ratingStrings.get(rating)
     }
     fun setMaaltijdPhoto(uri: String){
         _maaltijd.value?.photo_uri = uri

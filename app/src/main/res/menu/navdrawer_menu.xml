@@ -13,4 +13,8 @@
         android:id="@+id/maaltijdOverzichtFragment"
         android:icon="@mipmap/baseline_fastfood_black_48dp"
         android:title="@string/my_meals" />
+    <item
+        android:id="@+id/maaltijdOnderdeelOverzichtFragment"
+        android:icon="@mipmap/baseline_fastfood_black_48dp"
+        android:title="@string/my_meal_parts" />
 </menu>

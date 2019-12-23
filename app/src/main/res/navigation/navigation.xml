@@ -19,25 +19,13 @@
         android:name="android.com.what2eat.fragments.MaaltijdOverzichtFragment"
         android:label="@string/my_meals" >
         <action
-            android:id="@+id/action_maaltijdOverzichtFragment_to_addMaaltijd_StartFragment"
-            app:destination="@id/addMaaltijd_StartFragment"
-            app:enterAnim="@anim/nav_default_pop_enter_anim"
-            app:exitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
             android:id="@+id/action_maaltijdOverzichtFragment_to_maaltijdDetailFragment"
             app:destination="@id/maaltijdDetailFragment"
-            app:enterAnim="@anim/nav_default_pop_enter_anim"
-            app:exitAnim="@anim/nav_default_pop_exit_anim" />
-    </fragment>
-    <fragment
-        android:id="@+id/addMaaltijd_StartFragment"
-        android:name="android.com.what2eat.fragments.MaaltijdAddFragment"
-        android:label="AddMaaltijd_StartFragment" >
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
         <action
-            android:id="@+id/action_addMaaltijd_StartFragment_to_maaltijdOverzichtFragment"
-            app:destination="@id/maaltijdOverzichtFragment"
-            app:popUpTo="@+id/maaltijdOverzichtFragment"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_maaltijdOverzichtFragment_to_maaltijdEditFragment"
+            app:destination="@id/maaltijdEditFragment" />
     </fragment>
     <fragment
         android:id="@+id/maaltijdDetailFragment"
@@ -49,11 +37,13 @@
         <action
             android:id="@+id/action_maaltijdDetailFragment_to_maaltijdEditFragment"
             app:destination="@id/maaltijdEditFragment"
-            app:enterAnim="@anim/nav_default_pop_enter_anim"
-            app:exitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
         <action
             android:id="@+id/action_maaltijdDetailFragment_to_maaltijdImageShowFragment"
-            app:destination="@id/maaltijdImageShowFragment" />
+            app:destination="@id/maaltijdImageShowFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/maaltijdEditFragment"
@@ -65,17 +55,16 @@
         <action
             android:id="@+id/action_maaltijdEditFragment_to_maaltijdDetailFragment"
             app:destination="@id/maaltijdDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
             app:popUpTo="@+id/maaltijdDetailFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_maaltijdEditFragment_to_maaltijdOverzichtFragment"
             app:destination="@id/maaltijdOverzichtFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
             app:popUpTo="@+id/maaltijdOverzichtFragment"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_maaltijdEditFragment_to_maaltijdOnderdeelOverzichtFragment"
-            app:destination="@id/maaltijdOnderdeelOverzichtFragment"
-            app:popUpTo="@+id/maaltijdOnderdeelOverzichtFragment"
             app:popUpToInclusive="true" />
         <argument
             android:name="add_maaltijdOnderdelen_ids"
@@ -83,20 +72,14 @@
             app:nullable="true" />
         <action
             android:id="@+id/action_maaltijdEditFragment_to_maaltijdImageShowFragment"
-            app:destination="@id/maaltijdImageShowFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/maaltijdOnderdeelOverzichtFragment"
-        android:name="android.com.what2eat.fragments.MaaltijdOnderdeelOverzichtFragment"
-        android:label="MaaltijdOnderdeelOverzichtFragment" >
+            app:destination="@id/maaltijdImageShowFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
         <action
-            android:id="@+id/action_maaltijdOnderdeelOverzichtFragment_to_maaltijdEditFragment"
-            app:destination="@id/maaltijdEditFragment"
-            app:popUpTo="@+id/maaltijdEditFragment"
-            app:popUpToInclusive="true" />
-        <argument
-            android:name="maaltijdId"
-            app:argType="long" />
+            android:id="@+id/action_maaltijdEditFragment_to_maaltijdOnderdeelSelectFragment"
+            app:destination="@id/maaltijdOnderdeelSelectFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/maaltijdImageShowFragment"
@@ -106,5 +89,49 @@
         <argument
             android:name="maaltijd_photo_uri"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/maaltijdOnderdeelSelectFragment"
+        android:name="android.com.what2eat.fragments.MaaltijdOnderdeelSelectFragment"
+        android:label="MaaltijdOnderdeelSelectFragment" >
+        <action
+            android:id="@+id/action_maaltijdOnderdeelSelectFragment_to_maaltijdEditFragment"
+            app:destination="@id/maaltijdEditFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+        <argument
+            android:name="maaltijdId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/maaltijdOnderdeelOverzichtFragment"
+        android:name="android.com.what2eat.fragments.MaaltijdOnderdeelOverzichtFragment"
+        android:label="MaaltijdOnderdeelOverzichtFragment" >
+        <action
+            android:id="@+id/action_maaltijdOnderdeelOverzichtFragment_to_maaltijdOnderdeelDetailFragment"
+            app:destination="@id/maaltijdOnderdeelDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/maaltijdOnderdeelDetailFragment"
+        android:name="android.com.what2eat.fragments.MaaltijdOnderdeelDetailFragment"
+        android:label="fragment_maaltijd_onderdeel_detail"
+        tools:layout="@layout/fragment_maaltijd_onderdeel_detail" >
+        <argument
+            android:name="maaltijdonderdeel_id"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_maaltijdOnderdeelDetailFragment_to_maaltijdOnderdeelOverzichtFragment"
+            app:destination="@id/maaltijdOnderdeelOverzichtFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@+id/maaltijdOnderdeelOverzichtFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_maaltijdOnderdeelDetailFragment_to_maaltijdDetailFragment"
+            app:destination="@id/maaltijdDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
 </navigation>

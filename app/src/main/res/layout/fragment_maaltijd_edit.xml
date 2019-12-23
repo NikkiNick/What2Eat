@@ -52,7 +52,7 @@
                         android:focusable="true"
                         android:tint="@color/colorPrimary"
                         app:srcCompat="@drawable/baseline_photo_camera_black_48"
-                        android:contentDescription="Take picture icon"/>
+                        android:contentDescription="@string/take_picture_icon"/>
 
                     <ImageView
                         android:id="@+id/maaltijd_photo_delete_button"
@@ -65,7 +65,7 @@
                         app:srcCompat="@android:drawable/ic_delete"
                         android:visibility="gone"
                         tools:visibility="visible"
-                        android:contentDescription="Delete picture icon"/>
+                        android:contentDescription="@string/delete_picture_icon"/>
 
                 </RelativeLayout>
 
@@ -231,6 +231,21 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <TextView
+                    android:id="@+id/noItems_Text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/container_content_border"
+                    android:padding="8sp"
+                    android:text="@string/no_mealparts_selected"
+                    android:textAlignment="center"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+                    tools:visibility="visible" />
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/maaltijdOnderdelen_recycler"
                     android:layout_width="0dp"

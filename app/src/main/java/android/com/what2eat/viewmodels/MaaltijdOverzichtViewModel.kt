@@ -26,6 +26,10 @@ class MaaltijdOverzichtViewModel(val database: MaaltijdDao, application: Applica
     val navigateToMaaltijdDetail
         get() = _navigateToMaaltijdDetail
 
+    private val _navigateToMaaltijdEdit = MutableLiveData<Long>()
+    val navigateToMaaltijdEdit
+        get() = _navigateToMaaltijdEdit
+
     fun onMaaltijdClicked(id: Long){
         _navigateToMaaltijdDetail.value = id
     }
@@ -58,7 +62,11 @@ class MaaltijdOverzichtViewModel(val database: MaaltijdDao, application: Applica
             maaltijden
         }
     }
-
+    private suspend fun addMaaltijdToDatabase(maaltijd: Maaltijd): Long{
+        return withContext(Dispatchers.IO){
+            database.insert(maaltijd)
+        }
+    }
     fun clearMaaltijden(){
         uiScope.launch {
             _maaltijden.value = emptyList()
@@ -70,7 +78,14 @@ class MaaltijdOverzichtViewModel(val database: MaaltijdDao, application: Applica
             database.deleteAll()
         }
     }
-
+    fun addMaaltijd(maaltijd_naam: String){
+        uiScope.launch {
+            val maaltijd = Maaltijd()
+            maaltijd.naam = maaltijd_naam
+            val id = addMaaltijdToDatabase(maaltijd)
+            _navigateToMaaltijdEdit.value = id
+        }
+    }
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
