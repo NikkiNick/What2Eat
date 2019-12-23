@@ -55,7 +55,19 @@ class MaaltijdOnderdeelSelectViewModel(val maaltijdOnderdeelDbSource: MaaltijdOn
             maaltijdOnderdelen
         }
     }
-
+    fun addMaaltijdOnderdeel(naam: String) {
+        uiScope.launch {
+            var mo = MaaltijdOnderdeel()
+            mo.naam = naam
+            addMaaltijdOnderdeelToDatabase(mo)
+        }
+    }
+    private suspend fun addMaaltijdOnderdeelToDatabase(maaltijdOnderdeel: MaaltijdOnderdeel){
+        withContext(Dispatchers.IO){
+            maaltijdOnderdeelDbSource.insert(maaltijdOnderdeel)
+            initMaaltijdOnderdelen()
+        }
+    }
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
