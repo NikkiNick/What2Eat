@@ -4,16 +4,10 @@ package android.com.what2eat.fragments
 import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.app.Application
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.com.what2eat.R
 import android.com.what2eat.activities.MainActivity
 import android.com.what2eat.adapters.MaaltijdOnderdeelListener
 import android.com.what2eat.adapters.MaaltijdOnderdeelRemoveAdapter
-import android.com.what2eat.database.MaaltijdDatabase
-import android.com.what2eat.database.MaaltijdDao
-import android.com.what2eat.database.MaaltijdMaaltijdOnderdeelDao
-import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.databinding.FragmentMaaltijdEditBinding
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModel
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModelFactory
@@ -21,7 +15,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.ClipDrawable
 import android.net.Uri
-import android.os.Build
+import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.view.*
@@ -34,6 +28,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
@@ -46,6 +41,7 @@ import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 /**
  * [Fragment] voor het aanpassen van een maaltijd.
@@ -57,10 +53,7 @@ class MaaltijdEditFragment : Fragment() {
     private lateinit var binding: FragmentMaaltijdEditBinding
     private lateinit var viewModelFactory: MaaltijdDetailViewModelFactory
     private lateinit var viewModel: MaaltijdDetailViewModel
-    private lateinit var application: Application
-    private lateinit var maaaltijdDataSource: MaaltijdDao
-    private lateinit var maaltijdOnderdeelDataSource: MaaltijdOnderdeelDao
-    private lateinit var maaltijdMaaltijdOnderdeelDataSource: MaaltijdMaaltijdOnderdeelDao
+    @Inject lateinit var application: Application
     val REQUEST_TAKE_PHOTO = 1
     private lateinit var currentPhotoPath: String
     /**
@@ -68,12 +61,9 @@ class MaaltijdEditFragment : Fragment() {
      * Fragment properties worden hier geïnstantieerd.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        application = requireNotNull(this.activity).application
-        maaaltijdDataSource = MaaltijdDatabase.getInstance(application).maaltijdDao
-        maaltijdOnderdeelDataSource = MaaltijdDatabase.getInstance(application).maaltijdOnderdeelDao
-        maaltijdMaaltijdOnderdeelDataSource = MaaltijdDatabase.getInstance(application).maaltijdMaaltijdOnderdeelDao
+        android.com.what2eat.Application.component.inject(this)
         val args = MaaltijdEditFragmentArgs.fromBundle(arguments!!)
-        viewModelFactory = MaaltijdDetailViewModelFactory(args.maaltijdId, maaaltijdDataSource, maaltijdOnderdeelDataSource,maaltijdMaaltijdOnderdeelDataSource, application)
+        viewModelFactory = MaaltijdDetailViewModelFactory(args.maaltijdId)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdDetailViewModel::class.java)
         super.onCreate(savedInstanceState)
     }

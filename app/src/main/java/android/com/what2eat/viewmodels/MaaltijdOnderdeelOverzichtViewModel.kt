@@ -3,14 +3,18 @@ package android.com.what2eat.viewmodels
 import android.app.Application
 import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.model.MaaltijdOnderdeel
+import android.com.what2eat.repositories.MaaltijdOnderdeelRepository
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
 import java.util.*
+import javax.inject.Inject
 
-class MaaltijdOnderdeelOverzichtViewModel(val maaltijdOnderdeelDbSource: MaaltijdOnderdeelDao, application: Application)  : AndroidViewModel(application){
+class MaaltijdOnderdeelOverzichtViewModel()  : ViewModel(){
 
+    @Inject lateinit var maaltijdOnderdeelRepo: MaaltijdOnderdeelRepository
 
     var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -20,6 +24,10 @@ class MaaltijdOnderdeelOverzichtViewModel(val maaltijdOnderdeelDbSource: Maaltij
         get() = _maaltijdOnderdelen
 
     private val originalListMaaltijdOnderdelen: MutableList<MaaltijdOnderdeel> = mutableListOf()
+
+    init{
+        android.com.what2eat.Application.component.inject(this)
+    }
 
     fun initMaaltijdOnderdelen(){
         initializeMaaltijdOnderdelen()
@@ -31,35 +39,21 @@ class MaaltijdOnderdeelOverzichtViewModel(val maaltijdOnderdeelDbSource: Maaltij
     }
     private fun initializeMaaltijdOnderdelen() {
         uiScope.launch {
-            _maaltijdOnderdelen.value = getAllMaaltijdOnderdelenFromDatabase()
+            _maaltijdOnderdelen.value = maaltijdOnderdeelRepo.getAllMaaltijdOnderdelen()
             originalListMaaltijdOnderdelen.clear()
             originalListMaaltijdOnderdelen.addAll(_maaltijdOnderdelen.value!!)
         }
     }
-    private suspend fun getAllMaaltijdOnderdelenFromDatabase(): List<MaaltijdOnderdeel>?{
-        return withContext(Dispatchers.IO){
-            val maaltijdOnderdelen = maaltijdOnderdeelDbSource.getAll()
-            maaltijdOnderdelen
+    fun addMaaltijdOnderdeel(naam: String) {
+        uiScope.launch {
+            val mo = MaaltijdOnderdeel()
+            mo.naam = naam
+            maaltijdOnderdeelRepo.addMaaltijdOnderdeel(mo)
         }
     }
-
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
-    }
-
-    fun addMaaltijdOnderdeel(naam: String) {
-        uiScope.launch {
-            var mo = MaaltijdOnderdeel()
-            mo.naam = naam
-            addMaaltijdOnderdeelToDatabase(mo)
-        }
-    }
-    private suspend fun addMaaltijdOnderdeelToDatabase(maaltijdOnderdeel: MaaltijdOnderdeel){
-        withContext(Dispatchers.IO){
-            maaltijdOnderdeelDbSource.insert(maaltijdOnderdeel)
-            initMaaltijdOnderdelen()
-        }
     }
 
 }
