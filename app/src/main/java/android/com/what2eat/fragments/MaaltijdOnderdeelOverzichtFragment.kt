@@ -1,16 +1,12 @@
 package android.com.what2eat.fragments
 
 
-import android.app.Application
 import android.com.what2eat.R
 import android.com.what2eat.activities.MainActivity
 import android.com.what2eat.adapters.MaaltijdOnderdeelClickableAdapter
 import android.com.what2eat.adapters.MaaltijdOnderdeelListener
-import android.com.what2eat.database.MaaltijdDatabase
-import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.databinding.FragmentMaaltijdOnderdeelOverzichtBinding
 import android.com.what2eat.viewmodels.MaaltijdOnderdeelOverzichtViewModel
-import android.com.what2eat.viewmodels.MaaltijdOnderdeelOverzichtViewModelFactory
 import android.graphics.drawable.ClipDrawable
 import android.os.Bundle
 import android.text.InputType
@@ -29,7 +25,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
-import kotlinx.android.synthetic.main.fragment_maaltijd_onderdeel_overzicht.*
 
 /**
  * [Fragment] voor maaltijdonderdelenoverzicht
@@ -39,19 +34,13 @@ class MaaltijdOnderdeelOverzichtFragment : Fragment() {
      * Fragment Properties
      */
     private lateinit var binding: FragmentMaaltijdOnderdeelOverzichtBinding
-    private lateinit var viewModelFactory: MaaltijdOnderdeelOverzichtViewModelFactory
     private lateinit var viewModel: MaaltijdOnderdeelOverzichtViewModel
-    private lateinit var dataSource: MaaltijdOnderdeelDao
-    private lateinit var application: Application
     /**
      * Functie die wordt opgeroepen wanneer het [Fragment] aangemaakt wordt en in CREATED lifecycle state is.
      * Fragment properties worden hier geïnstantieerd.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        application = requireNotNull(this.activity).application
-        dataSource = MaaltijdDatabase.getInstance(application).maaltijdOnderdeelDao
-        viewModelFactory = MaaltijdOnderdeelOverzichtViewModelFactory(dataSource, application)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdOnderdeelOverzichtViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(MaaltijdOnderdeelOverzichtViewModel::class.java)
         super.onCreate(savedInstanceState)
     }
     /**

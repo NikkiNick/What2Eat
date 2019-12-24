@@ -43,20 +43,15 @@ class MaaltijdOnderdeelDetailFragment : Fragment() {
     private lateinit var binding: FragmentMaaltijdOnderdeelDetailBinding
     private lateinit var viewModelFactory: MaaltijdOnderdeelDetailViewModelFactory
     private lateinit var viewModel: MaaltijdOnderdeelDetailViewModel
-    private lateinit var application: Application
-    private lateinit var maaltijdOnderdeelDataSource: MaaltijdOnderdeelDao
-    private lateinit var maaltijdDataSource: MaaltijdDao
+
     /**
      * Functie die wordt opgeroepen wanneer het [Fragment] aangemaakt wordt en in CREATED lifecycle state is.
      * Fragment properties worden hier geïnstantieerd.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        application = requireNotNull(this.activity).application
-        maaltijdOnderdeelDataSource = MaaltijdDatabase.getInstance(application).maaltijdOnderdeelDao
-        maaltijdDataSource = MaaltijdDatabase.getInstance(application).maaltijdDao
         val args = MaaltijdOnderdeelDetailFragmentArgs.fromBundle(arguments!!)
-        viewModelFactory = MaaltijdOnderdeelDetailViewModelFactory(maaltijdOnderdeelDataSource, maaltijdDataSource, args.maaltijdonderdeelId, application)
+        viewModelFactory = MaaltijdOnderdeelDetailViewModelFactory(args.maaltijdonderdeelId)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdOnderdeelDetailViewModel::class.java)
         super.onCreate(savedInstanceState)
 
@@ -75,7 +70,7 @@ class MaaltijdOnderdeelDetailFragment : Fragment() {
         binding.setLifecycleOwner(this)
         binding.maaltijdOnderdeel = viewModel
         /**
-         * RecyclerView setup voor het tonen van de [RecyclerView] van maaltijden waartoe het huidige maaltijdonderdeel behoort.
+         * RecyclerView setup voor het tonen van de RecyclerView van maaltijden waartoe het huidige maaltijdonderdeel behoort.
          */
         val adapter = MaaltijdAdapter(MaaltijdListener {
             findNavController().navigate(MaaltijdOnderdeelDetailFragmentDirections.actionMaaltijdOnderdeelDetailFragmentToMaaltijdDetailFragment(it))
