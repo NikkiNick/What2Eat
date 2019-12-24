@@ -1,17 +1,12 @@
 package android.com.what2eat.fragments
 
-import android.app.Application
 import android.com.what2eat.R
 import android.com.what2eat.activities.MainActivity
 import android.com.what2eat.adapters.MaaltijdAdapter
 import android.com.what2eat.adapters.MaaltijdListener
-import android.com.what2eat.database.MaaltijdDao
-import android.com.what2eat.database.MaaltijdDatabase
 import android.com.what2eat.databinding.FragmentMaaltijdOverzichtBinding
 import android.com.what2eat.viewmodels.MaaltijdOverzichtViewModel
-import android.com.what2eat.viewmodels.MaaltijdOverzichtViewModelFactory
 import android.graphics.drawable.ClipDrawable.HORIZONTAL
-import android.os.Build
 import android.os.Bundle
 import android.text.InputType
 import android.view.*
@@ -20,7 +15,6 @@ import android.view.View.VISIBLE
 import android.widget.EditText
 import android.widget.SearchView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -29,7 +23,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 
 /**
@@ -40,19 +33,13 @@ class MaaltijdOverzichtFragment : Fragment() {
      * Fragment Properties
      */
     private lateinit var binding: FragmentMaaltijdOverzichtBinding
-    private lateinit var viewModelFactory: MaaltijdOverzichtViewModelFactory
     private lateinit var viewModel: MaaltijdOverzichtViewModel
-    private lateinit var dataSource: MaaltijdDao
-    private lateinit var application: Application
-    /**
+    /*
      * Functie die wordt opgeroepen wanneer het [Fragment] aangemaakt wordt en in CREATED lifecycle state is.
      * Fragment properties worden hier geïnstantieerd.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        application = requireNotNull(this.activity).application
-        dataSource = MaaltijdDatabase.getInstance(application).maaltijdDao
-        viewModelFactory = MaaltijdOverzichtViewModelFactory(dataSource, application)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdOverzichtViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(MaaltijdOverzichtViewModel::class.java)
         super.onCreate(savedInstanceState)
     }
     /**
@@ -140,7 +127,6 @@ class MaaltijdOverzichtFragment : Fragment() {
         /**
          * Other
          */
-        this.setHasOptionsMenu(true)
 
         return binding.root
 
@@ -176,38 +162,6 @@ class MaaltijdOverzichtFragment : Fragment() {
         input.requestFocus()
     }
 
-    /**
-     * Deze functie wordt gebruikt om het overflow menu weer te geven.
-     * Overflowmenu is een delete icon om alle maaltijden te verwijderen.
-     */
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.maaltijdoverzicht_overflowmenu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-    /**
-     * Deze functie wordt gebruikt om de gebruikte [MenuItem] uit het overflowmenu af te handelen.
-     */
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.deleteAll_menuItem -> deleteMaaltijden()
-        }
-        return super.onOptionsItemSelected(item)
-    }
-    /**
-     * Deze functie wordt gebruikt om een [AlertDialog] weer te geven waarbij de gebruiker toestemming
-     * geeft om alle maaltijden te verwijderen.
-     */
-    private fun deleteMaaltijden(){
-        MaterialAlertDialogBuilder(context)
-            .setTitle(R.string.confirmation_delete_title)
-            .setMessage(R.string.confirmation_delete_content)
-            .setPositiveButton(resources.getString(R.string.ok)){ dialog, num ->
-                viewModel.clearMaaltijden()
-                showSnackBar(resources.getString(R.string.deletedAllMeals))
-            }
-            .setNegativeButton(resources.getString(R.string.cancel)){ dialog, num -> }
-            .show()
-    }
     /**
      * Deze functie wordt gebruikt om een SnackBar met bericht weer te geven
      */

@@ -38,8 +38,6 @@ class MaaltijdOnderdeelSelectFragment : Fragment() {
     private lateinit var binding: FragmentMaaltijdOnderdeelSelectBinding
     private lateinit var viewModelFactory: MaaltijdOnderdeelSelectViewModelFactory
     private lateinit var viewModel: MaaltijdOnderdeelSelectViewModel
-    private lateinit var dataSource: MaaltijdOnderdeelDao
-    private lateinit var application: Application
     val tempCheckedIds = mutableListOf<Long>()
     private lateinit var args: MaaltijdOnderdeelSelectFragmentArgs
         /**
@@ -47,10 +45,8 @@ class MaaltijdOnderdeelSelectFragment : Fragment() {
      * Fragment properties worden hier geïnstantieerd.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        application = requireNotNull(this.activity).application
-        dataSource = MaaltijdDatabase.getInstance(application).maaltijdOnderdeelDao
         args = MaaltijdOnderdeelSelectFragmentArgs.fromBundle(arguments!!)
-        viewModelFactory = MaaltijdOnderdeelSelectViewModelFactory(dataSource, args.maaltijdId,  application)
+        viewModelFactory = MaaltijdOnderdeelSelectViewModelFactory(args.maaltijdId)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdOnderdeelSelectViewModel::class.java)
         super.onCreate(savedInstanceState)
     }

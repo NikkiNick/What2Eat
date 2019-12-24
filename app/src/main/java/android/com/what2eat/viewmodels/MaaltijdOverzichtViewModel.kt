@@ -3,14 +3,18 @@ package android.com.what2eat.viewmodels
 import android.app.Application
 import android.com.what2eat.database.MaaltijdDao
 import android.com.what2eat.model.Maaltijd
+import android.com.what2eat.repositories.MaaltijdRepository
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
 import java.util.*
+import javax.inject.Inject
 
-class MaaltijdOverzichtViewModel(val database: MaaltijdDao, application: Application) : AndroidViewModel(application){
+class MaaltijdOverzichtViewModel() : ViewModel(){
 
+    @Inject lateinit var maaltijdRepo: MaaltijdRepository
 
     var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -39,6 +43,9 @@ class MaaltijdOverzichtViewModel(val database: MaaltijdDao, application: Applica
 
     private val originalListMaaltijden: MutableList<Maaltijd> = mutableListOf()
 
+    init{
+        android.com.what2eat.Application.component.inject(this)
+    }
 
     fun initMaaltijden(){
         initializeMaaltijden()
@@ -50,39 +57,16 @@ class MaaltijdOverzichtViewModel(val database: MaaltijdDao, application: Applica
     }
     private fun initializeMaaltijden() {
         uiScope.launch {
-            _maaltijden.value = getAllMaaltijdenFromDatabase()
+            _maaltijden.value = maaltijdRepo.getAllMaaltijden()
             originalListMaaltijden.clear()
             originalListMaaltijden.addAll(_maaltijden.value!!)
-        }
-    }
-
-    private suspend fun getAllMaaltijdenFromDatabase(): List<Maaltijd>?{
-        return withContext(Dispatchers.IO){
-            val maaltijden = database.getAll()
-            maaltijden
-        }
-    }
-    private suspend fun addMaaltijdToDatabase(maaltijd: Maaltijd): Long{
-        return withContext(Dispatchers.IO){
-            database.insert(maaltijd)
-        }
-    }
-    fun clearMaaltijden(){
-        uiScope.launch {
-            _maaltijden.value = emptyList()
-            clearAllMaaltijdenFromDatabase()
-        }
-    }
-    private suspend fun clearAllMaaltijdenFromDatabase(){
-        return withContext(Dispatchers.IO){
-            database.deleteAll()
         }
     }
     fun addMaaltijd(maaltijd_naam: String){
         uiScope.launch {
             val maaltijd = Maaltijd()
             maaltijd.naam = maaltijd_naam
-            val id = addMaaltijdToDatabase(maaltijd)
+            val id = maaltijdRepo.addMaaltijd(maaltijd)
             _navigateToMaaltijdEdit.value = id
         }
     }

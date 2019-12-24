@@ -4,8 +4,10 @@ import android.app.Application
 import android.com.what2eat.injection.DaggerInjectionGraph
 import android.com.what2eat.injection.DatabaseModule
 import android.com.what2eat.injection.InjectionGraph
-import dagger.Component
 
+/**
+ * This is the applicationContext used in the application
+ */
 class Application : Application() {
     companion object {
         lateinit var component: InjectionGraph
@@ -17,5 +19,6 @@ class Application : Application() {
             .builder()
             .databaseModule(DatabaseModule(this))
             .build()
+
     }
 }
