@@ -8,7 +8,7 @@ class RecipeApiRepository(val recipeApi: RecipeApi) {
 
     suspend fun searchRecipes(naam: String){
         withContext(Dispatchers.IO){
-            recipeApi.getRecipes()
+            recipeApi.getRecipes(naam)
         }
     }
 
