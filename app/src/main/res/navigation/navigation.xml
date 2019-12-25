@@ -142,5 +142,9 @@
     <fragment
         android:id="@+id/maaltijdOnderdeelInspiratieFragment"
         android:name="android.com.what2eat.fragments.MaaltijdOnderdeelInspiratieFragment"
-        android:label="MaaltijdOnderdeelInspiratieFragment" />
+        android:label="MaaltijdOnderdeelInspiratieFragment" >
+        <argument
+            android:name="recipe_naam"
+            app:argType="string" />
+    </fragment>
 </navigation>

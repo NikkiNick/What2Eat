@@ -22,6 +22,7 @@ fun ImageView.setPhotoCircle(recipe: Recipe?){
             var options: RequestOptions = RequestOptions()
             options.circleCrop()
             Glide.with(context).load(it).apply(options).into(this)
+            contentDescription = recipe.recipe.naam+" image"
         }
     }
 }

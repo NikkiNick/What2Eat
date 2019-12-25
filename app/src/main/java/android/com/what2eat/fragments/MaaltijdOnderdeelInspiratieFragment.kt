@@ -1,26 +1,28 @@
 package android.com.what2eat.fragments
 
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-
 import android.com.what2eat.R
-import android.com.what2eat.adapters.MaaltijdAdapter
-import android.com.what2eat.adapters.MaaltijdListener
 import android.com.what2eat.adapters.RecipeAdapter
 import android.com.what2eat.databinding.FragmentMaaltijdOnderdeelInspiratieBinding
+import android.com.what2eat.utils.NetworkUtil
 import android.com.what2eat.viewmodels.RecipeApiViewModel
+import android.com.what2eat.viewmodels.RecipeApiViewModelFactory
+import android.content.Context
 import android.graphics.drawable.ClipDrawable
-import android.util.Log
+import android.net.ConnectivityManager
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
+
 
 /**
  * A simple [Fragment] subclass.
@@ -29,13 +31,16 @@ class MaaltijdOnderdeelInspiratieFragment : Fragment() {
 
     private lateinit var binding: FragmentMaaltijdOnderdeelInspiratieBinding
     private lateinit var viewModel: RecipeApiViewModel
+    private lateinit var viewModelFactory: RecipeApiViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_onderdeel_inspiratie, container, false)
-        viewModel = ViewModelProviders.of(this).get(RecipeApiViewModel::class.java)
+        val args = MaaltijdOnderdeelInspiratieFragmentArgs.fromBundle(arguments!!)
+        viewModelFactory = RecipeApiViewModelFactory(args.recipeNaam)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(RecipeApiViewModel::class.java)
         /**
          * RecyclerView setup voor lijst van maaltijden inclusief [DividerItemDecoration].
          */
@@ -44,6 +49,11 @@ class MaaltijdOnderdeelInspiratieFragment : Fragment() {
         val itemDecor = DividerItemDecoration(context, ClipDrawable.HORIZONTAL)
         binding.recyclerRecipes.addItemDecoration(itemDecor)
 
+        if(!NetworkUtil().isInternetAvailable(context!!)){
+            binding.loadingLayout.visibility = GONE
+            binding.noconnectionLayout.visibility = VISIBLE
+            binding.recyclerLayout.visibility = GONE
+        }
         viewModel.response.observe(this, Observer { lijst ->
             binding.loadingLayout.visibility = VISIBLE
             lijst?.let{
@@ -62,6 +72,5 @@ class MaaltijdOnderdeelInspiratieFragment : Fragment() {
 
         return binding.root
     }
-
 
 }
