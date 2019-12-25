@@ -108,6 +108,9 @@ class MaaltijdOnderdeelDetailFragment : Fragment() {
         binding.editMealpartButton.setOnClickListener{
             editMaaltijdOnderdeel()
         }
+        binding.searchButton.setOnClickListener {
+            findNavController().navigate(R.id.action_maaltijdOnderdeelDetailFragment_to_maaltijdOnderdeelInspiratieFragment)
+        }
         /**
          * Other
          */
