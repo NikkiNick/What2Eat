@@ -133,5 +133,14 @@
             app:destination="@id/maaltijdDetailFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_maaltijdOnderdeelDetailFragment_to_maaltijdOnderdeelInspiratieFragment"
+            app:destination="@id/maaltijdOnderdeelInspiratieFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
+    <fragment
+        android:id="@+id/maaltijdOnderdeelInspiratieFragment"
+        android:name="android.com.what2eat.fragments.MaaltijdOnderdeelInspiratieFragment"
+        android:label="MaaltijdOnderdeelInspiratieFragment" />
 </navigation>
