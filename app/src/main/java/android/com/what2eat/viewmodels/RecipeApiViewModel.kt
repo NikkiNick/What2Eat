@@ -13,7 +13,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class RecipeApiViewModel(): ViewModel() {
+class RecipeApiViewModel(val naam: String): ViewModel() {
 
     @Inject lateinit var recipeApi: RecipeApi
 
@@ -26,7 +26,7 @@ class RecipeApiViewModel(): ViewModel() {
 
     init {
         Application.component.inject(this)
-        searchRecipesByName("chicken")
+        searchRecipesByName(naam)
     }
     private fun searchRecipesByName(naam: String){
         uiScope.launch {
