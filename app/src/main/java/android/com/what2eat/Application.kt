@@ -19,7 +19,7 @@ class Application : Application() {
         component = DaggerInjectionGraph
             .builder()
             .databaseModule(DatabaseModule(this))
-            //.networkModule(NetworkModule())
+            .networkModule(NetworkModule())
             .build()
 
     }

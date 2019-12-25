@@ -32,7 +32,6 @@ class MaaltijdOnderdeelInspiratieFragment : Fragment() {
 
         viewModel.response.observe(this, Observer {
             binding.recipesText.text = "Aantal: "+it.size.toString()
-            Log.i("TestN", it.toString())
         })
 
         return binding.root

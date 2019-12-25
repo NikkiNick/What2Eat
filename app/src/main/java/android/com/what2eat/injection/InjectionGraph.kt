@@ -7,7 +7,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [DatabaseModule::class])
+@Component(modules = [DatabaseModule::class, NetworkModule::class])
 interface InjectionGraph {
     fun inject(maaltijdDetailViewModel: MaaltijdDetailViewModel)
     fun inject(maaltijdOverzichtViewModel: MaaltijdOverzichtViewModel)
@@ -21,6 +21,6 @@ interface InjectionGraph {
     interface Builder {
         fun build(): InjectionGraph
         fun databaseModule(databaseModule: DatabaseModule): Builder
-        //fun networkModule(networkModule: NetworkModule): Builder
+        fun networkModule(networkModule: NetworkModule): Builder
     }
 }

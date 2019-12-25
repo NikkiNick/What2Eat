@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 class RecipeApiViewModel(): ViewModel() {
 
-    //@Inject lateinit var recipeApi: RecipeApi
+    @Inject lateinit var recipeApi: RecipeApi
 
     var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -30,10 +30,9 @@ class RecipeApiViewModel(): ViewModel() {
     }
     private fun searchRecipesByName(naam: String){
         uiScope.launch {
-            //var getRecipesDeffered = recipeApi.getRecipes(naam)
-            var getRecipesDeffered = RecipeApi2.retrofitService.getRecipes()
+            val getRecipesDeffered = recipeApi.getRecipes(naam)
             try{
-                var recipeList = getRecipesDeffered.await()
+                val recipeList = getRecipesDeffered.await()
                 _response.value = recipeList.recipes
             }catch (e: Exception){
                 Log.i("TestN", "Error: "+e.message)
