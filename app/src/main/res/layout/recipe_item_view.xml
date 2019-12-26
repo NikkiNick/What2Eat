@@ -7,12 +7,16 @@
         <variable
             name="recipe"
             type="android.com.what2eat.network.Recipe" />
+        <variable
+            name="clickListener"
+            type="android.com.what2eat.adapters.RecipeListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:onClick="@{() -> clickListener.onClick(recipe)}">
 
         <ImageView
             android:id="@+id/recipe_image"
@@ -25,7 +29,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:recipe_photo_circle="@{recipe}"
+            app:recipe_photo_circle="@{recipe.recipe}"
             app:srcCompat="@drawable/dish" />
 
         <TextView
@@ -39,7 +43,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/recipe_image"
             app:layout_constraintTop_toTopOf="@+id/recipe_image"
-            app:recipe_naam="@{recipe}"
+            app:recipe_naam="@{recipe.recipe}"
             tools:text="Recipe naam" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

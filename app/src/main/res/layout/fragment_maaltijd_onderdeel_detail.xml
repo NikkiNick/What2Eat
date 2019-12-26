@@ -28,14 +28,10 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:textSize="@dimen/medium_text"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    style="@style/title_style"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
                     app:maaltijdOnderdeel_naamText="@{maaltijdOnderdeel.maaltijdOnderdeel}"
                     tools:text="Maaltijdonderdeel naam" />
 
@@ -45,6 +41,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:background="@drawable/container_title_border"
                     android:paddingTop="4dp"
@@ -77,13 +74,16 @@
                     android:id="@+id/search_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
                     android:text="@string/find_online_inspiration"
                     app:icon="@android:drawable/ic_menu_search"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/maaltijden_recyclerView" />
+                    app:layout_constraintTop_toBottomOf="@+id/maaltijden_recyclerView"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <LinearLayout
                     android:id="@+id/noconnection_layout"
@@ -103,7 +103,7 @@
 
                     <ImageView
                         android:id="@+id/imageView4"
-                        android:layout_width="0dp"
+                        android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/baseline_wifi_off_black_48" />

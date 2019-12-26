@@ -114,7 +114,7 @@ class MaaltijdOnderdeelDetailFragment : Fragment() {
             editMaaltijdOnderdeel()
         }
         binding.searchButton.setOnClickListener {
-            findNavController().navigate(MaaltijdOnderdeelDetailFragmentDirections.actionMaaltijdOnderdeelDetailFragmentToMaaltijdOnderdeelInspiratieFragment(viewModel.maaltijdOnderdeel.value!!.naam))
+            findNavController().navigate(MaaltijdOnderdeelDetailFragmentDirections.actionMaaltijdOnderdeelDetailFragmentToRecipeOverzichtFragment(viewModel.maaltijdOnderdeel.value!!.naam))
         }
         /**
          * Other

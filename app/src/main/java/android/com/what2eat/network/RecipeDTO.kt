@@ -1,7 +1,12 @@
 package android.com.what2eat.network
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.android.parcel.Parceler
+import kotlinx.android.parcel.Parcelize
+
 @JsonClass(generateAdapter = true)
 data class Response(
     @Json(name="hits")
@@ -13,27 +18,40 @@ data class Recipe(
     @Json(name="recipe")
     val recipe: RecipeData
 )
+@Parcelize
 @JsonClass(generateAdapter = true)
 data class RecipeData(
     @Json(name="label")
-    val naam: String,
+    val naam: String?,
 
     @Json(name="image")
-    val image_url: String,
+    val image_url: String?,
 
     @Json(name="url")
-    val remote_site_url: String
+    val remote_site_url: String?,
 
-    //@Json(name="ingredients")
-    //val ingredienten: Array<IngredientProperty>
+    @Json(name="ingredientLines")
+    val ingredienten: List<String>?
 
-)
+): Parcelable {
+    constructor(parcel: Parcel): this(
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.createStringArrayList()
+    )
 
-data class IngredientProperty (
-    val food: FoodProperty
-)
+    companion object : Parceler<RecipeData> {
 
-data class FoodProperty(
-    @Json(name="label")
-    val naam: String
-)
+        override fun RecipeData.write(dest: Parcel, flags: Int) {
+            dest?.writeString(naam)
+            dest?.writeString(image_url)
+            dest?.writeString(remote_site_url)
+            dest?.writeStringList(ingredienten)
+        }
+
+        override fun create(source: Parcel): RecipeData {
+            return RecipeData(source)
+        }
+    }
+}
