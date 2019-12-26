@@ -2,6 +2,8 @@
 
 ### All Types
 
+| Name | Summary |
+|---|---|
 | [android.com.what2eat.fragments.AboutFragment](../android.com.what2eat.fragments/-about-fragment/index.md) | About fragment |
 | [android.com.what2eat.viewmodels.ActionbarViewModel](../android.com.what2eat.viewmodels/-actionbar-view-model/index.md) |  |
 | [android.com.what2eat.Application](../android.com.what2eat/-application/index.md) | This is the applicationContext used in the application |
@@ -51,4 +53,3 @@
 | [com.google.android.material.textfield.TextInputEditText](../android.com.what2eat.adapters/com.google.android.material.textfield.-text-input-edit-text/index.md) (extensions in package android.com.what2eat.adapters) |  |
 | [android.widget.TextView](../android.com.what2eat.adapters/android.widget.-text-view/index.md) (extensions in package android.com.what2eat.adapters) |  |
 | [android.com.what2eat.fragments.WelcomeFragment](../android.com.what2eat.fragments/-welcome-fragment/index.md) |  |
-
