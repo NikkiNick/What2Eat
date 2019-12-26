@@ -4,5 +4,5 @@
 
 `MaaltijdImageShowFragment()`
 
-[Fragment](#) voor het weergeven van een afbeelding van een maaltijd.
+Fragment voor het weergeven van een afbeelding van een maaltijd.
 

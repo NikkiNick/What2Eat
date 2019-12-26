@@ -4,7 +4,7 @@
 
 | Name | Summary |
 |---|---|
-| [android.com.what2eat.fragments.AboutFragment](../android.com.what2eat.fragments/-about-fragment/index.md) | About fragment |
+| [android.com.what2eat.fragments.AboutFragment](../android.com.what2eat.fragments/-about-fragment/index.md) | Fragment voor het weergeven van about informatie |
 | [android.com.what2eat.viewmodels.ActionbarViewModel](../android.com.what2eat.viewmodels/-actionbar-view-model/index.md) |  |
 | [android.com.what2eat.Application](../android.com.what2eat/-application/index.md) | This is the applicationContext used in the application |
 | [android.widget.CheckBox](../android.com.what2eat.adapters.-binding-adapters/android.widget.-check-box/index.md) (extensions in package android.com.what2eat.adapters.BindingAdapters) |  |
@@ -20,12 +20,12 @@
 | [android.com.what2eat.adapters.MaaltijdAdapter](../android.com.what2eat.adapters/-maaltijd-adapter/index.md) | RecyclerView Adapter die gebruikt wordt voor het aanmaken en databinding van ViewHolders voor het weergeven van een lijst van [Maaltijd](../android.com.what2eat.model/-maaltijd/index.md) (inclusief clickListener ([MaaltijdListener](../android.com.what2eat.adapters/-maaltijd-listener/index.md)]). Inclusief een diffCallBack ([MaaltijdDiffCallback](../android.com.what2eat.adapters/-maaltijd-diff-callback/index.md) voor betere RecyclerView-performantie) |
 | [android.com.what2eat.database.MaaltijdDao](../android.com.what2eat.database/-maaltijd-dao/index.md) | DataAccessObject om Room-database operaties uit te voeren voor [Maaltijd](../android.com.what2eat.model/-maaltijd/index.md) entities |
 | [android.com.what2eat.database.MaaltijdDatabase](../android.com.what2eat.database/-maaltijd-database/index.md) |  |
-| [android.com.what2eat.fragments.MaaltijdDetailFragment](../android.com.what2eat.fragments/-maaltijd-detail-fragment/index.md) | [Fragment](#) voor maaltijd detail |
+| [android.com.what2eat.fragments.MaaltijdDetailFragment](../android.com.what2eat.fragments/-maaltijd-detail-fragment/index.md) | Fragment voor het weergeven van detail van een maaltijd |
 | [android.com.what2eat.viewmodels.MaaltijdDetailViewModel](../android.com.what2eat.viewmodels/-maaltijd-detail-view-model/index.md) |  |
 | [android.com.what2eat.viewmodels.MaaltijdDetailViewModelFactory](../android.com.what2eat.viewmodels/-maaltijd-detail-view-model-factory/index.md) |  |
 | [android.com.what2eat.adapters.MaaltijdDiffCallback](../android.com.what2eat.adapters/-maaltijd-diff-callback/index.md) | Deze class verbeterd de performantie in een RecyclerView om verschillen tussen 2 [Maaltijd](../android.com.what2eat.model/-maaltijd/index.md) beter te kunnen uitmaken. |
-| [android.com.what2eat.fragments.MaaltijdEditFragment](../android.com.what2eat.fragments/-maaltijd-edit-fragment/index.md) | [Fragment](#) voor het aanpassen van een maaltijd. |
-| [android.com.what2eat.fragments.MaaltijdImageShowFragment](../android.com.what2eat.fragments/-maaltijd-image-show-fragment/index.md) | [Fragment](#) voor het weergeven van een afbeelding van een maaltijd. |
+| [android.com.what2eat.fragments.MaaltijdEditFragment](../android.com.what2eat.fragments/-maaltijd-edit-fragment/index.md) | Fragment voor het weergeven van een editscherm van een maaltijd |
+| [android.com.what2eat.fragments.MaaltijdImageShowFragment](../android.com.what2eat.fragments/-maaltijd-image-show-fragment/index.md) | Fragment voor het weergeven van een afbeelding van een maaltijd. |
 | [android.com.what2eat.adapters.MaaltijdListener](../android.com.what2eat.adapters/-maaltijd-listener/index.md) | Listener die gebruikt wordt om user-events op items in de RecyclerView af te handelen. Wanneer de gebruiker op een [Maaltijd](../android.com.what2eat.model/-maaltijd/index.md) clickt in de RecyclerView wordt de id van de [Maaltijd](../android.com.what2eat.model/-maaltijd/index.md) teruggegeven. |
 | [android.com.what2eat.model.MaaltijdMaaltijdOnderdeel](../android.com.what2eat.model/-maaltijd-maaltijd-onderdeel/index.md) |  |
 | [android.com.what2eat.database.MaaltijdMaaltijdOnderdeelDao](../android.com.what2eat.database/-maaltijd-maaltijd-onderdeel-dao/index.md) | DataAccessObject om Room-database operaties uit te voeren voor [MaaltijdMaaltijdOnderdeel](../android.com.what2eat.model/-maaltijd-maaltijd-onderdeel/index.md) entities |
@@ -35,19 +35,19 @@
 | [android.com.what2eat.adapters.MaaltijdOnderdeelCheckBoxAdapter](../android.com.what2eat.adapters/-maaltijd-onderdeel-check-box-adapter/index.md) | RecyclerView Adapter die gebruikt wordt voor het aanmaken en databinding van ViewHolders voor het weergeven van een lijst van [MaaltijdOnderdeel](../android.com.what2eat.model/-maaltijd-onderdeel/index.md) met een CheckBox (inclusief clickListener ([MaaltijdOnderdeelListener](../android.com.what2eat.adapters/-maaltijd-onderdeel-listener/index.md)]). Inclusief een diffCallBack ([MaaltijdOnderdeelDiffCallback](../android.com.what2eat.adapters/-maaltijd-onderdeel-diff-callback/index.md) voor betere RecyclerView-performantie) |
 | [android.com.what2eat.adapters.MaaltijdOnderdeelClickableAdapter](../android.com.what2eat.adapters/-maaltijd-onderdeel-clickable-adapter/index.md) | RecyclerView Adapter die gebruikt wordt voor het aanmaken en databinding van ViewHolders voor het weergeven van een lijst van [MaaltijdOnderdeel](../android.com.what2eat.model/-maaltijd-onderdeel/index.md) (inclusief clickListener ([MaaltijdOnderdeelListener](../android.com.what2eat.adapters/-maaltijd-onderdeel-listener/index.md)]). Inclusief een diffCallBack ([MaaltijdOnderdeelDiffCallback](../android.com.what2eat.adapters/-maaltijd-onderdeel-diff-callback/index.md) voor betere RecyclerView-performantie) |
 | [android.com.what2eat.database.MaaltijdOnderdeelDao](../android.com.what2eat.database/-maaltijd-onderdeel-dao/index.md) | DataAccessObject om Room-database operaties uit te voeren voor [MaaltijdOnderdeel](../android.com.what2eat.model/-maaltijd-onderdeel/index.md) entities |
-| [android.com.what2eat.fragments.MaaltijdOnderdeelDetailFragment](../android.com.what2eat.fragments/-maaltijd-onderdeel-detail-fragment/index.md) | [Fragment](#) voor een maaltijdonderdeel detail. |
+| [android.com.what2eat.fragments.MaaltijdOnderdeelDetailFragment](../android.com.what2eat.fragments/-maaltijd-onderdeel-detail-fragment/index.md) | Fragment voor het weergeven van detail van een maaltijd |
 | [android.com.what2eat.viewmodels.MaaltijdOnderdeelDetailViewModel](../android.com.what2eat.viewmodels/-maaltijd-onderdeel-detail-view-model/index.md) |  |
 | [android.com.what2eat.viewmodels.MaaltijdOnderdeelDetailViewModelFactory](../android.com.what2eat.viewmodels/-maaltijd-onderdeel-detail-view-model-factory/index.md) |  |
 | [android.com.what2eat.adapters.MaaltijdOnderdeelDiffCallback](../android.com.what2eat.adapters/-maaltijd-onderdeel-diff-callback/index.md) |  |
 | [android.com.what2eat.adapters.MaaltijdOnderdeelListener](../android.com.what2eat.adapters/-maaltijd-onderdeel-listener/index.md) |  |
-| [android.com.what2eat.fragments.MaaltijdOnderdeelOverzichtFragment](../android.com.what2eat.fragments/-maaltijd-onderdeel-overzicht-fragment/index.md) | [Fragment](#) voor maaltijdonderdelenoverzicht |
+| [android.com.what2eat.fragments.MaaltijdOnderdeelOverzichtFragment](../android.com.what2eat.fragments/-maaltijd-onderdeel-overzicht-fragment/index.md) | Fragment voor maaltijdOnderdelen-overzicht |
 | [android.com.what2eat.viewmodels.MaaltijdOnderdeelOverzichtViewModel](../android.com.what2eat.viewmodels/-maaltijd-onderdeel-overzicht-view-model/index.md) |  |
 | [android.com.what2eat.adapters.MaaltijdOnderdeelRemoveAdapter](../android.com.what2eat.adapters/-maaltijd-onderdeel-remove-adapter/index.md) | RecyclerView Adapter die gebruikt wordt voor het aanmaken en databinding van ViewHolders voor het weergeven van een lijst van [MaaltijdOnderdeel](../android.com.what2eat.model/-maaltijd-onderdeel/index.md) met een verwijder-button (inclusief clickListener ([MaaltijdOnderdeelListener](../android.com.what2eat.adapters/-maaltijd-onderdeel-listener/index.md)]). Inclusief een diffCallBack ([MaaltijdOnderdeelDiffCallback](../android.com.what2eat.adapters/-maaltijd-onderdeel-diff-callback/index.md) voor betere RecyclerView-performantie) |
 | [android.com.what2eat.repositories.MaaltijdOnderdeelRepository](../android.com.what2eat.repositories/-maaltijd-onderdeel-repository/index.md) |  |
-| [android.com.what2eat.fragments.MaaltijdOnderdeelSelectFragment](../android.com.what2eat.fragments/-maaltijd-onderdeel-select-fragment/index.md) | [Fragment](#) voor een maaltijdonderdeeloverzicht met multiple selection |
+| [android.com.what2eat.fragments.MaaltijdOnderdeelSelectFragment](../android.com.what2eat.fragments/-maaltijd-onderdeel-select-fragment/index.md) | Fragment voor het weergeven van detail van een maaltijd |
 | [android.com.what2eat.viewmodels.MaaltijdOnderdeelSelectViewModel](../android.com.what2eat.viewmodels/-maaltijd-onderdeel-select-view-model/index.md) |  |
 | [android.com.what2eat.viewmodels.MaaltijdOnderdeelSelectViewModelFactory](../android.com.what2eat.viewmodels/-maaltijd-onderdeel-select-view-model-factory/index.md) |  |
-| [android.com.what2eat.fragments.MaaltijdOverzichtFragment](../android.com.what2eat.fragments/-maaltijd-overzicht-fragment/index.md) | [Fragment](#) voor maaltijdoverzicht |
+| [android.com.what2eat.fragments.MaaltijdOverzichtFragment](../android.com.what2eat.fragments/-maaltijd-overzicht-fragment/index.md) | Fragment voor maaltijdoverzicht |
 | [android.com.what2eat.viewmodels.MaaltijdOverzichtViewModel](../android.com.what2eat.viewmodels/-maaltijd-overzicht-view-model/index.md) |  |
 | [android.com.what2eat.repositories.MaaltijdRepository](../android.com.what2eat.repositories/-maaltijd-repository/index.md) |  |
 | [android.com.what2eat.activities.MainActivity](../android.com.what2eat.activities/-main-activity/index.md) | Globale Activity voor de What2Eat applicatie |
@@ -60,14 +60,14 @@
 | [android.com.what2eat.viewmodels.RecipeApiViewModel](../android.com.what2eat.viewmodels/-recipe-api-view-model/index.md) |  |
 | [android.com.what2eat.viewmodels.RecipeApiViewModelFactory](../android.com.what2eat.viewmodels/-recipe-api-view-model-factory/index.md) |  |
 | [android.com.what2eat.network.RecipeData](../android.com.what2eat.network/-recipe-data/index.md) |  |
-| [android.com.what2eat.fragments.RecipeDetailFragment](../android.com.what2eat.fragments/-recipe-detail-fragment/index.md) |  |
+| [android.com.what2eat.fragments.RecipeDetailFragment](../android.com.what2eat.fragments/-recipe-detail-fragment/index.md) | Fragment voor het weergeven van detail van een (extern) recept |
 | [android.com.what2eat.viewmodels.RecipeDetailViewModel](../android.com.what2eat.viewmodels/-recipe-detail-view-model/index.md) |  |
 | [android.com.what2eat.viewmodels.RecipeDetailViewModelFactory](../android.com.what2eat.viewmodels/-recipe-detail-view-model-factory/index.md) |  |
 | [android.com.what2eat.adapters.RecipeDiffCallback](../android.com.what2eat.adapters/-recipe-diff-callback/index.md) | Deze class verbeterd de performantie in een RecyclerView om verschillen tussen de [Recipe](../android.com.what2eat.network/-recipe/index.md) beter te kunnen uitmaken. |
 | [android.com.what2eat.adapters.RecipeListener](../android.com.what2eat.adapters/-recipe-listener/index.md) | Listener die gebruikt wordt om user-events op items in de RecyclerView af te handelen. Wanneer de gebruiker op een [Recipe](../android.com.what2eat.network/-recipe/index.md) clickt in de RecyclerView wordt de [RecipeData](../android.com.what2eat.network/-recipe-data/index.md) teruggegeven. |
-| [android.com.what2eat.fragments.RecipeOverzichtFragment](../android.com.what2eat.fragments/-recipe-overzicht-fragment/index.md) | A simple [Fragment](#) subclass. |
+| [android.com.what2eat.fragments.RecipeOverzichtFragment](../android.com.what2eat.fragments/-recipe-overzicht-fragment/index.md) | Fragment voor recipeoverzicht |
 | [android.com.what2eat.network.Response](../android.com.what2eat.network/-response/index.md) |  |
 | [android.com.what2eat.utils.RotationTransformUtil](../android.com.what2eat.utils/-rotation-transform-util/index.md) |  |
 | [com.google.android.material.textfield.TextInputEditText](../android.com.what2eat.adapters.-binding-adapters/com.google.android.material.textfield.-text-input-edit-text/index.md) (extensions in package android.com.what2eat.adapters.BindingAdapters) |  |
 | [android.widget.TextView](../android.com.what2eat.adapters.-binding-adapters/android.widget.-text-view/index.md) (extensions in package android.com.what2eat.adapters.BindingAdapters) |  |
-| [android.com.what2eat.fragments.WelcomeFragment](../android.com.what2eat.fragments/-welcome-fragment/index.md) |  |
+| [android.com.what2eat.fragments.WelcomeFragment](../android.com.what2eat.fragments/-welcome-fragment/index.md) | Fragment voor het weergeven van het welkom scherm |

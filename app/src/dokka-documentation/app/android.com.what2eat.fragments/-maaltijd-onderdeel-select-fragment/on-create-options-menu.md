@@ -5,5 +5,10 @@
 `fun onCreateOptionsMenu(menu: `[`Menu`](https://developer.android.com/reference/android/view/Menu.html)`, inflater: `[`MenuInflater`](https://developer.android.com/reference/android/view/MenuInflater.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
 
 Deze functie wordt gebruikt om het overflow menu weer te geven.
-Overflowmenu is een delete icon om alle maaltijden te verwijderen.
+Overflowmenu is een add button om een nieuw maaltijdOnderdeel toe te voegen.
 
+### Parameters
+
+`menu` - Gebruikte menu
+
+`inflater` - MenuInflater die gebruikt wordt om de menu-layout te inflaten.

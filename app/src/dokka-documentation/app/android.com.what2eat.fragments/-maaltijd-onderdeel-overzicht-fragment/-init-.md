@@ -4,5 +4,5 @@
 
 `MaaltijdOnderdeelOverzichtFragment()`
 
-[Fragment](#) voor maaltijdonderdelenoverzicht
+Fragment voor maaltijdOnderdelen-overzicht
 

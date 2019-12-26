@@ -4,13 +4,13 @@
 
 `class MaaltijdImageShowFragment : Fragment`
 
-[Fragment](#) voor het weergeven van een afbeelding van een maaltijd.
+Fragment voor het weergeven van een afbeelding van een maaltijd.
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `MaaltijdImageShowFragment()`<br>[Fragment](#) voor het weergeven van een afbeelding van een maaltijd. |
+| [&lt;init&gt;](-init-.md) | `MaaltijdImageShowFragment()`<br>Fragment voor het weergeven van een afbeelding van een maaltijd. |
 
 ### Functions
 

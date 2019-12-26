@@ -12,20 +12,31 @@ import android.com.what2eat.activities.MainActivity
 import android.com.what2eat.databinding.FragmentWelcomeBinding
 import androidx.databinding.DataBindingUtil
 
+/**
+ * Fragment voor het weergeven van het welkom scherm
+ * @property binding Binding object van het fragment
+ */
 class WelcomeFragment : Fragment() {
 
+    /**
+     * Fragment properties
+     */
     private lateinit var binding: FragmentWelcomeBinding
-    //private lateinit var actionbarViewModel: ActionbarViewModel
 
+    /**
+     * Initialiseerd het fragment in CREATED lifecycle state. De layout wordt geinflate en custom
+     * actionbar wordt ingesteld
+     * @param inflater LayoutInflater
+     * @param container ViewGroup
+     * @param savedInstanceState Bundle
+     * @return View
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         this.binding = DataBindingUtil.inflate(inflater, R.layout.fragment_welcome, container, false)
 
         val act = activity as MainActivity
         act.setCustomActionBar("welcome")
-
-        //actionbarViewModel = ViewModelProviders.of(activity!!).get(ActionbarViewModel::class.java)
-        //actionbarViewModel.setTitle(context!!.resources.getString(R.string.welcome))
 
         return this.binding.root
 

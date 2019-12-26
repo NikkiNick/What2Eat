@@ -4,5 +4,5 @@
 
 `RecipeOverzichtFragment()`
 
-A simple [Fragment](#) subclass.
+Fragment voor recipeoverzicht
 

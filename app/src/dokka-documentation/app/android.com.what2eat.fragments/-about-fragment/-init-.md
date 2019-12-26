@@ -4,5 +4,5 @@
 
 `AboutFragment()`
 
-About fragment
+Fragment voor het weergeven van about informatie
 

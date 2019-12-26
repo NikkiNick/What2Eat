@@ -3,3 +3,9 @@
 # REQUEST_TAKE_PHOTO
 
 `val REQUEST_TAKE_PHOTO: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+
+Request token
+
+### Property
+
+`REQUEST_TAKE_PHOTO` - Request token

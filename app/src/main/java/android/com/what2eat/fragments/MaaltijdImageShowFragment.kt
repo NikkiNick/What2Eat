@@ -16,15 +16,18 @@ import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 
 /**
- * [Fragment] voor het weergeven van een afbeelding van een maaltijd.
+ *  Fragment voor het weergeven van een afbeelding van een maaltijd.
+ * @property binding Binding object van het fragment
  */
 class MaaltijdImageShowFragment : Fragment() {
+
     /**
      * Fragment Properties
      */
     private lateinit var binding: FragmentMaaltijdImageShowBinding
+
     /**
-     * Functie die wordt opgeroepen wanneer het [Fragment] aangemaakt wordt en in CREATED lifecycle state is.
+     * Functie die wordt opgeroepen wanneer het fragment aangemaakt wordt en in CREATED lifecycle state is.
      * Fragment properties worden hier geïnstantieerd.
      */
     override fun onCreateView(

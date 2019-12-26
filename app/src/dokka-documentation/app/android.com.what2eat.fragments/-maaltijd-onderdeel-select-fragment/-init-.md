@@ -4,5 +4,5 @@
 
 `MaaltijdOnderdeelSelectFragment()`
 
-[Fragment](#) voor een maaltijdonderdeeloverzicht met multiple selection
+Fragment voor het weergeven van detail van een maaltijd
 
