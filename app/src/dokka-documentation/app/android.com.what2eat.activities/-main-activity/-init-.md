@@ -4,5 +4,5 @@
 
 `MainActivity()`
 
-MainActivity
+Globale Activity voor de What2Eat applicatie
 

@@ -6,4 +6,4 @@
 
 | Name | Summary |
 |---|---|
-| [MainActivity](-main-activity/index.md) | `class MainActivity : AppCompatActivity`<br>MainActivity |
+| [MainActivity](-main-activity/index.md) | `class MainActivity : AppCompatActivity`<br>Globale Activity voor de What2Eat applicatie |
