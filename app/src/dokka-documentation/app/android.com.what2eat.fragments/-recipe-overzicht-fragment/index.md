@@ -1,16 +1,16 @@
-[app](../../index.md) / [android.com.what2eat.fragments](../index.md) / [MaaltijdDetailFragment](./index.md)
+[app](../../index.md) / [android.com.what2eat.fragments](../index.md) / [RecipeOverzichtFragment](./index.md)
 
-# MaaltijdDetailFragment
+# RecipeOverzichtFragment
 
-`class MaaltijdDetailFragment : Fragment`
+`class RecipeOverzichtFragment : Fragment`
 
-Fragment voor het weergeven van detail van een maaltijd
+Fragment voor recipeoverzicht
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `MaaltijdDetailFragment()`<br>Fragment voor het weergeven van detail van een maaltijd |
+| [&lt;init&gt;](-init-.md) | `RecipeOverzichtFragment()`<br>Fragment voor recipeoverzicht |
 
 ### Functions
 
