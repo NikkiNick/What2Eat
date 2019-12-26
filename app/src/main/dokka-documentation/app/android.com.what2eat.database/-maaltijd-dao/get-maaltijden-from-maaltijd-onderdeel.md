@@ -8,7 +8,7 @@ Room-database operatie om alle [Maaltijd](../../android.com.what2eat.model/-maal
 
 ### Parameters
 
-`maaltijdOnderdeelId` - Id van maaltijdOnderdeel dat opgevraagd wordt
+`id` - Id van maaltijdOnderdeel dat opgevraagd wordt
 
 **Return**
 List van [Maaltijd](../../android.com.what2eat.model/-maaltijd/index.md) die gegeven maaltijdOnderdeel bevatten
