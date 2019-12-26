@@ -6,13 +6,10 @@
 
 ### Constructors
 
-| Name | Summary |
-|---|---|
 | [&lt;init&gt;](-init-.md) | `MaaltijdMaaltijdOnderdeel(maaltijdId: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html)`, maaltijdOnderdeelId: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html)`)` |
 
 ### Properties
 
-| Name | Summary |
-|---|---|
 | [maaltijdId](maaltijd-id.md) | `var maaltijdId: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html) |
 | [maaltijdOnderdeelId](maaltijd-onderdeel-id.md) | `var maaltijdOnderdeelId: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html) |
+
