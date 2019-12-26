@@ -4,5 +4,5 @@
 
 `MaaltijdEditFragment()`
 
-[Fragment](#) voor het aanpassen van een maaltijd.
+Fragment voor het weergeven van een editscherm van een maaltijd
 

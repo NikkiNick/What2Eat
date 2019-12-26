@@ -7,3 +7,8 @@
 Deze functie wordt gebruikt om het overflow menu weer te geven.
 Overflowmenu is een delete icon om het maaltijdOnderdeel te verwijderen.
 
+### Parameters
+
+`menu` - Gebruikte menu
+
+`inflater` - MenuInflater die gebruikt wordt om de menu-layout te inflaten.

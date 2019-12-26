@@ -4,5 +4,12 @@
 
 `fun onOptionsItemSelected(item: `[`MenuItem`](https://developer.android.com/reference/android/view/MenuItem.html)`): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
 
-Deze functie wordt gebruikt om de gebruikte [MenuItem](https://developer.android.com/reference/android/view/MenuItem.html) uit het overflowmenu af te handelen.
+Deze functie wordt gebruikt om de gebruikte menuItem uit het overflowmenu af te handelen.
+
+### Parameters
+
+`item` - Gekozen menuItem
+
+**Return**
+Boolean
 
