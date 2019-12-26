@@ -3,3 +3,6 @@
 # binding
 
 `val binding: MaaltijdonderdeelCheckboxItemViewBinding`
+
+LayoutBinding die gebruikt wordt door de ViewHolder
+

@@ -112,6 +112,10 @@ fun TextView.maaltijd_setDateAdded(maaltijd: Maaltijd?){
         }
     }
 }
+/**
+ * BindingAdapter voor weergeven van de naam (TextInputEditText) van een [Maaltijd]
+ * @param maaltijd [Maaltijd] waarvan de naam weergegeven wordt
+ */
 @BindingAdapter("maaltijd_edit_naam")
 fun TextInputEditText.setNaam(maaltijd: Maaltijd?){
     maaltijd?.let {

@@ -8,7 +8,7 @@ import androidx.databinding.BindingAdapter
  * @param ingredient Naam van het ingredient
  */
 @BindingAdapter("ingredient_naam")
-fun TextView.ingredient_setNaam(ingredient: String?){
+fun TextView.setNaam(ingredient: String?){
     ingredient?.let {
         text = it
     }

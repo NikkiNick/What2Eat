@@ -3,3 +3,6 @@
 # clickListener
 
 `val clickListener: `[`MaaltijdListener`](../-maaltijd-listener/index.md)
+
+ClickListener die gebruikt wordt voor het afhandelen van user-events (onClick) op een [Maaltijd](../../android.com.what2eat.model/-maaltijd/index.md) in de lijst
+

@@ -1,22 +1,28 @@
 $dokka.format:gfm
 $dokka.linkExtension:md
-$dokka.location:android.com.what2eat.adapters$setDateAdded(android.widget.TextView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters/android.widget.-text-view/set-date-added.md
-$dokka.location:android.com.what2eat.adapters$setDateLastEaten(android.widget.TextView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters/android.widget.-text-view/set-date-last-eaten.md
-$dokka.location:android.com.what2eat.adapters$setNaam(android.widget.CheckBox, android.com.what2eat.model.MaaltijdOnderdeel)android.com.what2eat.adapters/android.widget.-check-box/set-naam.md
-$dokka.location:android.com.what2eat.adapters$setNaam(android.widget.TextView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters/android.widget.-text-view/set-naam.md
-$dokka.location:android.com.what2eat.adapters$setNaam(com.google.android.material.textfield.TextInputEditText, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters/com.google.android.material.textfield.-text-input-edit-text/set-naam.md
-$dokka.location:android.com.what2eat.adapters$setNaamText(android.widget.TextView, android.com.what2eat.model.MaaltijdOnderdeel)android.com.what2eat.adapters/android.widget.-text-view/set-naam-text.md
-$dokka.location:android.com.what2eat.adapters$setPhoto(android.widget.ImageView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters/android.widget.-image-view/set-photo.md
-$dokka.location:android.com.what2eat.adapters$setPhotoCircle(android.widget.ImageView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters/android.widget.-image-view/set-photo-circle.md
-$dokka.location:android.com.what2eat.adapters$setRating(android.widget.LinearLayout, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters/android.widget.-linear-layout/set-rating.md
-$dokka.location:android.com.what2eat.adapters$setRatingString(android.widget.TextView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters/android.widget.-text-view/set-rating-string.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$setDateAdded(android.widget.TextView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/android.widget.-text-view/set-date-added.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$setDateLastEaten(android.widget.TextView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/android.widget.-text-view/set-date-last-eaten.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$setNaam(android.widget.CheckBox, android.com.what2eat.model.MaaltijdOnderdeel)android.com.what2eat.adapters.-binding-adapters/android.widget.-check-box/set-naam.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$setNaam(android.widget.TextView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/android.widget.-text-view/set-naam.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$setNaam(android.widget.TextView, android.com.what2eat.network.RecipeData)android.com.what2eat.adapters.-binding-adapters/android.widget.-text-view/set-naam.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$setNaam(android.widget.TextView, kotlin.String)android.com.what2eat.adapters.-binding-adapters/android.widget.-text-view/set-naam.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$setNaam(com.google.android.material.textfield.TextInputEditText, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/com.google.android.material.textfield.-text-input-edit-text/set-naam.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$setNaamText(android.widget.TextView, android.com.what2eat.model.MaaltijdOnderdeel)android.com.what2eat.adapters.-binding-adapters/android.widget.-text-view/set-naam-text.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$setPhoto(android.widget.ImageView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/android.widget.-image-view/set-photo.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$setPhoto(android.widget.ImageView, android.com.what2eat.network.RecipeData)android.com.what2eat.adapters.-binding-adapters/android.widget.-image-view/set-photo.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$setPhotoCircle(android.widget.ImageView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/android.widget.-image-view/set-photo-circle.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$setPhotoCircle(android.widget.ImageView, android.com.what2eat.network.RecipeData)android.com.what2eat.adapters.-binding-adapters/android.widget.-image-view/set-photo-circle.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$setRating(android.widget.LinearLayout, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/android.widget.-linear-layout/set-rating.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$setRatingString(android.widget.TextView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/android.widget.-text-view/set-rating-string.md
 android.com.what2eat
 android.com.what2eat.activities
 android.com.what2eat.adapters
+android.com.what2eat.adapters.BindingAdapters
 android.com.what2eat.database
 android.com.what2eat.fragments
 android.com.what2eat.injection
 android.com.what2eat.model
+android.com.what2eat.network
 android.com.what2eat.repositories
 android.com.what2eat.utils
 android.com.what2eat.viewmodels
