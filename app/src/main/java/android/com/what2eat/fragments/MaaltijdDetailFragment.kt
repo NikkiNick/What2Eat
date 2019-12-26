@@ -31,6 +31,7 @@ class MaaltijdDetailFragment : Fragment() {
     /**
      * Fragment Properties
      */
+
     private lateinit var binding: FragmentMaaltijdDetailBinding
     private lateinit var viewModelFactory: MaaltijdDetailViewModelFactory
     private lateinit var viewModel: MaaltijdDetailViewModel
@@ -90,7 +91,7 @@ class MaaltijdDetailFragment : Fragment() {
         }
         binding.maaltijdImage.setOnClickListener {
             viewModel.maaltijd.value?.photo_uri?.let{
-                findNavController().navigate(MaaltijdDetailFragmentDirections.actionMaaltijdDetailFragmentToMaaltijdImageShowFragment(it))
+               findNavController().navigate(MaaltijdDetailFragmentDirections.actionMaaltijdDetailFragmentToMaaltijdImageShowFragment(it))
             }
         }
         /**

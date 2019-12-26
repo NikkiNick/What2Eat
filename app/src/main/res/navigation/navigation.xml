@@ -134,17 +134,27 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
-            android:id="@+id/action_maaltijdOnderdeelDetailFragment_to_maaltijdOnderdeelInspiratieFragment"
-            app:destination="@id/maaltijdOnderdeelInspiratieFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            android:id="@+id/action_maaltijdOnderdeelDetailFragment_to_recipeOverzichtFragment"
+            app:destination="@id/recipeOverzichtFragment" />
     </fragment>
     <fragment
-        android:id="@+id/maaltijdOnderdeelInspiratieFragment"
-        android:name="android.com.what2eat.fragments.MaaltijdOnderdeelInspiratieFragment"
-        android:label="MaaltijdOnderdeelInspiratieFragment" >
+        android:id="@+id/recipeOverzichtFragment"
+        android:name="android.com.what2eat.fragments.RecipeOverzichtFragment"
+        android:label="RecipeOverzichtFragment" >
         <argument
             android:name="recipe_naam"
             app:argType="string" />
+        <action
+            android:id="@+id/action_recipeOverzichtFragment_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeDetailFragment"
+        android:name="android.com.what2eat.fragments.RecipeDetailFragment"
+        android:label="fragment_recipe_detail"
+        tools:layout="@layout/fragment_recipe_detail" >
+        <argument
+            android:name="recipe"
+            app:argType="android.com.what2eat.network.RecipeData" />
     </fragment>
 </navigation>

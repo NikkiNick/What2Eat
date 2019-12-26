@@ -3,6 +3,7 @@ package android.com.what2eat.fragments
 
 import android.com.what2eat.R
 import android.com.what2eat.adapters.RecipeAdapter
+import android.com.what2eat.adapters.RecipeListener
 import android.com.what2eat.databinding.FragmentMaaltijdOnderdeelInspiratieBinding
 import android.com.what2eat.utils.NetworkUtil
 import android.com.what2eat.viewmodels.RecipeApiViewModel
@@ -21,13 +22,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 
 
 /**
  * A simple [Fragment] subclass.
  */
-class MaaltijdOnderdeelInspiratieFragment : Fragment() {
+class RecipeOverzichtFragment : Fragment() {
 
     private lateinit var binding: FragmentMaaltijdOnderdeelInspiratieBinding
     private lateinit var viewModel: RecipeApiViewModel
@@ -38,13 +40,15 @@ class MaaltijdOnderdeelInspiratieFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_onderdeel_inspiratie, container, false)
-        val args = MaaltijdOnderdeelInspiratieFragmentArgs.fromBundle(arguments!!)
+        val args = RecipeOverzichtFragmentArgs.fromBundle(arguments!!)
         viewModelFactory = RecipeApiViewModelFactory(args.recipeNaam)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(RecipeApiViewModel::class.java)
         /**
          * RecyclerView setup voor lijst van maaltijden inclusief [DividerItemDecoration].
          */
-        val adapter = RecipeAdapter()
+        val adapter = RecipeAdapter(RecipeListener { recipe ->
+            findNavController().navigate(RecipeOverzichtFragmentDirections.actionRecipeOverzichtFragmentToRecipeDetailFragment(recipe))
+        })
         binding.recyclerRecipes.adapter = adapter
         val itemDecor = DividerItemDecoration(context, ClipDrawable.HORIZONTAL)
         binding.recyclerRecipes.addItemDecoration(itemDecor)
