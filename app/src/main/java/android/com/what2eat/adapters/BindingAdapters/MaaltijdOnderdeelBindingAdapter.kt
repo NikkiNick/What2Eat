@@ -1,4 +1,4 @@
-package android.com.what2eat.adapters
+package android.com.what2eat.adapters.BindingAdapters
 
 import android.com.what2eat.model.MaaltijdOnderdeel
 import android.widget.CheckBox

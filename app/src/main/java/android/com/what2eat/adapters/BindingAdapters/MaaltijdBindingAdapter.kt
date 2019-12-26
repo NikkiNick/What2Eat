@@ -1,19 +1,14 @@
-package android.com.what2eat.adapters
+package android.com.what2eat.adapters.BindingAdapters
 
 import android.com.what2eat.R
 import android.com.what2eat.model.Maaltijd
-import android.com.what2eat.utils.RotationTransformUtil
-import android.graphics.Matrix
-import android.media.Image
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.view.children
-import androidx.core.view.marginBottom
-import androidx.core.view.marginTop
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.textfield.TextInputEditText
 import java.text.SimpleDateFormat
 
 @BindingAdapter("maaltijd_naam")
@@ -88,5 +83,11 @@ fun TextView.setDateAdded(maaltijd: Maaltijd?){
             val date = simpleDateFormat.format(it)
             text = "${resources.getString(R.string.date_added)}: ${date}"
         }
+    }
+}
+@BindingAdapter("maaltijd_edit_naam")
+fun TextInputEditText.setNaam(maaltijd: Maaltijd?){
+    maaltijd?.let {
+        setText(it.naam)
     }
 }
