@@ -12,6 +12,7 @@ import android.content.Context
 import android.graphics.drawable.ClipDrawable
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -64,10 +65,10 @@ class RecipeOverzichtFragment : Fragment() {
                 binding.loadingLayout.visibility = GONE
                 if(it.size == 0){
                     binding.noitemsText.visibility = VISIBLE
-                    binding.recyclerLayout.visibility = GONE
+                    binding.recyclerRecipes.visibility = GONE
                 }
                 else{
-                    binding.recyclerLayout.visibility = VISIBLE
+                    binding.recyclerRecipes.visibility = VISIBLE
                     binding.noitemsText.visibility = GONE
                     adapter.submitList(it)
                 }

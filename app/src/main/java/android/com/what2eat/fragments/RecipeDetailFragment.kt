@@ -10,9 +10,12 @@ import android.com.what2eat.R
 import android.com.what2eat.adapters.IngredientAdapter
 import android.com.what2eat.adapters.RecipeAdapter
 import android.com.what2eat.databinding.FragmentRecipeDetailBinding
+import android.com.what2eat.utils.NetworkUtil
 import android.com.what2eat.viewmodels.RecipeDetailViewModel
 import android.com.what2eat.viewmodels.RecipeDetailViewModelFactory
+import android.content.Intent
 import android.graphics.drawable.ClipDrawable
+import android.net.Uri
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -38,13 +41,23 @@ class RecipeDetailFragment : Fragment() {
         binding.setLifecycleOwner(this)
         binding.recipe = viewModel.recipe
         /**
-         * RecyclerView setup voor het tonen van de [RecyclerView] van ingredienten van de huidige recept.
+         * RecyclerView setup voor het tonen van de RecyclerView van ingredienten van de huidige recept.
          */
         val adapter = IngredientAdapter()
         binding.ingredientsRecyclerView.adapter = adapter
         val itemDecor = DividerItemDecoration(context, ClipDrawable.HORIZONTAL)
         binding.ingredientsRecyclerView.addItemDecoration(itemDecor)
         adapter.submitList(viewModel.recipe.ingredienten)
+
+        if(!NetworkUtil().isInternetAvailable(context!!)){
+            binding.noconnectionLayout.visibility = View.VISIBLE
+            binding.visitButton.isEnabled = false
+        }
+        binding.visitButton.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(viewModel.recipe.remote_site_url)
+            startActivity(intent)
+        }
 
         return binding.root
     }
