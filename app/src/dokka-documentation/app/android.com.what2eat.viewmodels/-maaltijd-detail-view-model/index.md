@@ -6,14 +6,10 @@
 
 ### Constructors
 
-| Name | Summary |
-|---|---|
 | [&lt;init&gt;](-init-.md) | `MaaltijdDetailViewModel(maaltijdId: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html)`)` |
 
 ### Properties
 
-| Name | Summary |
-|---|---|
 | [changeRatingDisplay](change-rating-display.md) | `val changeRatingDisplay: LiveData<`[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`>` |
 | [maaltijd](maaltijd.md) | `val maaltijd: LiveData<`[`Maaltijd`](../../android.com.what2eat.model/-maaltijd/index.md)`>` |
 | [maaltijdId](maaltijd-id.md) | `val maaltijdId: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html) |
@@ -25,8 +21,6 @@
 
 ### Functions
 
-| Name | Summary |
-|---|---|
 | [addMaaltijdOnderdelenToMaaltijd](add-maaltijd-onderdelen-to-maaltijd.md) | `fun addMaaltijdOnderdelenToMaaltijd(maaltijdOnderdeelIds: `[`LongArray`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long-array/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
 | [deleteMaaltijd](delete-maaltijd.md) | `fun deleteMaaltijd(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
 | [initializeMaaltijd](initialize-maaltijd.md) | `fun initializeMaaltijd(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
@@ -37,3 +31,4 @@
 | [setMaaltijdPhoto](set-maaltijd-photo.md) | `fun setMaaltijdPhoto(uri: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
 | [setNaam](set-naam.md) | `fun setNaam(naam: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
 | [setRating](set-rating.md) | `fun setRating(rating: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
+

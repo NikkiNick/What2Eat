@@ -3,6 +3,3 @@
 # binding
 
 `val binding: MaaltijdonderdeelItemViewClickableBinding`
-
-LayoutBinding die gebruikt wordt door de ViewHolder
-
