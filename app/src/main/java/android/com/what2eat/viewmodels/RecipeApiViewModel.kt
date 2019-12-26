@@ -4,6 +4,7 @@ import android.com.what2eat.Application
 import android.com.what2eat.network.Recipe
 import android.com.what2eat.network.RecipeApi
 import android.com.what2eat.network.RecipeData
+import android.com.what2eat.repositories.RecipeApiRepository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,7 +17,7 @@ import javax.inject.Inject
 
 class RecipeApiViewModel(val naam: String): ViewModel() {
 
-    @Inject lateinit var recipeApi: RecipeApi
+    @Inject lateinit var recipeRepo: RecipeApiRepository
 
     var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -31,7 +32,7 @@ class RecipeApiViewModel(val naam: String): ViewModel() {
     }
     private fun searchRecipesByName(naam: String){
         uiScope.launch {
-            val getRecipesDeffered = recipeApi.getRecipes(naam)
+            val getRecipesDeffered = recipeRepo.searchRecipes(naam)
             try{
                 val recipeList = getRecipesDeffered.await()
                 _response.value = recipeList.recipes
