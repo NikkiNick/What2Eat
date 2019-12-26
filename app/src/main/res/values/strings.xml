@@ -51,4 +51,9 @@
     <string name="no_items_available">No items available</string>
     <string name="no_items_search">No meals found within this search</string>
     <string name="found_in_meals">Found in meals</string>
+    <string name="loading_items">Loading items</string>
+    <string name="no_connection">No connection</string>
+    <string name="find_online_inspiration">Find online insipiration</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="visit_website">Visit recipe website</string>
 </resources>

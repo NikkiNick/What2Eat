@@ -4,6 +4,7 @@ import android.app.Application
 import android.com.what2eat.injection.DaggerInjectionGraph
 import android.com.what2eat.injection.DatabaseModule
 import android.com.what2eat.injection.InjectionGraph
+import android.com.what2eat.injection.NetworkModule
 
 /**
  * This is the applicationContext used in the application
@@ -18,6 +19,7 @@ class Application : Application() {
         component = DaggerInjectionGraph
             .builder()
             .databaseModule(DatabaseModule(this))
+            .networkModule(NetworkModule())
             .build()
 
     }

@@ -28,16 +28,12 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:textSize="@dimen/medium_text"
-                    android:textStyle="bold"
-                    app:maaltijdOnderdeel_naamText="@{maaltijdOnderdeel.maaltijdOnderdeel}"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    style="@style/title_style"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
-                    tools:text="Maaltijdonderdeel naam"/>
+                    app:maaltijdOnderdeel_naamText="@{maaltijdOnderdeel.maaltijdOnderdeel}"
+                    tools:text="Maaltijdonderdeel naam" />
 
                 <TextView
                     android:id="@+id/maaltijdenTitle_Text"
@@ -45,6 +41,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:background="@drawable/container_title_border"
                     android:paddingTop="4dp"
@@ -70,7 +67,58 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/maaltijdenTitle_Text" />
+                    app:layout_constraintTop_toBottomOf="@+id/maaltijdenTitle_Text"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <Button
+                    android:id="@+id/search_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/find_online_inspiration"
+                    app:icon="@android:drawable/ic_menu_search"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/maaltijden_recyclerView"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <LinearLayout
+                    android:id="@+id/noconnection_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:baselineAligned="false"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/search_button"
+                    tools:visibility="visible">
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/baseline_wifi_off_black_48"
+                        android:contentDescription="@string/no_connection"/>
+
+                    <TextView
+                        android:id="@+id/noconnection_text7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/no_connection" />
+                </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

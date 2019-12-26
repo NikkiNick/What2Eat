@@ -12,6 +12,7 @@ import android.com.what2eat.database.MaaltijdDao
 import android.com.what2eat.database.MaaltijdDatabase
 import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.databinding.FragmentMaaltijdOnderdeelDetailBinding
+import android.com.what2eat.utils.NetworkUtil
 import android.com.what2eat.viewmodels.MaaltijdOnderdeelDetailViewModel
 import android.com.what2eat.viewmodels.MaaltijdOnderdeelDetailViewModelFactory
 import android.graphics.drawable.ClipDrawable
@@ -78,6 +79,10 @@ class MaaltijdOnderdeelDetailFragment : Fragment() {
         binding.maaltijdenRecyclerView.adapter = adapter
         val itemDecor = DividerItemDecoration(context, ClipDrawable.HORIZONTAL)
         binding.maaltijdenRecyclerView.addItemDecoration(itemDecor)
+        if(!NetworkUtil().isInternetAvailable(context!!)){
+            binding.noconnectionLayout.visibility = VISIBLE
+            binding.searchButton.isEnabled = false
+        }
         /**
          * ViewModel Observer:
          *      Observatie voor het tonen van een SnackBar afkomstig van ViewModel en navigatie naar het overzichtfragment.
@@ -107,6 +112,9 @@ class MaaltijdOnderdeelDetailFragment : Fragment() {
          */
         binding.editMealpartButton.setOnClickListener{
             editMaaltijdOnderdeel()
+        }
+        binding.searchButton.setOnClickListener {
+            findNavController().navigate(MaaltijdOnderdeelDetailFragmentDirections.actionMaaltijdOnderdeelDetailFragmentToRecipeOverzichtFragment(viewModel.maaltijdOnderdeel.value!!.naam))
         }
         /**
          * Other
