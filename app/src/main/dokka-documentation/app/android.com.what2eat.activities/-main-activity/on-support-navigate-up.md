@@ -3,3 +3,9 @@
 # onSupportNavigateUp
 
 `fun onSupportNavigateUp(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+
+Deze functie wordt opgeroepen wanneer de gebruiker de NavigateUp button gebruikt.
+
+**Retun**
+[Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+
