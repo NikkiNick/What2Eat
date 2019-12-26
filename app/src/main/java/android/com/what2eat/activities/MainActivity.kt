@@ -14,6 +14,7 @@ import androidx.navigation.ui.NavigationUI
 
 /**
  *  Globale Activity voor de What2Eat applicatie
+ *  @constructor Constructor voor het aanmaken van [MainActivity] (AppCompatActivity)
  *  @property drawerLayout DrawerLayout voor MaterialDesign NavDrawer
  *  @property appBarConfiguration AppBarConfiguration voor het toevoegen van de NavDrawer aan de navigatie
  *  @property binding Binding object dat gebruikt wordt doorheen [MainActivity]
