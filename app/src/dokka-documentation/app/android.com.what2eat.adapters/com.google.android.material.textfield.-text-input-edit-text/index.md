@@ -2,5 +2,6 @@
 
 ### Extensions for com.google.android.material.textfield.TextInputEditText
 
+| Name | Summary |
+|---|---|
 | [setNaam](set-naam.md) | `fun TextInputEditText.setNaam(maaltijd: `[`Maaltijd`](../../android.com.what2eat.model/-maaltijd/index.md)`?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
-
