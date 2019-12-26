@@ -10,13 +10,20 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.textfield.TextInputEditText
 import java.text.SimpleDateFormat
-
+/**
+ * BindingAdapter voor weergave van naam (TextView) van een [Maaltijd]
+ * @param maaltijd [Maaltijd] waarvan de naam weergegeven wordt
+ */
 @BindingAdapter("maaltijd_naam")
 fun TextView.setNaam(maaltijd: Maaltijd?){
     maaltijd?.let {
         text = it.naam
     }
 }
+/**
+ * BindingAdapter voor weergavve van afbeelding (ImageView) van een [Maaltijd]
+ * @param maaltijd [Maaltijd] waarvan de afbeelding weergegeven wordt
+ */
 @BindingAdapter("maaltijd_photo")
 fun ImageView.setPhoto(maaltijd: Maaltijd?){
     maaltijd?.let{
@@ -29,6 +36,10 @@ fun ImageView.setPhoto(maaltijd: Maaltijd?){
         }
     }
 }
+/**
+ * BindingAdapter voor weergeven van afbeelding (cropped circle) (ImageView) van een [Maaltijd]
+ * @param maaltijd [Maaltijd] waarvan de afbeelding weergegeven wordt
+ */
 @BindingAdapter("maaltijd_photo_circle")
 fun ImageView.setPhotoCircle(maaltijd: Maaltijd?){
     maaltijd?.let{
@@ -39,6 +50,10 @@ fun ImageView.setPhotoCircle(maaltijd: Maaltijd?){
         }
     }
 }
+/**
+ * BindingAdapter voor weergeven van de rating (LinearLayout) van een [Maaltijd]
+ * @param maaltijd [Maaltijd] waarvan de rating weergegeven (stars) wordt
+ */
 @BindingAdapter("maaltijd_rating")
 fun LinearLayout.setRating(maaltijd: Maaltijd?){
     maaltijd?.let{
@@ -50,6 +65,10 @@ fun LinearLayout.setRating(maaltijd: Maaltijd?){
         }
     }
 }
+/**
+ * BindingAdapter voor weergeven van de rating (TextView) van een [Maaltijd]
+ * @param maaltijd [Maaltijd] waarvan de rating (String) weergegeven wordt
+ */
 @BindingAdapter("maaltijd_ratingString")
 fun TextView.setRatingString(maaltijd: Maaltijd?){
     maaltijd?.let{
@@ -63,6 +82,10 @@ fun TextView.setRatingString(maaltijd: Maaltijd?){
         text = ratingStrings.get(it.rating)
     }
 }
+/**
+ * BindingAdapter voor weergeven van de datum (TextView) wanneer [Maaltijd] laatst gegeten is
+ * @param maaltijd [Maaltijd] waarvan de datum weergegeven wordt
+ */
 @BindingAdapter("maaltijd_date_lastEaten")
 fun TextView.setDateLastEaten(maaltijd: Maaltijd?){
     maaltijd?.let {
@@ -74,10 +97,14 @@ fun TextView.setDateLastEaten(maaltijd: Maaltijd?){
         }
     }
 }
+/**
+ * BindingAdapter voor weergeven van de datum (TextView) wanneer [Maaltijd] toegevoegd is
+ * @param maaltijd [Maaltijd] waarvan de datum weergegeven wordt
+ */
 @BindingAdapter("maaltijd_date_added")
 fun TextView.setDateAdded(maaltijd: Maaltijd?){
     maaltijd?.let {
-        it.dateAdded?.let {
+        it.dateAdded.let {
             val pattern = "dd-MM-yyyy"
             val simpleDateFormat = SimpleDateFormat(pattern)
             val date = simpleDateFormat.format(it)
@@ -85,6 +112,10 @@ fun TextView.setDateAdded(maaltijd: Maaltijd?){
         }
     }
 }
+/**
+ * BindingAdapter voor weergeven van de naam (TextInputEditText) van een [Maaltijd]
+ * @param maaltijd [Maaltijd] waarvan de naam weergegeven wordt
+ */
 @BindingAdapter("maaltijd_edit_naam")
 fun TextInputEditText.setNaam(maaltijd: Maaltijd?){
     maaltijd?.let {

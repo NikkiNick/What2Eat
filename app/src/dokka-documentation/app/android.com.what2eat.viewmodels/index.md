@@ -15,3 +15,7 @@
 | [MaaltijdOnderdeelSelectViewModel](-maaltijd-onderdeel-select-view-model/index.md) | `class MaaltijdOnderdeelSelectViewModel : ViewModel` |
 | [MaaltijdOnderdeelSelectViewModelFactory](-maaltijd-onderdeel-select-view-model-factory/index.md) | `class MaaltijdOnderdeelSelectViewModelFactory : Factory` |
 | [MaaltijdOverzichtViewModel](-maaltijd-overzicht-view-model/index.md) | `class MaaltijdOverzichtViewModel : ViewModel` |
+| [RecipeApiViewModel](-recipe-api-view-model/index.md) | `class RecipeApiViewModel : ViewModel` |
+| [RecipeApiViewModelFactory](-recipe-api-view-model-factory/index.md) | `class RecipeApiViewModelFactory : Factory` |
+| [RecipeDetailViewModel](-recipe-detail-view-model/index.md) | `class RecipeDetailViewModel : ViewModel` |
+| [RecipeDetailViewModelFactory](-recipe-detail-view-model-factory/index.md) | `class RecipeDetailViewModelFactory : Factory` |

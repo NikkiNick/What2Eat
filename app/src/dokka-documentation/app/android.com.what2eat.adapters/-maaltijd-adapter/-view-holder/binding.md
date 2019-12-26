@@ -3,3 +3,6 @@
 # binding
 
 `val binding: MaaltijdItemViewBinding`
+
+LayoutBinding die gebruikt wordt door de ViewHolder
+

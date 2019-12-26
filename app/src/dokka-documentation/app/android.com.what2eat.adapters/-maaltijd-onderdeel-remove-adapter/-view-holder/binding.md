@@ -3,3 +3,6 @@
 # binding
 
 `val binding: MaaltijdonderdeelRemoveItemViewBinding`
+
+LayoutBinding die gebruikt wordt door de ViewHolder
+
