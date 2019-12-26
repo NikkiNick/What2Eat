@@ -3,6 +3,7 @@ package android.com.what2eat.viewmodels
 import android.com.what2eat.Application
 import android.com.what2eat.network.Recipe
 import android.com.what2eat.network.RecipeApi
+import android.com.what2eat.network.RecipeData
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
