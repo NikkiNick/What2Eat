@@ -1,6 +1,7 @@
 package android.com.what2eat.injection
 
 import android.com.what2eat.network.RecipeApi
+import android.com.what2eat.repositories.RecipeApiRepository
 import android.com.what2eat.utils.EDAMAM_BASE_URL
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
@@ -36,6 +37,12 @@ class NetworkModule {
             .build()
 
 
+    }
+
+    @Singleton
+    @Provides
+    internal fun provideRecipeApiRepository(recipeApi: RecipeApi): RecipeApiRepository{
+        return RecipeApiRepository(recipeApi)
     }
 
 }
