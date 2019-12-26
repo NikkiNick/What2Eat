@@ -1,0 +1,8 @@
+[app](../../index.md) / [android.com.what2eat.fragments](../index.md) / [MaaltijdEditFragment](index.md) / [onOptionsItemSelected](./on-options-item-selected.md)
+
+# onOptionsItemSelected
+
+`fun onOptionsItemSelected(item: `[`MenuItem`](https://developer.android.com/reference/android/view/MenuItem.html)`): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+
+Deze functie wordt gebruikt om de gebruikte [MenuItem](https://developer.android.com/reference/android/view/MenuItem.html) uit het overflowmenu af te handelen.
+
