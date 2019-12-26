@@ -4,6 +4,8 @@
 
 ### Types
 
+| Name | Summary |
+|---|---|
 | [AboutFragment](-about-fragment/index.md) | `class AboutFragment : Fragment`<br>About fragment |
 | [MaaltijdDetailFragment](-maaltijd-detail-fragment/index.md) | `class MaaltijdDetailFragment : Fragment`<br>[Fragment](#) voor maaltijd detail |
 | [MaaltijdEditFragment](-maaltijd-edit-fragment/index.md) | `class MaaltijdEditFragment : Fragment`<br>[Fragment](#) voor het aanpassen van een maaltijd. |
@@ -13,4 +15,3 @@
 | [MaaltijdOnderdeelSelectFragment](-maaltijd-onderdeel-select-fragment/index.md) | `class MaaltijdOnderdeelSelectFragment : Fragment`<br>[Fragment](#) voor een maaltijdonderdeeloverzicht met multiple selection |
 | [MaaltijdOverzichtFragment](-maaltijd-overzicht-fragment/index.md) | `class MaaltijdOverzichtFragment : Fragment`<br>[Fragment](#) voor maaltijdoverzicht |
 | [WelcomeFragment](-welcome-fragment/index.md) | `class WelcomeFragment : Fragment` |
-

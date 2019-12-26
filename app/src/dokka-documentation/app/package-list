@@ -1,4 +1,4 @@
-$dokka.format:markdown
+$dokka.format:gfm
 $dokka.linkExtension:md
 $dokka.location:android.com.what2eat.adapters$setDateAdded(android.widget.TextView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters/android.widget.-text-view/set-date-added.md
 $dokka.location:android.com.what2eat.adapters$setDateLastEaten(android.widget.TextView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters/android.widget.-text-view/set-date-last-eaten.md

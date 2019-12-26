@@ -4,6 +4,8 @@
 
 ### Types
 
+| Name | Summary |
+|---|---|
 | [ActionbarViewModel](-actionbar-view-model/index.md) | `class ActionbarViewModel : ViewModel` |
 | [MaaltijdDetailViewModel](-maaltijd-detail-view-model/index.md) | `class MaaltijdDetailViewModel : ViewModel` |
 | [MaaltijdDetailViewModelFactory](-maaltijd-detail-view-model-factory/index.md) | `class MaaltijdDetailViewModelFactory : Factory` |
@@ -13,4 +15,3 @@
 | [MaaltijdOnderdeelSelectViewModel](-maaltijd-onderdeel-select-view-model/index.md) | `class MaaltijdOnderdeelSelectViewModel : ViewModel` |
 | [MaaltijdOnderdeelSelectViewModelFactory](-maaltijd-onderdeel-select-view-model-factory/index.md) | `class MaaltijdOnderdeelSelectViewModelFactory : Factory` |
 | [MaaltijdOverzichtViewModel](-maaltijd-overzicht-view-model/index.md) | `class MaaltijdOverzichtViewModel : ViewModel` |
-
