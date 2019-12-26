@@ -9,7 +9,7 @@ import androidx.databinding.BindingAdapter
  * @param maaltijdOnderdeel [MaaltijdOnderdeel] waarvan de naam weergegeven wordt
  */
 @BindingAdapter("maaltijdOnderdeel_naam")
-fun CheckBox.setNaam(maaltijdOnderdeel: MaaltijdOnderdeel?){
+fun CheckBox.maaltijdonderdeel_setNaam(maaltijdOnderdeel: MaaltijdOnderdeel?){
     maaltijdOnderdeel?.let {
         text = it.naam
     }
@@ -19,7 +19,7 @@ fun CheckBox.setNaam(maaltijdOnderdeel: MaaltijdOnderdeel?){
  * @param maaltijdOnderdeel [MaaltijdOnderdeel] waarvan de naam weergegeven wordt
  */
 @BindingAdapter("maaltijdOnderdeel_naamText")
-fun TextView.setNaamText(maaltijdOnderdeel: MaaltijdOnderdeel?){
+fun TextView.maaltijdonderdeel_setNaamText(maaltijdOnderdeel: MaaltijdOnderdeel?){
     maaltijdOnderdeel?.let {
         text = it.naam
     }

@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat
  * @param maaltijd [Maaltijd] waarvan de naam weergegeven wordt
  */
 @BindingAdapter("maaltijd_naam")
-fun TextView.setNaam(maaltijd: Maaltijd?){
+fun TextView.maaltijd_setNaam(maaltijd: Maaltijd?){
     maaltijd?.let {
         text = it.naam
     }
@@ -25,7 +25,7 @@ fun TextView.setNaam(maaltijd: Maaltijd?){
  * @param maaltijd [Maaltijd] waarvan de afbeelding weergegeven wordt
  */
 @BindingAdapter("maaltijd_photo")
-fun ImageView.setPhoto(maaltijd: Maaltijd?){
+fun ImageView.maaltijd_setPhoto(maaltijd: Maaltijd?){
     maaltijd?.let{
         if(it.photo_uri != null && it.photo_uri != ""){
             this.scaleType = ImageView.ScaleType.CENTER_CROP
@@ -41,7 +41,7 @@ fun ImageView.setPhoto(maaltijd: Maaltijd?){
  * @param maaltijd [Maaltijd] waarvan de afbeelding weergegeven wordt
  */
 @BindingAdapter("maaltijd_photo_circle")
-fun ImageView.setPhotoCircle(maaltijd: Maaltijd?){
+fun ImageView.maaltijd_setPhotoCircle(maaltijd: Maaltijd?){
     maaltijd?.let{
         it.photo_uri?.let {
             var options: RequestOptions = RequestOptions()
@@ -55,7 +55,7 @@ fun ImageView.setPhotoCircle(maaltijd: Maaltijd?){
  * @param maaltijd [Maaltijd] waarvan de rating weergegeven (stars) wordt
  */
 @BindingAdapter("maaltijd_rating")
-fun LinearLayout.setRating(maaltijd: Maaltijd?){
+fun LinearLayout.maaltijd_setRating(maaltijd: Maaltijd?){
     maaltijd?.let{
         var counter = 0
         while(counter < it.rating) {
@@ -70,7 +70,7 @@ fun LinearLayout.setRating(maaltijd: Maaltijd?){
  * @param maaltijd [Maaltijd] waarvan de rating (String) weergegeven wordt
  */
 @BindingAdapter("maaltijd_ratingString")
-fun TextView.setRatingString(maaltijd: Maaltijd?){
+fun TextView.maaltijd_setRatingString(maaltijd: Maaltijd?){
     maaltijd?.let{
         val ratingStrings = listOf(
             context.getString(R.string.rating0),
@@ -87,7 +87,7 @@ fun TextView.setRatingString(maaltijd: Maaltijd?){
  * @param maaltijd [Maaltijd] waarvan de datum weergegeven wordt
  */
 @BindingAdapter("maaltijd_date_lastEaten")
-fun TextView.setDateLastEaten(maaltijd: Maaltijd?){
+fun TextView.maaltijd_setDateLastEaten(maaltijd: Maaltijd?){
     maaltijd?.let {
         maaltijd.dateLast?.let {
             val pattern = "dd-MM-yyyy"
@@ -102,7 +102,7 @@ fun TextView.setDateLastEaten(maaltijd: Maaltijd?){
  * @param maaltijd [Maaltijd] waarvan de datum weergegeven wordt
  */
 @BindingAdapter("maaltijd_date_added")
-fun TextView.setDateAdded(maaltijd: Maaltijd?){
+fun TextView.maaltijd_setDateAdded(maaltijd: Maaltijd?){
     maaltijd?.let {
         it.dateAdded.let {
             val pattern = "dd-MM-yyyy"
@@ -117,7 +117,7 @@ fun TextView.setDateAdded(maaltijd: Maaltijd?){
  * @param maaltijd [Maaltijd] waarvan de naam weergegeven wordt
  */
 @BindingAdapter("maaltijd_edit_naam")
-fun TextInputEditText.setNaam(maaltijd: Maaltijd?){
+fun TextInputEditText.maaltijd_setNaam(maaltijd: Maaltijd?){
     maaltijd?.let {
         setText(it.naam)
     }
