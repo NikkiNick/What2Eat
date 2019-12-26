@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `WelcomeFragment()`
+
+Fragment voor het weergeven van het welkom scherm
+

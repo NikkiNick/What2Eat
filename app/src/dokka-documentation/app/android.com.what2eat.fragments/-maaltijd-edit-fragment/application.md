@@ -3,3 +3,9 @@
 # application
 
 `@Inject lateinit var application: `[`Application`](https://developer.android.com/reference/android/app/Application.html)
+
+Application
+
+### Property
+
+`application` - Application

@@ -1,4 +1,4 @@
-[app](../../index.md) / [android.com.what2eat.fragments](../index.md) / [MaaltijdDetailFragment](index.md) / [onCreate](./on-create.md)
+[app](../../index.md) / [android.com.what2eat.fragments](../index.md) / [RecipeOverzichtFragment](index.md) / [onCreate](./on-create.md)
 
 # onCreate
 
@@ -9,4 +9,4 @@ Fragment properties worden hier geïnstantieerd.
 
 ### Parameters
 
-`savedInstanceState` - Bundel die gebruikt wordt om data terug in [MaaltijdDetailFragment](index.md) te initialiseren.
+`savedInstanceState` - Bundel die gebruikt wordt om data terug in het fragment te initialiseren.
