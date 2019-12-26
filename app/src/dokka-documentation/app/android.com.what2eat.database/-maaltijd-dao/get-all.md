@@ -1,0 +1,5 @@
+[app](../../index.md) / [android.com.what2eat.database](../index.md) / [MaaltijdDao](index.md) / [getAll](./get-all.md)
+
+# getAll
+
+`abstract fun getAll(): `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`Maaltijd`](../../android.com.what2eat.model/-maaltijd/index.md)`>?`

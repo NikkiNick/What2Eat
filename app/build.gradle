@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: "org.jetbrains.dokka-android"
 
 android {
     compileSdkVersion 29
@@ -17,10 +18,6 @@ android {
         multiDexEnabled true
     }
     buildTypes {
-        /*release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }*/
         release {
             multiDexKeepFile file('multidex-config.txt')
         }
@@ -42,6 +39,15 @@ android {
 
 }
 
+    dokka{
+        outputFormat = 'markdown'
+        outputDirectory = "$projectDir/src/dokka-documentation"
+
+        skipDeprecated = false
+        skipEmptyPackages = true
+        noStdlibLink = false
+    }
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
