@@ -6,14 +6,10 @@
 
 ### Constructors
 
-| Name | Summary |
-|---|---|
 | [&lt;init&gt;](-init-.md) | `Maaltijd()` |
 
 ### Properties
 
-| Name | Summary |
-|---|---|
 | [dateAdded](date-added.md) | `var dateAdded: `[`Date`](https://developer.android.com/reference/java/util/Date.html) |
 | [dateLast](date-last.md) | `var dateLast: `[`Date`](https://developer.android.com/reference/java/util/Date.html)`?` |
 | [maaltijdId](maaltijd-id.md) | `var maaltijdId: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html) |
@@ -24,8 +20,7 @@
 
 ### Functions
 
-| Name | Summary |
-|---|---|
 | [addMaaltijdOnderdeel](add-maaltijd-onderdeel.md) | `fun addMaaltijdOnderdeel(maaltijdOnderdeel: `[`MaaltijdOnderdeel`](../-maaltijd-onderdeel/index.md)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
 | [equals](equals.md) | `fun equals(other: `[`Any`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)`?): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) |
 | [removeMaaltijdOnderdeel](remove-maaltijd-onderdeel.md) | `fun removeMaaltijdOnderdeel(maaltijdOnderdeel: `[`MaaltijdOnderdeel`](../-maaltijd-onderdeel/index.md)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
+

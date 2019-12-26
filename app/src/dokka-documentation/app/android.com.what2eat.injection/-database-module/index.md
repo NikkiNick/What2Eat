@@ -12,13 +12,10 @@ Provides the Database Service implemenation
 
 ### Constructors
 
-| Name | Summary |
-|---|---|
 | [&lt;init&gt;](-init-.md) | `DatabaseModule(application: `[`Application`](https://developer.android.com/reference/android/app/Application.html)`)`<br>Provides the Database Service implemenation |
 
 ### Functions
 
-| Name | Summary |
-|---|---|
 | [provideApplication](provide-application.md) | `fun provideApplication(): `[`Application`](https://developer.android.com/reference/android/app/Application.html) |
 | [provideApplicationContext](provide-application-context.md) | `fun provideApplicationContext(): `[`Context`](https://developer.android.com/reference/android/content/Context.html) |
+
