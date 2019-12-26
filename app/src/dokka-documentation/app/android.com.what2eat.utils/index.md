@@ -4,6 +4,7 @@
 
 ### Types
 
+| Name | Summary |
+|---|---|
 | [DateConverter](-date-converter/index.md) | `class DateConverter` |
 | [RotationTransformUtil](-rotation-transform-util/index.md) | `class RotationTransformUtil : BitmapTransformation` |
-

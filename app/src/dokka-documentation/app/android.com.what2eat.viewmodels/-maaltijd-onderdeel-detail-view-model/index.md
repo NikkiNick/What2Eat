@@ -6,10 +6,14 @@
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | `MaaltijdOnderdeelDetailViewModel(maaltijdOnderdeel_id: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html)`)` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [maaltijdOnderdeel](maaltijd-onderdeel.md) | `val maaltijdOnderdeel: LiveData<`[`MaaltijdOnderdeel`](../../android.com.what2eat.model/-maaltijd-onderdeel/index.md)`>` |
 | [maaltijdOnderdeelRepo](maaltijd-onderdeel-repo.md) | `lateinit var maaltijdOnderdeelRepo: `[`MaaltijdOnderdeelRepository`](../../android.com.what2eat.repositories/-maaltijd-onderdeel-repository/index.md) |
 | [maaltijdOnderdeel_id](maaltijd-onderdeel_id.md) | `val maaltijdOnderdeel_id: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html) |
@@ -20,8 +24,9 @@
 
 ### Functions
 
+| Name | Summary |
+|---|---|
 | [deleteMaaltijdOnderdeel](delete-maaltijd-onderdeel.md) | `fun deleteMaaltijdOnderdeel(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
 | [initializeMaaltijdOnderdeel](initialize-maaltijd-onderdeel.md) | `fun initializeMaaltijdOnderdeel(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
 | [onCleared](on-cleared.md) | `fun onCleared(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
 | [setNaam](set-naam.md) | `fun setNaam(naam: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
-
