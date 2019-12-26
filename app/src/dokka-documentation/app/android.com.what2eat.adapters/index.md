@@ -4,6 +4,8 @@
 
 ### Types
 
+| Name | Summary |
+|---|---|
 | [MaaltijdAdapter](-maaltijd-adapter/index.md) | `class MaaltijdAdapter : ListAdapter<`[`Maaltijd`](../android.com.what2eat.model/-maaltijd/index.md)`, `[`ViewHolder`](-maaltijd-adapter/-view-holder/index.md)`>` |
 | [MaaltijdDiffCallback](-maaltijd-diff-callback/index.md) | `class MaaltijdDiffCallback : ItemCallback<`[`Maaltijd`](../android.com.what2eat.model/-maaltijd/index.md)`>` |
 | [MaaltijdListener](-maaltijd-listener/index.md) | `class MaaltijdListener` |
@@ -16,9 +18,10 @@
 
 ### Extensions for External Classes
 
+| Name | Summary |
+|---|---|
 | [android.widget.CheckBox](android.widget.-check-box/index.md) |  |
 | [android.widget.ImageView](android.widget.-image-view/index.md) |  |
 | [android.widget.LinearLayout](android.widget.-linear-layout/index.md) |  |
 | [android.widget.TextView](android.widget.-text-view/index.md) |  |
 | [com.google.android.material.textfield.TextInputEditText](com.google.android.material.textfield.-text-input-edit-text/index.md) |  |
-
