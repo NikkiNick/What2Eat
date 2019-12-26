@@ -4,4 +4,4 @@
 
 | Name | Summary |
 |---|---|
-| [setNaam](set-naam.md) | `fun TextInputEditText.setNaam(maaltijd: `[`Maaltijd`](../../android.com.what2eat.model/-maaltijd/index.md)`?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>BindingAdapter voor weergeven van de naam (TextInputEditText) van een [Maaltijd](../../android.com.what2eat.model/-maaltijd/index.md) |
+| [maaltijd_setNaam](maaltijd_set-naam.md) | `fun TextInputEditText.maaltijd_setNaam(maaltijd: `[`Maaltijd`](../../android.com.what2eat.model/-maaltijd/index.md)`?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>BindingAdapter voor weergeven van de naam (TextInputEditText) van een [Maaltijd](../../android.com.what2eat.model/-maaltijd/index.md) |

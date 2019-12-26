@@ -2,4 +2,10 @@
 
 # update
 
-`abstract fun update(maaltijd: `[`MaaltijdMaaltijdOnderdeel`](../../android.com.what2eat.model/-maaltijd-maaltijd-onderdeel/index.md)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`abstract fun update(maaltijdMaaltijdOnderdeel: `[`MaaltijdMaaltijdOnderdeel`](../../android.com.what2eat.model/-maaltijd-maaltijd-onderdeel/index.md)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+
+Room-database operatie om een [MaaltijdMaaltijdOnderdeel](../../android.com.what2eat.model/-maaltijd-maaltijd-onderdeel/index.md) aan te passen
+
+### Parameters
+
+`maaltijdMaaltijdOnderdeel` - [MaaltijdMaaltijdOnderdeel](../../android.com.what2eat.model/-maaltijd-maaltijd-onderdeel/index.md) dat aangepast wordt
