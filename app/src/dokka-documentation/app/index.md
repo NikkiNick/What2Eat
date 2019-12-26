@@ -2,6 +2,8 @@
 
 ### Packages
 
+| Name | Summary |
+|---|---|
 | [android.com.what2eat](android.com.what2eat/index.md) |  |
 | [android.com.what2eat.activities](android.com.what2eat.activities/index.md) |  |
 | [android.com.what2eat.adapters](android.com.what2eat.adapters/index.md) |  |
