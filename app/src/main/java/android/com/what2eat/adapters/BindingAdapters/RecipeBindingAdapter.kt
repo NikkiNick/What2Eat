@@ -13,7 +13,7 @@ import com.bumptech.glide.request.RequestOptions
  * @param recipe [RecipeData] waarvan de naam weergegeven wordt
  */
 @BindingAdapter("recipe_naam")
-fun TextView.setNaam(recipe: RecipeData?){
+fun TextView.recipe_setNaam(recipe: RecipeData?){
     recipe?.let {
         text = it.naam
     }
@@ -23,7 +23,7 @@ fun TextView.setNaam(recipe: RecipeData?){
  * @param recipe [RecipeData] waarvan de afbeelding weergegeven wordt
  */
 @BindingAdapter("recipe_photo")
-fun ImageView.setPhoto(recipe: RecipeData?){
+fun ImageView.recipe_setPhoto(recipe: RecipeData?){
     recipe?.let{
         if(it.image_url != null && it.image_url != ""){
             this.scaleType = ImageView.ScaleType.CENTER_CROP
@@ -39,7 +39,7 @@ fun ImageView.setPhoto(recipe: RecipeData?){
  * @param recipe [RecipeData] waarvan de afbeelding weergegeven wordt
  */
 @BindingAdapter("recipe_photo_circle")
-fun ImageView.setPhotoCircle(recipe: RecipeData?){
+fun ImageView.recipe_setPhotoCircle(recipe: RecipeData?){
     recipe?.let{
         it.image_url?.let {
             val options = RequestOptions()
