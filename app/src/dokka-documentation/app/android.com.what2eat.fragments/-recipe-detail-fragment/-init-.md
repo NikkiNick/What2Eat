@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `RecipeDetailFragment()`
+
+Fragment voor het weergeven van detail van een (extern) recept
+

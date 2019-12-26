@@ -1,32 +1,25 @@
 package android.com.what2eat.fragments
 
 
-import android.app.Application
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-
 import android.com.what2eat.R
 import android.com.what2eat.adapters.MaaltijdAdapter
 import android.com.what2eat.adapters.MaaltijdListener
-import android.com.what2eat.database.MaaltijdDao
-import android.com.what2eat.database.MaaltijdDatabase
-import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.databinding.FragmentMaaltijdOnderdeelDetailBinding
 import android.com.what2eat.utils.NetworkUtil
 import android.com.what2eat.viewmodels.MaaltijdOnderdeelDetailViewModel
 import android.com.what2eat.viewmodels.MaaltijdOnderdeelDetailViewModelFactory
 import android.graphics.drawable.ClipDrawable
-import android.os.Build
+import android.os.Bundle
 import android.text.InputType
 import android.view.*
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.EditText
 import android.widget.TextView
-import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -35,19 +28,24 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 
 /**
- * [Fragment] voor een maaltijdonderdeel detail.
+ * Fragment voor het weergeven van detail van een maaltijd
+ * @property binding Binding object van het fragment
+ * @property viewModelFactory [MaaltijdOnderdeelDetailViewModelFactory] dat gebruikt wordt om [MaaltijdOnderdeelDetailViewModel] aan te maken
+ * @property viewModel [MaaltijdOnderdeelDetailViewModel] dat gebruikt wordt in het fragment voor business logica
  */
 class MaaltijdOnderdeelDetailFragment : Fragment() {
+
     /**
-     * [Fragment] Properties
+     * Fragment Properties
      */
     private lateinit var binding: FragmentMaaltijdOnderdeelDetailBinding
     private lateinit var viewModelFactory: MaaltijdOnderdeelDetailViewModelFactory
     private lateinit var viewModel: MaaltijdOnderdeelDetailViewModel
 
     /**
-     * Functie die wordt opgeroepen wanneer het [Fragment] aangemaakt wordt en in CREATED lifecycle state is.
+     * Functie die wordt opgeroepen wanneer het fragment aangemaakt wordt en in CREATED lifecycle state is.
      * Fragment properties worden hier geïnstantieerd.
+     * @param savedInstanceState Bundel die gebruikt wordt om data terug in [MaaltijdOnderdeelDetailFragment] te initialiseren.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -57,19 +55,27 @@ class MaaltijdOnderdeelDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
     }
+
     /**
-     * Functie die wordt opgeroepen wanneer het [Fragment] aangemaakt wordt en in CREATED lifecycle state is.
+     * Functie die wordt opgeroepen wanneer het fragment aangemaakt wordt en in CREATED lifecycle state is.
+     * Setup van DataBinding, RecyclerView, ViewModel Observers, UI ClickListeners, ActionBar
+     * @param inflater LayoutInflater
+     * @param container ViewGroup
+     * @param savedInstanceState Bundle
+     * @return View
      */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         /**
          * DataBinding : layout inflation, viewModel binding
          */
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_onderdeel_detail, container, false)
         binding.setLifecycleOwner(this)
         binding.maaltijdOnderdeel = viewModel
+
         /**
          * RecyclerView setup voor het tonen van de RecyclerView van maaltijden waartoe het huidige maaltijdonderdeel behoort.
          */
@@ -83,8 +89,9 @@ class MaaltijdOnderdeelDetailFragment : Fragment() {
             binding.noconnectionLayout.visibility = VISIBLE
             binding.searchButton.isEnabled = false
         }
+
         /**
-         * ViewModel Observer:
+         * ViewModel Observers:
          *      Observatie voor het tonen van een SnackBar afkomstig van ViewModel en navigatie naar het overzichtfragment.
          *      Observeren van de maaltijden waartoe maaltijdOnderdeel behoort.
          */
@@ -107,8 +114,11 @@ class MaaltijdOnderdeelDetailFragment : Fragment() {
                 }
             }
         })
+
         /**
-         * UI OnClickListener voor de Edit button om de naam van het maaltijdOnderdeel aan te passen
+         * UI OnClickListeners:
+         *      Listener voor de Edit button om de naam van het maaltijdOnderdeel aan te passen.
+         *      Listener voor de search button om API call te doen naar externe recepten.
          */
         binding.editMealpartButton.setOnClickListener{
             editMaaltijdOnderdeel()
@@ -116,14 +126,17 @@ class MaaltijdOnderdeelDetailFragment : Fragment() {
         binding.searchButton.setOnClickListener {
             findNavController().navigate(MaaltijdOnderdeelDetailFragmentDirections.actionMaaltijdOnderdeelDetailFragmentToRecipeOverzichtFragment(viewModel.maaltijdOnderdeel.value!!.naam))
         }
+
         /**
          * Other
          */
 
         return binding.root
     }
+
     /**
      * Deze functie wordt gebruikt om een SnackBar met bericht weer te geven
+     * @param message Bericht dat weergegeven moet worden in de SnackBar
      */
     private fun showSnackBar(message: String){
         val snackbar: Snackbar = Snackbar.make(getActivity()!!.findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
@@ -133,7 +146,7 @@ class MaaltijdOnderdeelDetailFragment : Fragment() {
         snackbar.show()
     }
     /**
-     * Deze functie toont een [AlertDialog] waarbij de naam van het maaltijdOnderdeel gewijzigd kan worden.
+     * Deze functie toont een AlertDialog waarbij de naam van het maaltijdOnderdeel gewijzigd kan worden.
      */
     private fun editMaaltijdOnderdeel(){
         val oudeNaam = viewModel.maaltijdOnderdeel.value?.naam ?: ""
@@ -167,13 +180,18 @@ class MaaltijdOnderdeelDetailFragment : Fragment() {
     /**
      * Deze functie wordt gebruikt om het overflow menu weer te geven.
      * Overflowmenu is een delete icon om het maaltijdOnderdeel te verwijderen.
-     */
+     * @param menu Gebruikte menu
+     * @param inflater MenuInflater die gebruikt wordt om de menu-layout te inflaten.
+    */
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.detail_menu_delete, menu)
     }
+
     /**
-     * Deze functie wordt gebruikt om de gebruikte [MenuItem] uit het overflowmenu af te handelen.
+     * Deze functie wordt gebruikt om de gebruikte menuItem uit het overflowmenu af te handelen.
+     * @param item Gekozen menuItem
+     * @return Boolean
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -181,8 +199,9 @@ class MaaltijdOnderdeelDetailFragment : Fragment() {
         }
         return super.onOptionsItemSelected(item)
     }
+
     /**
-     * Deze functie wordt gebruikt om een [AlertDialog] weer te geven waarbij de gebruiker toestemming
+     * Deze functie wordt gebruikt om een AlertDialog weer te geven waarbij de gebruiker toestemming
      * geeft om huidige maaltijdOnderdeel te verwijderen.
      */
     private fun deleteMaaltijdOnderdeel(){
