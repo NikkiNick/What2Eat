@@ -74,7 +74,7 @@ class MaaltijdAdapter(val clickListener: MaaltijdListener) : ListAdapter<Maaltij
 }
 
 /**
- * Deze class verbeterd de performantie in een RecyclerView om verschillen tussen de [Maaltijden]
+ * Deze class verbeterd de performantie in een RecyclerView om verschillen tussen 2 [Maaltijd]
  * beter te kunnen uitmaken.
  * @constructor Constructor voor het aanmaken van de [MaaltijdDiffCallback] (DiffUtil.ItemCallback)
  */

@@ -14,4 +14,6 @@
 | [MaaltijdOnderdeelOverzichtFragment](-maaltijd-onderdeel-overzicht-fragment/index.md) | `class MaaltijdOnderdeelOverzichtFragment : Fragment`<br>[Fragment](#) voor maaltijdonderdelenoverzicht |
 | [MaaltijdOnderdeelSelectFragment](-maaltijd-onderdeel-select-fragment/index.md) | `class MaaltijdOnderdeelSelectFragment : Fragment`<br>[Fragment](#) voor een maaltijdonderdeeloverzicht met multiple selection |
 | [MaaltijdOverzichtFragment](-maaltijd-overzicht-fragment/index.md) | `class MaaltijdOverzichtFragment : Fragment`<br>[Fragment](#) voor maaltijdoverzicht |
+| [RecipeDetailFragment](-recipe-detail-fragment/index.md) | `class RecipeDetailFragment : Fragment` |
+| [RecipeOverzichtFragment](-recipe-overzicht-fragment/index.md) | `class RecipeOverzichtFragment : Fragment`<br>A simple [Fragment](#) subclass. |
 | [WelcomeFragment](-welcome-fragment/index.md) | `class WelcomeFragment : Fragment` |
