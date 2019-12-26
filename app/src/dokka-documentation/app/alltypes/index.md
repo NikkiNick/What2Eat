@@ -48,7 +48,7 @@
 | [android.com.what2eat.fragments.MaaltijdOverzichtFragment](../android.com.what2eat.fragments/-maaltijd-overzicht-fragment/index.md) | [Fragment](#) voor maaltijdoverzicht |
 | [android.com.what2eat.viewmodels.MaaltijdOverzichtViewModel](../android.com.what2eat.viewmodels/-maaltijd-overzicht-view-model/index.md) |  |
 | [android.com.what2eat.repositories.MaaltijdRepository](../android.com.what2eat.repositories/-maaltijd-repository/index.md) |  |
-| [android.com.what2eat.activities.MainActivity](../android.com.what2eat.activities/-main-activity/index.md) | MainActivity |
+| [android.com.what2eat.activities.MainActivity](../android.com.what2eat.activities/-main-activity/index.md) | Globale Activity voor de What2Eat applicatie |
 | [android.com.what2eat.utils.RotationTransformUtil](../android.com.what2eat.utils/-rotation-transform-util/index.md) |  |
 | [com.google.android.material.textfield.TextInputEditText](../android.com.what2eat.adapters/com.google.android.material.textfield.-text-input-edit-text/index.md) (extensions in package android.com.what2eat.adapters) |  |
 | [android.widget.TextView](../android.com.what2eat.adapters/android.widget.-text-view/index.md) (extensions in package android.com.what2eat.adapters) |  |
