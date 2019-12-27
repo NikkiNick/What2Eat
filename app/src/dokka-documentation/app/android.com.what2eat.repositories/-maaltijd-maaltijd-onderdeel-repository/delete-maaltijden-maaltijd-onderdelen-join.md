@@ -2,4 +2,11 @@
 
 # deleteMaaltijdenMaaltijdOnderdelenJoin
 
-`suspend fun deleteMaaltijdenMaaltijdOnderdelenJoin(maaltijd: `[`Maaltijd`](../../android.com.what2eat.model/-maaltijd/index.md)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`suspend fun deleteMaaltijdenMaaltijdOnderdelenJoin(maaltijdId: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+
+Co-Routine functie voor het verwijderen van alle relaties van een gegeven maaltijd (JOIN table).
+Deze thread wordt op de achtergrond uitgevoerd.
+
+### Parameters
+
+`maaltijdId` - Id van de maaltijd

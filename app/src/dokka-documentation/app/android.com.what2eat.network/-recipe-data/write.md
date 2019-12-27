@@ -2,12 +2,12 @@
 
 # write
 
-`fun `[`RecipeData`](index.md)`.write(dest: `[`Parcel`](https://developer.android.com/reference/android/os/Parcel.html)`, flags: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun `[`RecipeData`](index.md)`.write(parcel: `[`Parcel`](https://developer.android.com/reference/android/os/Parcel.html)`, flags: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
 
 Functie voor het mappen van een Recipe naar een Parcel
 
 ### Parameters
 
-`dest` - Parcel waarnaar gemapt wordt
+`parcel` - Parcel waarnaar gemapt wordt
 
 `flags` - 

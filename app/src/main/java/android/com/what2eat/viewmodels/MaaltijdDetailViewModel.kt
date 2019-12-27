@@ -54,7 +54,7 @@ class MaaltijdDetailViewModel(val maaltijdId: Long): ViewModel(){
     fun deleteMaaltijd(){
         uiScope.launch {
             maaltijdRepo.deleteMaaltijd(_maaltijd.value!!)
-            maaltijdMaaltijdOnderdeelRepo.deleteMaaltijdenMaaltijdOnderdelenJoin(_maaltijd.value!!)
+            maaltijdMaaltijdOnderdeelRepo.deleteMaaltijdenMaaltijdOnderdelenJoin(_maaltijd.value!!.maaltijdId)
         }
     }
     fun addMaaltijdOnderdelenToMaaltijd(maaltijdOnderdeelIds: LongArray){
