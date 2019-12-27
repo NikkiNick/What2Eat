@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `Recipe(@Json("recipe") recipe: `[`RecipeData`](../-recipe-data/index.md)`)`
+
+Recipe klasse waarnaar de API recipes gemapt worden
+

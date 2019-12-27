@@ -3,3 +3,9 @@
 # naam
 
 `val naam: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?`
+
+Naam van het recept
+
+### Property
+
+`naam` - Naam van het recept
