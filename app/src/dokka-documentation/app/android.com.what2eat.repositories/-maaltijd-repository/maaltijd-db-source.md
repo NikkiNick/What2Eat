@@ -3,3 +3,6 @@
 # maaltijdDbSource
 
 `val maaltijdDbSource: `[`MaaltijdDao`](../../android.com.what2eat.database/-maaltijd-dao/index.md)
+
+DAO gebruikt voor databank-operaties
+

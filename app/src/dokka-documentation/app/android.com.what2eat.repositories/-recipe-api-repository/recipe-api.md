@@ -3,3 +3,6 @@
 # recipeApi
 
 `val recipeApi: `[`RecipeApi`](../../android.com.what2eat.network/-recipe-api/index.md)
+
+API Interface gebruikt voor API-calls
+
