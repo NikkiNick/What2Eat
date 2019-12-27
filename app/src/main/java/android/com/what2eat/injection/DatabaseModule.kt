@@ -48,7 +48,7 @@ class DatabaseModule(private val application: Application) {
      */
     @Provides
     @Singleton
-    internal fun provideDatabaseInstance(context: Context): MaaltijdDatabase{
+    fun provideDatabaseInstance(context: Context): MaaltijdDatabase{
         return MaaltijdDatabase.getInstance(context)
     }
 
@@ -59,7 +59,7 @@ class DatabaseModule(private val application: Application) {
      */
     @Provides
     @Singleton
-    internal fun provideMaaltijdDao(maaltijdDatabase: MaaltijdDatabase): MaaltijdDao{
+    fun provideMaaltijdDao(maaltijdDatabase: MaaltijdDatabase): MaaltijdDao{
         return maaltijdDatabase.maaltijdDao
     }
 
@@ -70,7 +70,7 @@ class DatabaseModule(private val application: Application) {
      */
     @Provides
     @Singleton
-    internal fun provideMaaltijdOnderdeelDao(maaltijdDatabase: MaaltijdDatabase): MaaltijdOnderdeelDao{
+    fun provideMaaltijdOnderdeelDao(maaltijdDatabase: MaaltijdDatabase): MaaltijdOnderdeelDao{
         return maaltijdDatabase.maaltijdOnderdeelDao
     }
 
@@ -81,7 +81,7 @@ class DatabaseModule(private val application: Application) {
      */
     @Provides
     @Singleton
-    internal fun provideMaaltijdMaaltijdOnderdeelDao(maaltijdDatabase: MaaltijdDatabase): MaaltijdMaaltijdOnderdeelDao{
+    fun provideMaaltijdMaaltijdOnderdeelDao(maaltijdDatabase: MaaltijdDatabase): MaaltijdMaaltijdOnderdeelDao{
         return maaltijdDatabase.maaltijdMaaltijdOnderdeelDao
     }
 
@@ -92,7 +92,7 @@ class DatabaseModule(private val application: Application) {
      */
     @Provides
     @Singleton
-    internal fun provideMaaltijdRepo(maaltijdDao: MaaltijdDao): MaaltijdRepository{
+    fun provideMaaltijdRepo(maaltijdDao: MaaltijdDao): MaaltijdRepository{
         return MaaltijdRepository(maaltijdDao)
     }
 
@@ -103,7 +103,7 @@ class DatabaseModule(private val application: Application) {
      */
     @Provides
     @Singleton
-    internal fun provideMaaltijdOnderdeelRepo(maaltijdOnderdeelDao: MaaltijdOnderdeelDao): MaaltijdOnderdeelRepository {
+    fun provideMaaltijdOnderdeelRepo(maaltijdOnderdeelDao: MaaltijdOnderdeelDao): MaaltijdOnderdeelRepository {
         return MaaltijdOnderdeelRepository(maaltijdOnderdeelDao)
     }
 
@@ -114,7 +114,7 @@ class DatabaseModule(private val application: Application) {
      */
     @Provides
     @Singleton
-    internal fun provideMaaltijdMaaltijdOnderdeelRepo(maaltijdMaaltijdOnderdeelDao: MaaltijdMaaltijdOnderdeelDao): MaaltijdMaaltijdOnderdeelRepository {
+    fun provideMaaltijdMaaltijdOnderdeelRepo(maaltijdMaaltijdOnderdeelDao: MaaltijdMaaltijdOnderdeelDao): MaaltijdMaaltijdOnderdeelRepository {
         return MaaltijdMaaltijdOnderdeelRepository(maaltijdMaaltijdOnderdeelDao)
     }
 }
