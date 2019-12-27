@@ -3,3 +3,6 @@
 # maaltijdMaaltijdOnderdeelDao
 
 `val maaltijdMaaltijdOnderdeelDao: `[`MaaltijdMaaltijdOnderdeelDao`](../../android.com.what2eat.database/-maaltijd-maaltijd-onderdeel-dao/index.md)
+
+DAO gebruikt voor databank-operaties
+
