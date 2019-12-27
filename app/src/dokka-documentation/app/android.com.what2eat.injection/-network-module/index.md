@@ -4,8 +4,10 @@
 
 `@Module class NetworkModule`
 
+Network Module voor Dagger dependency injection
+
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `NetworkModule()` |
+| [&lt;init&gt;](-init-.md) | `NetworkModule()`<br>Network Module voor Dagger dependency injection |
