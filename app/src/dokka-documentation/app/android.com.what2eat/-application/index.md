@@ -4,19 +4,20 @@
 
 `class Application : `[`Application`](https://developer.android.com/reference/android/app/Application.html)
 
-This is the applicationContext used in the application
+Deze Application wordt gebruikt doorheen de applicatie waarbij de [InjectionGraph](../../android.com.what2eat.injection/-injection-graph/index.md) geinitialiseerd wordt
+voor dependency injection
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Application()`<br>This is the applicationContext used in the application |
+| [&lt;init&gt;](-init-.md) | `Application()`<br>Deze Application wordt gebruikt doorheen de applicatie waarbij de [InjectionGraph](../../android.com.what2eat.injection/-injection-graph/index.md) geinitialiseerd wordt voor dependency injection |
 
 ### Functions
 
 | Name | Summary |
 |---|---|
-| [onCreate](on-create.md) | `fun onCreate(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
+| [onCreate](on-create.md) | `fun onCreate(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Deze functie wordt opgeroepen wanneer de Application aangemaakt wordt. Hierbij wordt de [InjectionGraph](../../android.com.what2eat.injection/-injection-graph/index.md) geinitialiseerd. |
 
 ### Companion Object Properties
 
