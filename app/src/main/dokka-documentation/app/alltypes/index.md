@@ -6,15 +6,15 @@
 |---|---|
 | [android.com.what2eat.fragments.AboutFragment](../android.com.what2eat.fragments/-about-fragment/index.md) | Fragment voor het weergeven van about informatie |
 | [android.com.what2eat.viewmodels.ActionbarViewModel](../android.com.what2eat.viewmodels/-actionbar-view-model/index.md) |  |
-| [android.com.what2eat.Application](../android.com.what2eat/-application/index.md) | This is the applicationContext used in the application |
+| [android.com.what2eat.Application](../android.com.what2eat/-application/index.md) | Deze Application wordt gebruikt doorheen de applicatie waarbij de [InjectionGraph](../android.com.what2eat.injection/-injection-graph/index.md) geinitialiseerd wordt voor dependency injection |
 | [android.widget.CheckBox](../android.com.what2eat.adapters.-binding-adapters/android.widget.-check-box/index.md) (extensions in package android.com.what2eat.adapters.BindingAdapters) |  |
-| [android.com.what2eat.injection.DatabaseModule](../android.com.what2eat.injection/-database-module/index.md) | Provides the Database Service implemenation |
+| [android.com.what2eat.injection.DatabaseModule](../android.com.what2eat.injection/-database-module/index.md) | Database Module voor Dagger dependency injection |
 | [android.com.what2eat.utils.DateConverter](../android.com.what2eat.utils/-date-converter/index.md) |  |
 | [android.widget.ImageView](../android.com.what2eat.adapters.-binding-adapters/android.widget.-image-view/index.md) (extensions in package android.com.what2eat.adapters.BindingAdapters) |  |
 | [android.com.what2eat.model.Ingredient](../android.com.what2eat.model/-ingredient/index.md) |  |
 | [android.com.what2eat.adapters.IngredientAdapter](../android.com.what2eat.adapters/-ingredient-adapter/index.md) | RecyclerView Adapter die gebruikt wordt voor het aanmaken en databinding van ViewHolders voor het weergeven van een lijst van ingredienten van een recept. Inclusief een diffCallBack ([MaaltijdDiffCallback](../android.com.what2eat.adapters/-maaltijd-diff-callback/index.md) voor betere RecyclerView-performantie) |
 | [android.com.what2eat.adapters.IngredientDiffCallback](../android.com.what2eat.adapters/-ingredient-diff-callback/index.md) | Deze class verbeterd de performantie in een RecyclerView om verschillen tussen de ingredienten beter te kunnen uitmaken. |
-| [android.com.what2eat.injection.InjectionGraph](../android.com.what2eat.injection/-injection-graph/index.md) |  |
+| [android.com.what2eat.injection.InjectionGraph](../android.com.what2eat.injection/-injection-graph/index.md) | Deze InjectionGraph wordt gebruikt in de applicatie om aan te geven waar de verschillende injecteerbare singletons beschikbaar gesteld moeten worden. |
 | [android.widget.LinearLayout](../android.com.what2eat.adapters.-binding-adapters/android.widget.-linear-layout/index.md) (extensions in package android.com.what2eat.adapters.BindingAdapters) |  |
 | [android.com.what2eat.model.Maaltijd](../android.com.what2eat.model/-maaltijd/index.md) |  |
 | [android.com.what2eat.adapters.MaaltijdAdapter](../android.com.what2eat.adapters/-maaltijd-adapter/index.md) | RecyclerView Adapter die gebruikt wordt voor het aanmaken en databinding van ViewHolders voor het weergeven van een lijst van [Maaltijd](../android.com.what2eat.model/-maaltijd/index.md) (inclusief clickListener ([MaaltijdListener](../android.com.what2eat.adapters/-maaltijd-listener/index.md)]). Inclusief een diffCallBack ([MaaltijdDiffCallback](../android.com.what2eat.adapters/-maaltijd-diff-callback/index.md) voor betere RecyclerView-performantie) |
@@ -51,7 +51,7 @@
 | [android.com.what2eat.viewmodels.MaaltijdOverzichtViewModel](../android.com.what2eat.viewmodels/-maaltijd-overzicht-view-model/index.md) |  |
 | [android.com.what2eat.repositories.MaaltijdRepository](../android.com.what2eat.repositories/-maaltijd-repository/index.md) |  |
 | [android.com.what2eat.activities.MainActivity](../android.com.what2eat.activities/-main-activity/index.md) | Globale Activity voor de What2Eat applicatie |
-| [android.com.what2eat.injection.NetworkModule](../android.com.what2eat.injection/-network-module/index.md) |  |
+| [android.com.what2eat.injection.NetworkModule](../android.com.what2eat.injection/-network-module/index.md) | Network Module voor Dagger dependency injection |
 | [android.com.what2eat.utils.NetworkUtil](../android.com.what2eat.utils/-network-util/index.md) |  |
 | [android.com.what2eat.network.Recipe](../android.com.what2eat.network/-recipe/index.md) |  |
 | [android.com.what2eat.adapters.RecipeAdapter](../android.com.what2eat.adapters/-recipe-adapter/index.md) | RecyclerView Adapter die gebruikt wordt voor het aanmaken en databinding van ViewHolders voor het weergeven van een lijst van [Recipe](../android.com.what2eat.network/-recipe/index.md) (inclusief clickListener ([RecipeListener](../android.com.what2eat.adapters/-recipe-listener/index.md)]). Inclusief een diffCallBack ([RecipeDiffCallback](../android.com.what2eat.adapters/-recipe-diff-callback/index.md) voor betere RecyclerView-performantie) |
