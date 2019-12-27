@@ -2,7 +2,7 @@
 
 # provideApplicationContext
 
-`@Provides @Singleton fun provideApplicationContext(): `[`Context`](https://developer.android.com/reference/android/content/Context.html)
+`@Provides @Singleton fun provideApplicationContext(): Context`
 
 Voorzien van ApplicationContext singleton
 

@@ -22,4 +22,4 @@
 
 | Name | Summary |
 |---|---|
-| [getInstance](get-instance.md) | `fun getInstance(context: `[`Context`](https://developer.android.com/reference/android/content/Context.html)`): `[`MaaltijdDatabase`](./index.md) |
+| [getInstance](get-instance.md) | `fun getInstance(context: Context): `[`MaaltijdDatabase`](./index.md) |

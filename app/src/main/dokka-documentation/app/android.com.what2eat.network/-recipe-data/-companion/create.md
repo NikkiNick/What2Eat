@@ -2,7 +2,7 @@
 
 # create
 
-`fun create(parcel: `[`Parcel`](https://developer.android.com/reference/android/os/Parcel.html)`): `[`RecipeData`](../index.md)
+`fun create(parcel: Parcel): `[`RecipeData`](../index.md)
 
 Functie voor het mappen van een Parcel naar een RecipeData
 

@@ -13,7 +13,7 @@ class RecipeApiRepository(val recipeApi: RecipeApi) {
     /**
      * Functie voor het opzoeken van recepten aan de hand van een gegeven ingredient.
      * @param naam Naam van het inggredient
-     * @return [Response]
+     * @return Response
      */
     fun searchRecipes(naam: String): Deferred<Response> {
         return recipeApi.getRecipes(naam)
