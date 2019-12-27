@@ -3,3 +3,9 @@
 # maaltijdOnderdeelId
 
 `var maaltijdOnderdeelId: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html)
+
+Id van het maaltijdOnderdeel
+
+### Property
+
+`maaltijdOnderdeelId` - Id van het maaltijdOnderdeel
