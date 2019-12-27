@@ -1,5 +1,0 @@
-[app](../../index.md) / [android.com.what2eat.viewmodels](../index.md) / [MaaltijdOverzichtViewModel](index.md) / [maaltijdRepo](./maaltijd-repo.md)
-
-# maaltijdRepo
-
-`@Inject lateinit var maaltijdRepo: `[`MaaltijdRepository`](../../android.com.what2eat.repositories/-maaltijd-repository/index.md)
