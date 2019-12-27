@@ -3,9 +3,3 @@
 # maaltijdOnderdeel
 
 `val maaltijdOnderdeel: LiveData<`[`MaaltijdOnderdeel`](../../android.com.what2eat.model/-maaltijd-onderdeel/index.md)`>`
-
-[MaaltijdOnderdeel](../../android.com.what2eat.model/-maaltijd-onderdeel/index.md) waarrond het ViewModel opgebouwd is
-
-### Property
-
-`maaltijdOnderdeel` - [MaaltijdOnderdeel](../../android.com.what2eat.model/-maaltijd-onderdeel/index.md) waarrond het ViewModel opgebouwd is

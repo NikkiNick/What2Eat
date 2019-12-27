@@ -9,7 +9,7 @@
 | [android.com.what2eat.Application](../android.com.what2eat/-application/index.md) | Deze Application wordt gebruikt doorheen de applicatie waarbij de [InjectionGraph](../android.com.what2eat.injection/-injection-graph/index.md) geinitialiseerd wordt voor dependency injection |
 | [android.widget.CheckBox](../android.com.what2eat.adapters.-binding-adapters/android.widget.-check-box/index.md) (extensions in package android.com.what2eat.adapters.BindingAdapters) |  |
 | [android.com.what2eat.injection.DatabaseModule](../android.com.what2eat.injection/-database-module/index.md) | Database Module voor Dagger dependency injection |
-| [android.com.what2eat.utils.DateConverter](../android.com.what2eat.utils/-date-converter/index.md) |  |
+| [android.com.what2eat.utils.DateConverter](../android.com.what2eat.utils/-date-converter/index.md) | Converter voor het omzetten van Date objecten naar/van Room-databank |
 | [android.widget.ImageView](../android.com.what2eat.adapters.-binding-adapters/android.widget.-image-view/index.md) (extensions in package android.com.what2eat.adapters.BindingAdapters) |  |
 | [android.com.what2eat.adapters.IngredientAdapter](../android.com.what2eat.adapters/-ingredient-adapter/index.md) | RecyclerView Adapter die gebruikt wordt voor het aanmaken en databinding van ViewHolders voor het weergeven van een lijst van ingredienten van een recept. Inclusief een diffCallBack ([MaaltijdDiffCallback](../android.com.what2eat.adapters/-maaltijd-diff-callback/index.md) voor betere RecyclerView-performantie) |
 | [android.com.what2eat.adapters.IngredientDiffCallback](../android.com.what2eat.adapters/-ingredient-diff-callback/index.md) | Deze class verbeterd de performantie in een RecyclerView om verschillen tussen de ingredienten beter te kunnen uitmaken. |
@@ -51,7 +51,7 @@
 | [android.com.what2eat.repositories.MaaltijdRepository](../android.com.what2eat.repositories/-maaltijd-repository/index.md) | Repository voor het het uitvoeren van databank-operaties voor [Maaltijd](../android.com.what2eat.model/-maaltijd/index.md) |
 | [android.com.what2eat.activities.MainActivity](../android.com.what2eat.activities/-main-activity/index.md) | Globale Activity voor de What2Eat applicatie |
 | [android.com.what2eat.injection.NetworkModule](../android.com.what2eat.injection/-network-module/index.md) | Network Module voor Dagger dependency injection |
-| [android.com.what2eat.utils.NetworkUtil](../android.com.what2eat.utils/-network-util/index.md) |  |
+| [android.com.what2eat.utils.NetworkUtil](../android.com.what2eat.utils/-network-util/index.md) | Klasse voor network functionaliteit in de applicatie |
 | [android.com.what2eat.network.Recipe](../android.com.what2eat.network/-recipe/index.md) | Recipe klasse waarnaar de API recipes gemapt worden |
 | [android.com.what2eat.adapters.RecipeAdapter](../android.com.what2eat.adapters/-recipe-adapter/index.md) | RecyclerView Adapter die gebruikt wordt voor het aanmaken en databinding van ViewHolders voor het weergeven van een lijst van [Recipe](../android.com.what2eat.network/-recipe/index.md) (inclusief clickListener ([RecipeListener](../android.com.what2eat.adapters/-recipe-listener/index.md)]). Inclusief een diffCallBack ([RecipeDiffCallback](../android.com.what2eat.adapters/-recipe-diff-callback/index.md) voor betere RecyclerView-performantie) |
 | [android.com.what2eat.network.RecipeApi](../android.com.what2eat.network/-recipe-api/index.md) | Interface voor API calls |
@@ -66,7 +66,6 @@
 | [android.com.what2eat.adapters.RecipeListener](../android.com.what2eat.adapters/-recipe-listener/index.md) | Listener die gebruikt wordt om user-events op items in de RecyclerView af te handelen. Wanneer de gebruiker op een [Recipe](../android.com.what2eat.network/-recipe/index.md) clickt in de RecyclerView wordt de [RecipeData](../android.com.what2eat.network/-recipe-data/index.md) teruggegeven. |
 | [android.com.what2eat.fragments.RecipeOverzichtFragment](../android.com.what2eat.fragments/-recipe-overzicht-fragment/index.md) | Fragment voor recipeoverzicht |
 | [android.com.what2eat.network.Response](../android.com.what2eat.network/-response/index.md) | Response klasse waarnaar de API response gemapt worden. Enkel 'hits' (lijst van recepten) uit de response bijgehouden |
-| [android.com.what2eat.utils.RotationTransformUtil](../android.com.what2eat.utils/-rotation-transform-util/index.md) |  |
 | [com.google.android.material.textfield.TextInputEditText](../android.com.what2eat.adapters.-binding-adapters/com.google.android.material.textfield.-text-input-edit-text/index.md) (extensions in package android.com.what2eat.adapters.BindingAdapters) |  |
 | [android.widget.TextView](../android.com.what2eat.adapters.-binding-adapters/android.widget.-text-view/index.md) (extensions in package android.com.what2eat.adapters.BindingAdapters) |  |
 | [android.com.what2eat.fragments.WelcomeFragment](../android.com.what2eat.fragments/-welcome-fragment/index.md) | Fragment voor het weergeven van het welkom scherm |

@@ -2,7 +2,7 @@
 
 # provideApplication
 
-`@Provides @Singleton fun provideApplication(): `[`Application`](https://developer.android.com/reference/android/app/Application.html)
+`@Provides @Singleton fun provideApplication(): Application`
 
 Voorzien van Application singleton
 

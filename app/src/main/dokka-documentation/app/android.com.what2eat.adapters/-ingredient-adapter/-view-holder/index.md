@@ -22,4 +22,4 @@ Custom ViewHolder class die gebruikt wordt in de RecyclerView.
 
 | Name | Summary |
 |---|---|
-| [from](from.md) | `fun from(parent: `[`ViewGroup`](https://developer.android.com/reference/android/view/ViewGroup.html)`): `[`ViewHolder`](./index.md)<br>Deze functie wordt gebruikt om de layout te binden aan de ViewHolder |
+| [from](from.md) | `fun from(parent: ViewGroup): `[`ViewHolder`](./index.md)<br>Deze functie wordt gebruikt om de layout te binden aan de ViewHolder |

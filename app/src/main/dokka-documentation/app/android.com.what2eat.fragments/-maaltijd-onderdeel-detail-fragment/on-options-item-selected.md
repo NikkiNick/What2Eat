@@ -2,7 +2,7 @@
 
 # onOptionsItemSelected
 
-`fun onOptionsItemSelected(item: `[`MenuItem`](https://developer.android.com/reference/android/view/MenuItem.html)`): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+`fun onOptionsItemSelected(item: MenuItem): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
 
 Deze functie wordt gebruikt om de gebruikte menuItem uit het overflowmenu af te handelen.
 

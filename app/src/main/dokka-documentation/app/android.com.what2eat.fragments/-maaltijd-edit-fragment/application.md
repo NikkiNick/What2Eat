@@ -2,7 +2,7 @@
 
 # application
 
-`@Inject lateinit var application: `[`Application`](https://developer.android.com/reference/android/app/Application.html)
+`@Inject lateinit var application: Application`
 
 Application
 

@@ -3,9 +3,3 @@
 # maaltijdMaaltijdOnderdeelDao
 
 `abstract val maaltijdMaaltijdOnderdeelDao: `[`MaaltijdMaaltijdOnderdeelDao`](../-maaltijd-maaltijd-onderdeel-dao/index.md)
-
-DAO voor Room-operaties voor many-to-many relaties tussen maaltijden en maaltijdOnderdelen
-
-### Property
-
-`maaltijdMaaltijdOnderdeelDao` - DAO voor Room-operaties voor many-to-many relaties tussen maaltijden en maaltijdOnderdelen

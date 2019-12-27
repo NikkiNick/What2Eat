@@ -2,15 +2,4 @@
 
 # getInstance
 
-`fun getInstance(context: `[`Context`](https://developer.android.com/reference/android/content/Context.html)`): `[`MaaltijdDatabase`](index.md)
-
-Functie die de database instantie teruggeeft. Als de database reeds bestaat, wordt deze
-teruggegeven. Zoniet wordt deze eerst geïnstantieerd.
-
-### Parameters
-
-`context` - Context
-
-**Return**
-MaaltijdDatabase
-
+`fun getInstance(context: Context): `[`MaaltijdDatabase`](index.md)

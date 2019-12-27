@@ -11,24 +11,11 @@ import kotlinx.coroutines.withContext
  */
 class MaaltijdRepository(val maaltijdDbSource: MaaltijdDao) {
 
-    /**
-     * Co-Routine functie voor het ophalen van een bepaalde maaltijd van de Room-databank.
-     * Deze thread wordt op de achtergrond uitgevoerd.
-     * @param maaltijdId Id van de gevraagde maaltijd
-     * @return Maaltijd
-     */
     suspend fun getMaaltijd(maaltijdId: Long): Maaltijd? {
         return withContext(Dispatchers.IO){
             maaltijdDbSource.get(maaltijdId)
         }
     }
-
-    /**
-     * Co-Routine functie voor het ophalen van alle maaltijden die een relatie hebben met een
-     * gegeven maaltijdOnderdeel van de Room-databank. Deze thread wordt op de achtergrond uitgevoerd.
-     * @param maaltijdOnderdeel_id Id van het gegeven maaltijdOnderdeel
-     * @return Lijst van maaltijden
-     */
     suspend fun getMaaltijdenFromMaaltijdOnderdeel(maaltijdOnderdeel_id: Long): List<Maaltijd>?{
         return withContext(Dispatchers.IO){
             maaltijdDbSource.getMaaltijdenFromMaaltijdOnderdeel(maaltijdOnderdeel_id)

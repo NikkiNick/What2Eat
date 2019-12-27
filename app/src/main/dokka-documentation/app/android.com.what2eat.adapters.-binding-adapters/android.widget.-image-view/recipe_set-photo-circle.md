@@ -2,7 +2,7 @@
 
 # recipe_setPhotoCircle
 
-`fun `[`ImageView`](https://developer.android.com/reference/android/widget/ImageView.html)`.recipe_setPhotoCircle(recipe: `[`RecipeData`](../../android.com.what2eat.network/-recipe-data/index.md)`?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun ImageView.recipe_setPhotoCircle(recipe: `[`RecipeData`](../../android.com.what2eat.network/-recipe-data/index.md)`?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
 
 BindingAdapter voor weergeven van afbeelding (cropped circle) (ImageView) van een [RecipeData](../../android.com.what2eat.network/-recipe-data/index.md)
 

@@ -2,7 +2,7 @@
 
 # dateAdded
 
-`var dateAdded: `[`Date`](https://developer.android.com/reference/java/util/Date.html)
+`var dateAdded: `[`Date`](http://docs.oracle.com/javase/6/docs/api/java/util/Date.html)
 
 Datum wanneer de maaltijd toegevoegd is
 

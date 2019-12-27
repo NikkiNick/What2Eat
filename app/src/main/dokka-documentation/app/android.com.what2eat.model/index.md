@@ -6,6 +6,7 @@
 
 | Name | Summary |
 |---|---|
-| [Maaltijd](-maaltijd/index.md) | `data class Maaltijd`<br>Model gebruikt voor een maaltijd |
-| [MaaltijdMaaltijdOnderdeel](-maaltijd-maaltijd-onderdeel/index.md) | `class MaaltijdMaaltijdOnderdeel`<br>Model gebruikt voor MaaltijdMaaltijdOnderdeel. Deze klasse vertegenwoordigt de JOIN relaties tussen Maaltijd en MaaltijdOnderdeel |
-| [MaaltijdOnderdeel](-maaltijd-onderdeel/index.md) | `class MaaltijdOnderdeel`<br>Model gebruikt voor een MaaltijdOnderdeel |
+| [Ingredient](-ingredient/index.md) | `class Ingredient` |
+| [Maaltijd](-maaltijd/index.md) | `class Maaltijd` |
+| [MaaltijdMaaltijdOnderdeel](-maaltijd-maaltijd-onderdeel/index.md) | `class MaaltijdMaaltijdOnderdeel` |
+| [MaaltijdOnderdeel](-maaltijd-onderdeel/index.md) | `class MaaltijdOnderdeel` |

@@ -2,7 +2,7 @@
 
 # maaltijdonderdeel_setNaamText
 
-`fun `[`TextView`](https://developer.android.com/reference/android/widget/TextView.html)`.maaltijdonderdeel_setNaamText(maaltijdOnderdeel: `[`MaaltijdOnderdeel`](../../android.com.what2eat.model/-maaltijd-onderdeel/index.md)`?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun TextView.maaltijdonderdeel_setNaamText(maaltijdOnderdeel: `[`MaaltijdOnderdeel`](../../android.com.what2eat.model/-maaltijd-onderdeel/index.md)`?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
 
 BindingAdapter voor weergave van naam (TextView) van een [MaaltijdOnderdeel](../../android.com.what2eat.model/-maaltijd-onderdeel/index.md)
 
