@@ -3,3 +3,13 @@
 # create
 
 `fun create(source: `[`Parcel`](https://developer.android.com/reference/android/os/Parcel.html)`): `[`RecipeData`](../index.md)
+
+Functie voor het mappen van een Parcel naar een RecipeData
+
+### Parameters
+
+`source` - Parcel die gemapt wordt
+
+**Return**
+RecipeData
+

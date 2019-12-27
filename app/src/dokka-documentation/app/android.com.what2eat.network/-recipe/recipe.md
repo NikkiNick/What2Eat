@@ -3,3 +3,9 @@
 # recipe
 
 `val recipe: `[`RecipeData`](../-recipe-data/index.md)
+
+Recipe bevat [RecipeData](../-recipe-data/index.md)
+
+### Property
+
+`recipe` - Recipe bevat [RecipeData](../-recipe-data/index.md)
