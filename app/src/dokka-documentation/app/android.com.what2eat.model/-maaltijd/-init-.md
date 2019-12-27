@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `Maaltijd()`
+
+Model gebruikt voor een maaltijd
+

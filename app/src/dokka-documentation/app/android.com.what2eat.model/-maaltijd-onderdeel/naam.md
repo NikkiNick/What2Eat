@@ -3,3 +3,9 @@
 # naam
 
 `var naam: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)
+
+Naam van het maaltijdOnderdeel
+
+### Property
+
+`naam` - Naam van het maaltijdOnderdeel

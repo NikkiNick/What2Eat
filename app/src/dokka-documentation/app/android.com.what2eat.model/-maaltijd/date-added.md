@@ -3,3 +3,9 @@
 # dateAdded
 
 `var dateAdded: `[`Date`](https://developer.android.com/reference/java/util/Date.html)
+
+Datum wanneer de maaltijd toegevoegd is
+
+### Property
+
+`dateAdded` - Datum wanneer de maaltijd toegevoegd is
