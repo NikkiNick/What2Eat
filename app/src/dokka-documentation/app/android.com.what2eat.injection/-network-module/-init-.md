@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `NetworkModule()`
+
+Network Module voor Dagger dependency injection
+

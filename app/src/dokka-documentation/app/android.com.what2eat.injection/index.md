@@ -6,6 +6,6 @@
 
 | Name | Summary |
 |---|---|
-| [DatabaseModule](-database-module/index.md) | `class DatabaseModule`<br>Provides the Database Service implemenation |
-| [InjectionGraph](-injection-graph/index.md) | `interface InjectionGraph` |
-| [NetworkModule](-network-module/index.md) | `class NetworkModule` |
+| [DatabaseModule](-database-module/index.md) | `class DatabaseModule`<br>Database Module voor Dagger dependency injection |
+| [InjectionGraph](-injection-graph/index.md) | `interface InjectionGraph`<br>Deze InjectionGraph wordt gebruikt in de applicatie om aan te geven waar de verschillende injecteerbare singletons beschikbaar gesteld moeten worden. |
+| [NetworkModule](-network-module/index.md) | `class NetworkModule`<br>Network Module voor Dagger dependency injection |

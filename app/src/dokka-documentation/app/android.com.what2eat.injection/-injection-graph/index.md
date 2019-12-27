@@ -4,6 +4,9 @@
 
 `@Singleton @Component([DatabaseModule, NetworkModule]) interface InjectionGraph`
 
+Deze InjectionGraph wordt gebruikt in de applicatie om aan te geven waar de verschillende
+injecteerbare singletons beschikbaar gesteld moeten worden.
+
 ### Types
 
 | Name | Summary |
