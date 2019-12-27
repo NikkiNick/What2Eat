@@ -2,12 +2,18 @@ package android.com.what2eat.model
 
 import android.com.what2eat.utils.DateConverter
 import androidx.room.*
-import java.net.URI
-import java.sql.Time
-import java.time.LocalDate
-import java.time.LocalDateTime
 import java.util.*
 
+/**
+ * Model gebruikt voor een maaltijd
+ * @property maaltijdId Id van de maaltijd
+ * @property dateAdded Datum wanneer de maaltijd toegevoegd is
+ * @property naam Naam van de maaltijd
+ * @property rating Rating van de maaltijd (0-5)
+ * @property dateLast Datum wanneer de maaltijd laatst gegegeten is
+ * @property photo_uri URI waar de afbeelding van de maaltijd is opgeslaan
+ * @property maaltijdOnderdelen MaaltijdOnderdelen ([MaaltijdOnderdeel]) die bij de maaltijd horen
+ */
 @Entity(tableName = "table_maaltijden")
 @TypeConverters(DateConverter::class)
 class Maaltijd(){
@@ -33,12 +39,26 @@ class Maaltijd(){
     @Ignore
     var maaltijdOnderdelen = mutableListOf<MaaltijdOnderdeel>()
 
+    /**
+     * Functie om een maaltijdOnderdeel toe te voegen aan de maaltijd
+     * @param maaltijdOnderdeel MaaltijdOnderdeel dat moet worden toegevoegd
+     */
     fun addMaaltijdOnderdeel(maaltijdOnderdeel: MaaltijdOnderdeel){
         this.maaltijdOnderdelen.add(maaltijdOnderdeel)
     }
+
+    /**
+     * Functie om een maaltijdOnderdeel te verwijderen van de maaltijd
+     * @param maaltijdOnderdeel MaaltijdOnderdeel dat moet worden verwijderd
+     */
     fun removeMaaltijdOnderdeel(maaltijdOnderdeel: MaaltijdOnderdeel){
         this.maaltijdOnderdelen.remove(maaltijdOnderdeel)
     }
+
+    /**
+     * Functie om na te gaan of de maaltijd gelijk is aan een opgegeven object
+     * @param other Ander object om te vergelijken met de maaltijd
+     */
     override fun equals(other: Any?): Boolean {
         return super.equals(other)
     }

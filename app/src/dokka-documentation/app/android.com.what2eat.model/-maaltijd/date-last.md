@@ -3,3 +3,9 @@
 # dateLast
 
 `var dateLast: `[`Date`](https://developer.android.com/reference/java/util/Date.html)`?`
+
+Datum wanneer de maaltijd laatst gegegeten is
+
+### Property
+
+`dateLast` - Datum wanneer de maaltijd laatst gegegeten is

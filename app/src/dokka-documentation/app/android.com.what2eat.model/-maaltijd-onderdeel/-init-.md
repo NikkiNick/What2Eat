@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `MaaltijdOnderdeel()`
+
+Model gebruikt voor een MaaltijdOnderdeel
+
