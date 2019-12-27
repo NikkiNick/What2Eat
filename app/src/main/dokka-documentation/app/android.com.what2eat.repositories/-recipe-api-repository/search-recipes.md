@@ -11,5 +11,5 @@ Functie voor het opzoeken van recepten aan de hand van een gegeven ingredient.
 `naam` - Naam van het inggredient
 
 **Return**
-Response
+[Response](../../android.com.what2eat.network/-response/index.md)
 
