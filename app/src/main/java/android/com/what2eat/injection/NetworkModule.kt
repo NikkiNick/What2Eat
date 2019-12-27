@@ -27,17 +27,17 @@ class NetworkModule {
      */
     @Singleton
     @Provides
-    internal fun provideRecipeApi(retrofit: Retrofit): RecipeApi {
+    fun provideRecipeApi(retrofit: Retrofit): RecipeApi {
         return retrofit.create(RecipeApi::class.java)
     }
 
     /**
      * Voorzien van Retrofit singleton
-     * @return [Retrofit]
+     * @return Retrofit
      */
     @Singleton
     @Provides
-    internal fun provideRetrofitInterface(): Retrofit {
+    fun provideRetrofitInterface(): Retrofit {
         val moshi = Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
             .build()
@@ -57,7 +57,7 @@ class NetworkModule {
      */
     @Singleton
     @Provides
-    internal fun provideRecipeApiRepository(recipeApi: RecipeApi): RecipeApiRepository{
+    fun provideRecipeApiRepository(recipeApi: RecipeApi): RecipeApiRepository{
         return RecipeApiRepository(recipeApi)
     }
 
