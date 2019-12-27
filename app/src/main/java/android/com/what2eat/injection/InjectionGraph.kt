@@ -3,9 +3,12 @@ package android.com.what2eat.injection
 import android.com.what2eat.fragments.MaaltijdEditFragment
 import android.com.what2eat.viewmodels.*
 import dagger.Component
-import javax.inject.Inject
 import javax.inject.Singleton
 
+/**
+ * Deze InjectionGraph wordt gebruikt in de applicatie om aan te geven waar de verschillende
+ * injecteerbare singletons beschikbaar gesteld moeten worden.
+ */
 @Singleton
 @Component(modules = [DatabaseModule::class, NetworkModule::class])
 interface InjectionGraph {

@@ -4,8 +4,8 @@
 
 `DatabaseModule(application: `[`Application`](https://developer.android.com/reference/android/app/Application.html)`)`
 
-Provides the Database Service implemenation
+Database Module voor Dagger dependency injection
 
 ### Parameters
 
-`application` - the applicationContext used to instantiate the service
+`application` - ApplicationContext gebruikt om te initialiseren

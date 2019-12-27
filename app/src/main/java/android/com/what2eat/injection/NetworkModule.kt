@@ -14,15 +14,27 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
+/**
+ * Network Module voor Dagger dependency injection
+ */
 @Module
 class NetworkModule {
 
+    /**
+     * Voorzien van RecipeApi singleton
+     * @param retrofit Retrofit instantie die nodig is om RecipeApi instantie aan te maken
+     * @return [RecipeApi]
+     */
     @Singleton
     @Provides
     internal fun provideRecipeApi(retrofit: Retrofit): RecipeApi {
         return retrofit.create(RecipeApi::class.java)
     }
 
+    /**
+     * Voorzien van Retrofit singleton
+     * @return [Retrofit]
+     */
     @Singleton
     @Provides
     internal fun provideRetrofitInterface(): Retrofit {
@@ -38,7 +50,11 @@ class NetworkModule {
 
 
     }
-
+    /**
+     * Voorzien van RecipeApiRepository singleton
+     * @param recipeApi RecipeApi instantie die nodig is om RecipeApiRepository instantie aan te maken
+     * @return [RecipeApiRepository]
+     */
     @Singleton
     @Provides
     internal fun provideRecipeApiRepository(recipeApi: RecipeApi): RecipeApiRepository{
