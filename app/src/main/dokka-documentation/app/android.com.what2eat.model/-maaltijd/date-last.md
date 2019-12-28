@@ -2,7 +2,7 @@
 
 # dateLast
 
-`var dateLast: `[`Date`](http://docs.oracle.com/javase/6/docs/api/java/util/Date.html)`?`
+`var dateLast: `[`Date`](https://developer.android.com/reference/java/util/Date.html)`?`
 
 Datum wanneer de maaltijd laatst gegegeten is
 

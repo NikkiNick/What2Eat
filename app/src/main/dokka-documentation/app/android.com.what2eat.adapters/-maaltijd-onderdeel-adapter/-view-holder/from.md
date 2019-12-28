@@ -2,7 +2,7 @@
 
 # from
 
-`fun from(parent: ViewGroup): `[`ViewHolder`](index.md)
+`fun from(parent: `[`ViewGroup`](https://developer.android.com/reference/android/view/ViewGroup.html)`): `[`ViewHolder`](index.md)
 
 Deze functie wordt gebruikt om de layout te binden aan de ViewHolder
 

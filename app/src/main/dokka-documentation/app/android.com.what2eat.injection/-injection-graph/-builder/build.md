@@ -3,3 +3,6 @@
 # build
 
 `abstract fun build(): `[`InjectionGraph`](../index.md)
+
+Voor het builden van InjectionGraph
+

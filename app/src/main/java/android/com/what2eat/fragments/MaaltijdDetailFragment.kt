@@ -6,7 +6,7 @@ import android.com.what2eat.activities.MainActivity
 import android.com.what2eat.adapters.MaaltijdOnderdeelAdapter
 import android.com.what2eat.databinding.FragmentMaaltijdDetailBinding
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModel
-import android.com.what2eat.viewmodels.MaaltijdDetailViewModelFactory
+import android.com.what2eat.viewmodels.viewModelFactories.MaaltijdDetailViewModelFactory
 import android.graphics.drawable.ClipDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -45,7 +45,10 @@ class MaaltijdDetailFragment : Fragment() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         val args = MaaltijdDetailFragmentArgs.fromBundle(arguments!!)
-        viewModelFactory = MaaltijdDetailViewModelFactory(args.maaltijdId)
+        viewModelFactory =
+            MaaltijdDetailViewModelFactory(
+                args.maaltijdId
+            )
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdDetailViewModel::class.java)
         super.onCreate(savedInstanceState)
     }

@@ -14,15 +14,15 @@ Database Module voor Dagger dependency injection
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `DatabaseModule(application: Application)`<br>Database Module voor Dagger dependency injection |
+| [&lt;init&gt;](-init-.md) | `DatabaseModule(application: `[`Application`](https://developer.android.com/reference/android/app/Application.html)`)`<br>Database Module voor Dagger dependency injection |
 
 ### Functions
 
 | Name | Summary |
 |---|---|
-| [provideApplication](provide-application.md) | `fun provideApplication(): Application`<br>Voorzien van Application singleton |
-| [provideApplicationContext](provide-application-context.md) | `fun provideApplicationContext(): Context`<br>Voorzien van ApplicationContext singleton |
-| [provideDatabaseInstance](provide-database-instance.md) | `fun provideDatabaseInstance(context: Context): `[`MaaltijdDatabase`](../../android.com.what2eat.database/-maaltijd-database/index.md)<br>Voorzien van Database ([MaaltijdDatabase](../../android.com.what2eat.database/-maaltijd-database/index.md)) singleton |
+| [provideApplication](provide-application.md) | `fun provideApplication(): `[`Application`](https://developer.android.com/reference/android/app/Application.html)<br>Voorzien van Application singleton |
+| [provideApplicationContext](provide-application-context.md) | `fun provideApplicationContext(): `[`Context`](https://developer.android.com/reference/android/content/Context.html)<br>Voorzien van ApplicationContext singleton |
+| [provideDatabaseInstance](provide-database-instance.md) | `fun provideDatabaseInstance(context: `[`Context`](https://developer.android.com/reference/android/content/Context.html)`): `[`MaaltijdDatabase`](../../android.com.what2eat.database/-maaltijd-database/index.md)<br>Voorzien van Database ([MaaltijdDatabase](../../android.com.what2eat.database/-maaltijd-database/index.md)) singleton |
 | [provideMaaltijdDao](provide-maaltijd-dao.md) | `fun provideMaaltijdDao(maaltijdDatabase: `[`MaaltijdDatabase`](../../android.com.what2eat.database/-maaltijd-database/index.md)`): `[`MaaltijdDao`](../../android.com.what2eat.database/-maaltijd-dao/index.md)<br>Voorzien van DAO voor maaltijden([MaaltijdDao](../../android.com.what2eat.database/-maaltijd-dao/index.md)) singleton |
 | [provideMaaltijdMaaltijdOnderdeelDao](provide-maaltijd-maaltijd-onderdeel-dao.md) | `fun provideMaaltijdMaaltijdOnderdeelDao(maaltijdDatabase: `[`MaaltijdDatabase`](../../android.com.what2eat.database/-maaltijd-database/index.md)`): `[`MaaltijdMaaltijdOnderdeelDao`](../../android.com.what2eat.database/-maaltijd-maaltijd-onderdeel-dao/index.md)<br>Voorzien van DAO voor maaltijdMaaltijdOnderdelen([MaaltijdMaaltijdOnderdeelDao](../../android.com.what2eat.database/-maaltijd-maaltijd-onderdeel-dao/index.md)) singleton |
 | [provideMaaltijdMaaltijdOnderdeelRepo](provide-maaltijd-maaltijd-onderdeel-repo.md) | `fun provideMaaltijdMaaltijdOnderdeelRepo(maaltijdMaaltijdOnderdeelDao: `[`MaaltijdMaaltijdOnderdeelDao`](../../android.com.what2eat.database/-maaltijd-maaltijd-onderdeel-dao/index.md)`): `[`MaaltijdMaaltijdOnderdeelRepository`](../../android.com.what2eat.repositories/-maaltijd-maaltijd-onderdeel-repository/index.md)<br>Voorzien van repository voor maaltijdMaaltijdOnderdelen([MaaltijdMaaltijdOnderdeelRepository](../../android.com.what2eat.repositories/-maaltijd-maaltijd-onderdeel-repository/index.md)) singleton |

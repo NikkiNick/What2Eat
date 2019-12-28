@@ -87,7 +87,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:singleLine="true"
-                        app:maaltijd_edit_naam="@{maaltijd.maaltijd}"
+                        android:text="@={maaltijd.maaltijd.naam}"
                         tools:text="Maaltijd naam" />
 
                 </com.google.android.material.textfield.TextInputLayout>

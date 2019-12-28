@@ -3,3 +3,13 @@
 # &lt;init&gt;
 
 `MaaltijdOnderdeelListener(clickListener: (maaltijdOnderdeelId: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html)`) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`)`
+
+Constructor voor het aanmaken van de Listener
+
+### Parameters
+
+`clickListener` -
+
+**Constructor**
+Constructor voor het aanmaken van de Listener
+

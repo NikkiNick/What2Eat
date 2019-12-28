@@ -68,14 +68,45 @@ class MaaltijdOnderdeelCheckBoxAdapter(val clickListener: MaaltijdOnderdeelListe
     }
 
 }
+
+/**
+ * Deze class verbeterd de performantie in een RecyclerView om verschillen tussen 2 maaltijdOnderdelen
+ * beter te kunnen uitmaken.
+ * @constructor Constructor voor het aanmaken van de DiffUtil.ItemCallback voor maaltijdOnderdelen
+ */
 class MaaltijdOnderdeelDiffCallback: DiffUtil.ItemCallback<MaaltijdOnderdeel>(){
+    /**
+     * Deze functie bekijkt of 2 maaltijdOnderdelen dezelfde te zijn door beide id's te vergelijken
+     * @param oldItem [MaaltijdOnderdeel] 1
+     * @param newItem [MaaltijdOnderdeel] 2
+     * @return Boolean
+     */
     override fun areItemsTheSame(oldItem: MaaltijdOnderdeel, newItem: MaaltijdOnderdeel): Boolean {
         return oldItem.maaltijdOnderdeelId == newItem.maaltijdOnderdeelId
     }
+
+    /**
+     * Deze functie bekijkt of de inhoud van 2 maaltijdOnderdelen dezelfde te zijn
+     * @param oldItem [MaaltijdOnderdeel] 1
+     * @param newItem [MaaltijdOnderdeel] 2
+     * @return Boolean
+     */
     override fun areContentsTheSame(oldItem: MaaltijdOnderdeel, newItem: MaaltijdOnderdeel): Boolean {
         return oldItem.equals(newItem)
     }
 }
+/**
+ * Listener die gebruikt wordt om user-events op items in de RecyclerView af te handelen.
+ * Wanneer de gebruiker op een [MaaltijdOnderdeel] clickt in de RecyclerView wordt de id van het
+ * [MaaltijdOnderdeel] teruggegeven.
+ * @constructor Constructor voor het aanmaken van de Listener
+ * @param clickListener
+ */
 class MaaltijdOnderdeelListener(val clickListener: (maaltijdOnderdeelId: Long) -> Unit) {
+    /**
+     * Deze functie wordt gebruikt om de id van het [MaaltijdOnderdeel]] terug te geven wanneer een
+     * gebruiker een [MaaltijdOnderdeel] gekozen heeft.
+     * @param maaltijdOnderdeel [MaaltijdOnderdeel] die geselecteerd werd door de gebruiker
+     */
     fun onClick(maaltijdOnderdeel: MaaltijdOnderdeel) = clickListener(maaltijdOnderdeel.maaltijdOnderdeelId)
 }

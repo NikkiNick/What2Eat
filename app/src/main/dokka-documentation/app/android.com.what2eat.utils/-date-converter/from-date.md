@@ -2,7 +2,7 @@
 
 # fromDate
 
-`fun fromDate(date: `[`Date`](http://docs.oracle.com/javase/6/docs/api/java/util/Date.html)`?): `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html)`?`
+`fun fromDate(date: `[`Date`](https://developer.android.com/reference/java/util/Date.html)`?): `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html)`?`
 
 Functie voor het omzetten van een datum (van Date naar Long)
 

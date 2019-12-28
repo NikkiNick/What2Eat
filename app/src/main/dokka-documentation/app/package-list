@@ -4,7 +4,6 @@ $dokka.location:android.com.what2eat.adapters.BindingAdapters$ingredient_setNaam
 $dokka.location:android.com.what2eat.adapters.BindingAdapters$maaltijd_setDateAdded(android.widget.TextView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/android.widget.-text-view/maaltijd_set-date-added.md
 $dokka.location:android.com.what2eat.adapters.BindingAdapters$maaltijd_setDateLastEaten(android.widget.TextView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/android.widget.-text-view/maaltijd_set-date-last-eaten.md
 $dokka.location:android.com.what2eat.adapters.BindingAdapters$maaltijd_setNaam(android.widget.TextView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/android.widget.-text-view/maaltijd_set-naam.md
-$dokka.location:android.com.what2eat.adapters.BindingAdapters$maaltijd_setNaam(com.google.android.material.textfield.TextInputEditText, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/com.google.android.material.textfield.-text-input-edit-text/maaltijd_set-naam.md
 $dokka.location:android.com.what2eat.adapters.BindingAdapters$maaltijd_setPhoto(android.widget.ImageView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/android.widget.-image-view/maaltijd_set-photo.md
 $dokka.location:android.com.what2eat.adapters.BindingAdapters$maaltijd_setPhotoCircle(android.widget.ImageView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/android.widget.-image-view/maaltijd_set-photo-circle.md
 $dokka.location:android.com.what2eat.adapters.BindingAdapters$maaltijd_setRating(android.widget.LinearLayout, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/android.widget.-linear-layout/maaltijd_set-rating.md
@@ -26,3 +25,4 @@ android.com.what2eat.network
 android.com.what2eat.repositories
 android.com.what2eat.utils
 android.com.what2eat.viewmodels
+android.com.what2eat.viewmodels.viewModelFactories

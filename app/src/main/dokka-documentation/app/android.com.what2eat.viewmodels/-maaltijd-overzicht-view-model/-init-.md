@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `MaaltijdOverzichtViewModel()`
+
+ViewModel voor business logica rond een overzicht van maaltijden.
+

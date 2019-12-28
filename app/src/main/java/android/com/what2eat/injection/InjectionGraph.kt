@@ -12,18 +12,69 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [DatabaseModule::class, NetworkModule::class])
 interface InjectionGraph {
+
+    /**
+     * Injecteerd dependecies in ViewModel
+     * @param maaltijdDetailViewModel ViewModel
+     */
     fun inject(maaltijdDetailViewModel: MaaltijdDetailViewModel)
+
+    /**
+     * Injecteerd dependecies in ViewModel
+     * @param maaltijdOverzichtViewModel ViewModel
+     */
     fun inject(maaltijdOverzichtViewModel: MaaltijdOverzichtViewModel)
-    fun inject(recipeApiViewModel: RecipeApiViewModel)
+
+    /**
+     * Injecteerd dependecies in ViewModel
+     * @param recipeOverzichtViewModel ViewModel
+     */
+    fun inject(recipeOverzichtViewModel: RecipeOverzichtViewModel)
+
+    /**
+     * Injecteerd dependecies in ViewModel
+     * @param maaltijdOnderdeelOverzichtViewModel ViewModel
+     */
     fun inject(maaltijdOnderdeelOverzichtViewModel: MaaltijdOnderdeelOverzichtViewModel)
+
+    /**
+     * Injecteerd dependecies in ViewModel
+     * @param maaltijdOnderdeelSelectViewModel ViewModel
+     */
     fun inject(maaltijdOnderdeelSelectViewModel: MaaltijdOnderdeelSelectViewModel)
+
+    /**
+     * Injecteerd dependecies in ViewModel
+     * @param maaltijdOnderdeelDetailViewModel ViewModel
+     */
     fun inject(maaltijdOnderdeelDetailViewModel: MaaltijdOnderdeelDetailViewModel)
+
+    /**
+     * Injecteerd dependecies in ViewModel
+     * @param maaltijdEditFragment ViewModel
+     */
     fun inject(maaltijdEditFragment: MaaltijdEditFragment)
 
+    /**
+     * InjectionGraph Builder
+     */
     @Component.Builder
     interface Builder {
+        /**
+         * Voor het builden van InjectionGraph
+         */
         fun build(): InjectionGraph
+
+        /**
+         * Voor het builden van de databaseModule
+         * @param databaseModule DatabaseModule
+         */
         fun databaseModule(databaseModule: DatabaseModule): Builder
+
+        /**
+         * Voor het builden van de networkModule
+         * @param networkModule NetworkModule
+         */
         fun networkModule(networkModule: NetworkModule): Builder
     }
 }

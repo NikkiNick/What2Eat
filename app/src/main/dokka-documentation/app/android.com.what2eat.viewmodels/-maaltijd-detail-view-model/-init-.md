@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `MaaltijdDetailViewModel(maaltijdId: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html)`)`
+
+ViewModel voor business logica rond een bepaalde maaltijd in detail.
+

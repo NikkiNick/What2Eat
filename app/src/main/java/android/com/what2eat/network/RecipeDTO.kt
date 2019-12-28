@@ -52,6 +52,10 @@ data class RecipeData(
     val ingredienten: List<String>?
 
 ): Parcelable {
+    /**
+     * Constructor voor RecipeData aan te maken waarbij een Parcel gemapt wordt
+     * @param parcel Parcel die gemapt wordt naar RecipeData
+     */
     constructor(parcel: Parcel): this(
         parcel.readString(),
         parcel.readString(),
@@ -59,6 +63,9 @@ data class RecipeData(
         parcel.createStringArrayList()
     )
 
+    /**
+     * Companion object voor RecipeData
+     */
     companion object : Parceler<RecipeData> {
         /**
          * Functie voor het mappen van een Recipe naar een Parcel

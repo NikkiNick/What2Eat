@@ -7,7 +7,7 @@ import android.com.what2eat.adapters.MaaltijdListener
 import android.com.what2eat.databinding.FragmentMaaltijdOnderdeelDetailBinding
 import android.com.what2eat.utils.NetworkUtil
 import android.com.what2eat.viewmodels.MaaltijdOnderdeelDetailViewModel
-import android.com.what2eat.viewmodels.MaaltijdOnderdeelDetailViewModelFactory
+import android.com.what2eat.viewmodels.viewModelFactories.MaaltijdOnderdeelDetailViewModelFactory
 import android.graphics.drawable.ClipDrawable
 import android.os.Bundle
 import android.text.InputType
@@ -50,7 +50,10 @@ class MaaltijdOnderdeelDetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         val args = MaaltijdOnderdeelDetailFragmentArgs.fromBundle(arguments!!)
-        viewModelFactory = MaaltijdOnderdeelDetailViewModelFactory(args.maaltijdonderdeelId)
+        viewModelFactory =
+            MaaltijdOnderdeelDetailViewModelFactory(
+                args.maaltijdonderdeelId
+            )
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdOnderdeelDetailViewModel::class.java)
         super.onCreate(savedInstanceState)
 

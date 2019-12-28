@@ -44,7 +44,7 @@ fun ImageView.maaltijd_setPhoto(maaltijd: Maaltijd?){
 fun ImageView.maaltijd_setPhotoCircle(maaltijd: Maaltijd?){
     maaltijd?.let{
         it.photo_uri?.let {
-            var options: RequestOptions = RequestOptions()
+            val options = RequestOptions()
             options.circleCrop()
             Glide.with(context).load(maaltijd.photo_uri).apply(options).into(this)
         }
@@ -110,15 +110,5 @@ fun TextView.maaltijd_setDateAdded(maaltijd: Maaltijd?){
             val date = simpleDateFormat.format(it)
             text = "${resources.getString(R.string.date_added)}: ${date}"
         }
-    }
-}
-/**
- * BindingAdapter voor weergeven van de naam (TextInputEditText) van een [Maaltijd]
- * @param maaltijd [Maaltijd] waarvan de naam weergegeven wordt
- */
-@BindingAdapter("maaltijd_edit_naam")
-fun TextInputEditText.maaltijd_setNaam(maaltijd: Maaltijd?){
-    maaltijd?.let {
-        setText(it.naam)
     }
 }

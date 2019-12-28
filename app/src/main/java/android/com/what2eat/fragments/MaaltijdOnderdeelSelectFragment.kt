@@ -7,7 +7,7 @@ import android.com.what2eat.adapters.MaaltijdOnderdeelCheckBoxAdapter
 import android.com.what2eat.adapters.MaaltijdOnderdeelListener
 import android.com.what2eat.databinding.FragmentMaaltijdOnderdeelSelectBinding
 import android.com.what2eat.viewmodels.MaaltijdOnderdeelSelectViewModel
-import android.com.what2eat.viewmodels.MaaltijdOnderdeelSelectViewModelFactory
+import android.com.what2eat.viewmodels.viewModelFactories.MaaltijdOnderdeelSelectViewModelFactory
 import android.graphics.drawable.ClipDrawable
 import android.os.Bundle
 import android.text.InputType
@@ -47,7 +47,10 @@ class MaaltijdOnderdeelSelectFragment : Fragment() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         args = MaaltijdOnderdeelSelectFragmentArgs.fromBundle(arguments!!)
-        viewModelFactory = MaaltijdOnderdeelSelectViewModelFactory(args.maaltijdId)
+        viewModelFactory =
+            MaaltijdOnderdeelSelectViewModelFactory(
+                args.maaltijdId
+            )
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdOnderdeelSelectViewModel::class.java)
         super.onCreate(savedInstanceState)
     }

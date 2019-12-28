@@ -11,6 +11,9 @@ import android.com.what2eat.injection.NetworkModule
  * voor dependency injection
  */
 class Application : Application() {
+    /**
+     * Companion object voor Application
+     */
     companion object {
         lateinit var component: InjectionGraph
     }

@@ -16,6 +16,7 @@
 | [android.com.what2eat.repositories](android.com.what2eat.repositories/index.md) |  |
 | [android.com.what2eat.utils](android.com.what2eat.utils/index.md) |  |
 | [android.com.what2eat.viewmodels](android.com.what2eat.viewmodels/index.md) |  |
+| [android.com.what2eat.viewmodels.viewModelFactories](android.com.what2eat.viewmodels.view-model-factories/index.md) |  |
 
 ### Index
 
