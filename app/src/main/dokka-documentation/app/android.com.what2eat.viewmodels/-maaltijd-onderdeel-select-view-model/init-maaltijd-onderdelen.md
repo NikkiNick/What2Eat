@@ -3,3 +3,6 @@
 # initMaaltijdOnderdelen
 
 `fun initMaaltijdOnderdelen(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+
+Deze functie initialiseerd de maaltijdOnderdelen voor het ViewModel.
+

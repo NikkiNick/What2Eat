@@ -2,7 +2,7 @@
 
 # RecipeData
 
-`@JsonClass(true) data class RecipeData : Parcelable`
+`@JsonClass(true) data class RecipeData : `[`Parcelable`](https://developer.android.com/reference/android/os/Parcelable.html)
 
 Recipedata klasse waarnaar de API recipe data gemapt wordt
 
@@ -10,13 +10,13 @@ Recipedata klasse waarnaar de API recipe data gemapt wordt
 
 | Name | Summary |
 |---|---|
-| [Companion](-companion/index.md) | `companion object Companion : Parceler<`[`RecipeData`](./index.md)`>` |
+| [Companion](-companion/index.md) | `companion object Companion : Parceler<`[`RecipeData`](./index.md)`>`<br>Companion object voor RecipeData |
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `RecipeData(parcel: Parcel)``RecipeData(naam: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?, image_url: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?, remote_site_url: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?, ingredienten: `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`>?)`<br>Recipedata klasse waarnaar de API recipe data gemapt wordt |
+| [&lt;init&gt;](-init-.md) | `RecipeData(parcel: `[`Parcel`](https://developer.android.com/reference/android/os/Parcel.html)`)`<br>Constructor voor RecipeData aan te maken waarbij een Parcel gemapt wordt`RecipeData(naam: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?, image_url: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?, remote_site_url: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?, ingredienten: `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`>?)`<br>Recipedata klasse waarnaar de API recipe data gemapt wordt |
 
 ### Properties
 
@@ -31,5 +31,5 @@ Recipedata klasse waarnaar de API recipe data gemapt wordt
 
 | Name | Summary |
 |---|---|
-| [create](create.md) | `fun create(parcel: Parcel): `[`RecipeData`](./index.md)<br>Functie voor het mappen van een Parcel naar een RecipeData |
-| [write](write.md) | `fun `[`RecipeData`](./index.md)`.write(parcel: Parcel, flags: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Functie voor het mappen van een Recipe naar een Parcel |
+| [create](create.md) | `fun create(parcel: `[`Parcel`](https://developer.android.com/reference/android/os/Parcel.html)`): `[`RecipeData`](./index.md)<br>Functie voor het mappen van een Parcel naar een RecipeData |
+| [write](write.md) | `fun `[`RecipeData`](./index.md)`.write(parcel: `[`Parcel`](https://developer.android.com/reference/android/os/Parcel.html)`, flags: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Functie voor het mappen van een Recipe naar een Parcel |

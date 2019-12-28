@@ -3,3 +3,9 @@
 # databaseModule
 
 `abstract fun databaseModule(databaseModule: `[`DatabaseModule`](../../-database-module/index.md)`): `[`Builder`](index.md)
+
+Voor het builden van de databaseModule
+
+### Parameters
+
+`databaseModule` - DatabaseModule

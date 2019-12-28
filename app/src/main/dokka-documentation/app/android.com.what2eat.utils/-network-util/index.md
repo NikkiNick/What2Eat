@@ -16,4 +16,4 @@ Klasse voor network functionaliteit in de applicatie
 
 | Name | Summary |
 |---|---|
-| [isInternetAvailable](is-internet-available.md) | `fun isInternetAvailable(context: Context): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Met deze functie kan er nagegaan worden of er Internet verbinding beschikbaar is |
+| [isInternetAvailable](is-internet-available.md) | `fun isInternetAvailable(context: `[`Context`](https://developer.android.com/reference/android/content/Context.html)`): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Met deze functie kan er nagegaan worden of er Internet verbinding beschikbaar is |

@@ -3,3 +3,9 @@
 # maaltijdOnderdeelDao
 
 `abstract val maaltijdOnderdeelDao: `[`MaaltijdOnderdeelDao`](../-maaltijd-onderdeel-dao/index.md)
+
+DAO voor Room-operaties voor maaltijdOnderdelen
+
+### Property
+
+`maaltijdOnderdeelDao` - DAO voor Room-operaties voor maaltijdOnderdelen

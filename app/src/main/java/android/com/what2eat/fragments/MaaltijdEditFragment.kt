@@ -10,7 +10,7 @@ import android.com.what2eat.adapters.MaaltijdOnderdeelListener
 import android.com.what2eat.adapters.MaaltijdOnderdeelRemoveAdapter
 import android.com.what2eat.databinding.FragmentMaaltijdEditBinding
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModel
-import android.com.what2eat.viewmodels.MaaltijdDetailViewModelFactory
+import android.com.what2eat.viewmodels.viewModelFactories.MaaltijdDetailViewModelFactory
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.ClipDrawable
@@ -71,7 +71,10 @@ class MaaltijdEditFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         android.com.what2eat.Application.component.inject(this)
         val args = MaaltijdEditFragmentArgs.fromBundle(arguments!!)
-        viewModelFactory = MaaltijdDetailViewModelFactory(args.maaltijdId)
+        viewModelFactory =
+            MaaltijdDetailViewModelFactory(
+                args.maaltijdId
+            )
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdDetailViewModel::class.java)
         super.onCreate(savedInstanceState)
     }
@@ -154,7 +157,6 @@ class MaaltijdEditFragment : Fragment() {
          *      Listener voor het bekijken van de afbeelding in een apart fragment.
          */
         binding.editMealButton.setOnClickListener{
-            viewModel.setNaam(binding.maaltijdNaam.text.toString())
             viewModel.saveMaaltijd()
             showSnackBar("${this.binding.maaltijdNaam.text.toString()} ${resources.getString(R.string.edited)}")
             it.findNavController().navigate(MaaltijdEditFragmentDirections.actionMaaltijdEditFragmentToMaaltijdDetailFragment(viewModel.maaltijdId))

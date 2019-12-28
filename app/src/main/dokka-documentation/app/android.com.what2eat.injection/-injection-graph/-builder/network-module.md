@@ -3,3 +3,9 @@
 # networkModule
 
 `abstract fun networkModule(networkModule: `[`NetworkModule`](../../-network-module/index.md)`): `[`Builder`](index.md)
+
+Voor het builden van de networkModule
+
+### Parameters
+
+`networkModule` - NetworkModule

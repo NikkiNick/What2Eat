@@ -3,3 +3,9 @@
 # maaltijdRepo
 
 `@Inject lateinit var maaltijdRepo: `[`MaaltijdRepository`](../../android.com.what2eat.repositories/-maaltijd-repository/index.md)
+
+Repository voor Room databank operaties voor maaltijden
+
+### Property
+
+`maaltijdRepo` - Repository voor Room databank operaties voor maaltijden

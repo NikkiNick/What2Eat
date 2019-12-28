@@ -2,7 +2,7 @@
 
 # provideDatabaseInstance
 
-`@Provides @Singleton fun provideDatabaseInstance(context: Context): `[`MaaltijdDatabase`](../../android.com.what2eat.database/-maaltijd-database/index.md)
+`@Provides @Singleton fun provideDatabaseInstance(context: `[`Context`](https://developer.android.com/reference/android/content/Context.html)`): `[`MaaltijdDatabase`](../../android.com.what2eat.database/-maaltijd-database/index.md)
 
 Voorzien van Database ([MaaltijdDatabase](../../android.com.what2eat.database/-maaltijd-database/index.md)) singleton
 
