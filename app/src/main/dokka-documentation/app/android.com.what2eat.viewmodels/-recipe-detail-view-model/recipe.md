@@ -3,3 +3,9 @@
 # recipe
 
 `val recipe: `[`RecipeData`](../../android.com.what2eat.network/-recipe-data/index.md)
+
+[RecipeData](../../android.com.what2eat.network/-recipe-data/index.md) waarrond het ViewModel opgebouwd is
+
+### Property
+
+`recipe` - [RecipeData](../../android.com.what2eat.network/-recipe-data/index.md) waarrond het ViewModel opgebouwd is

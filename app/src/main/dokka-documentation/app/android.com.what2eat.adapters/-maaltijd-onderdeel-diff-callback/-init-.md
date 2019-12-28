@@ -3,3 +3,7 @@
 # &lt;init&gt;
 
 `MaaltijdOnderdeelDiffCallback()`
+
+Deze class verbeterd de performantie in een RecyclerView om verschillen tussen 2 maaltijdOnderdelen
+beter te kunnen uitmaken.
+

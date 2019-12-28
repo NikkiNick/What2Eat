@@ -2,7 +2,7 @@
 
 # ingredient_setNaam
 
-`fun TextView.ingredient_setNaam(ingredient: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun `[`TextView`](https://developer.android.com/reference/android/widget/TextView.html)`.ingredient_setNaam(ingredient: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
 
 BindingAdapter voor instellen van naam (TextView) van een ingredient
 
