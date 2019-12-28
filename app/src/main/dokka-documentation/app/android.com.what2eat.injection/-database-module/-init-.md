@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`DatabaseModule(application: Application)`
+`DatabaseModule(application: `[`Application`](https://developer.android.com/reference/android/app/Application.html)`)`
 
 Database Module voor Dagger dependency injection
 

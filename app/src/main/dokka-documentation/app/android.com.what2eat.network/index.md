@@ -8,5 +8,5 @@
 |---|---|
 | [Recipe](-recipe/index.md) | `data class Recipe`<br>Recipe klasse waarnaar de API recipes gemapt worden |
 | [RecipeApi](-recipe-api/index.md) | `interface RecipeApi`<br>Interface voor API calls |
-| [RecipeData](-recipe-data/index.md) | `data class RecipeData : Parcelable`<br>Recipedata klasse waarnaar de API recipe data gemapt wordt |
+| [RecipeData](-recipe-data/index.md) | `data class RecipeData : `[`Parcelable`](https://developer.android.com/reference/android/os/Parcelable.html)<br>Recipedata klasse waarnaar de API recipe data gemapt wordt |
 | [Response](-response/index.md) | `data class Response`<br>Response klasse waarnaar de API response gemapt worden. Enkel 'hits' (lijst van recepten) uit de response bijgehouden |
