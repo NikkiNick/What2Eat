@@ -3,3 +3,6 @@
 # viewModelJob
 
 `var viewModelJob: CompletableJob`
+
+CoRoutine properties
+

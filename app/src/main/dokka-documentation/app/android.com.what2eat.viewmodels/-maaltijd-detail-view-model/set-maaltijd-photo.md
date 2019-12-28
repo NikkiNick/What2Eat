@@ -3,3 +3,9 @@
 # setMaaltijdPhoto
 
 `fun setMaaltijdPhoto(uri: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+
+Business logica voor het aanpassen van de afbeeldingURI van de maaltijd
+
+### Parameters
+
+`uri` - AfbeeldingURI van de maaltijd

@@ -2,7 +2,7 @@
 
 # maaltijd_setPhoto
 
-`fun ImageView.maaltijd_setPhoto(maaltijd: `[`Maaltijd`](../../android.com.what2eat.model/-maaltijd/index.md)`?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun `[`ImageView`](https://developer.android.com/reference/android/widget/ImageView.html)`.maaltijd_setPhoto(maaltijd: `[`Maaltijd`](../../android.com.what2eat.model/-maaltijd/index.md)`?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
 
 BindingAdapter voor weergavve van afbeelding (ImageView) van een [Maaltijd](../../android.com.what2eat.model/-maaltijd/index.md)
 

@@ -5,7 +5,7 @@ import android.com.what2eat.adapters.IngredientAdapter
 import android.com.what2eat.databinding.FragmentRecipeDetailBinding
 import android.com.what2eat.utils.NetworkUtil
 import android.com.what2eat.viewmodels.RecipeDetailViewModel
-import android.com.what2eat.viewmodels.RecipeDetailViewModelFactory
+import android.com.what2eat.viewmodels.viewModelFactories.RecipeDetailViewModelFactory
 import android.content.Intent
 import android.graphics.drawable.ClipDrawable
 import android.net.Uri
@@ -40,7 +40,10 @@ class RecipeDetailFragment : Fragment() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         val args = RecipeDetailFragmentArgs.fromBundle(arguments!!)
-        viewModelFactory = RecipeDetailViewModelFactory(args.recipe)
+        viewModelFactory =
+            RecipeDetailViewModelFactory(
+                args.recipe
+            )
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(RecipeDetailViewModel::class.java)
         super.onCreate(savedInstanceState)
     }

@@ -79,6 +79,7 @@ class MaaltijdAdapter(val clickListener: MaaltijdListener) : ListAdapter<Maaltij
  * @constructor Constructor voor het aanmaken van de [MaaltijdDiffCallback] (DiffUtil.ItemCallback)
  */
 class MaaltijdDiffCallback: DiffUtil.ItemCallback<Maaltijd>(){
+
     /**
      * Deze functie bekijkt of 2 objecten ([Maaltijd]) dezelfde te zijn door beide id's te vergelijken
      * @param oldItem [Maaltijd] 1
@@ -88,6 +89,7 @@ class MaaltijdDiffCallback: DiffUtil.ItemCallback<Maaltijd>(){
     override fun areItemsTheSame(oldItem: Maaltijd, newItem: Maaltijd): Boolean {
         return oldItem.maaltijdId == newItem.maaltijdId
     }
+
     /**
      * Deze functie bekijkt of de inhoud van 2 objecten ([Maaltijd]) dezelfde te zijn
      * @param oldItem [Maaltijd] 1

@@ -2,7 +2,7 @@
 
 # Maaltijd
 
-`class Maaltijd`
+`data class Maaltijd`
 
 Model gebruikt voor een maaltijd
 
@@ -10,14 +10,14 @@ Model gebruikt voor een maaltijd
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Maaltijd()`<br>Model gebruikt voor een maaltijd |
+| [&lt;init&gt;](-init-.md) | `Maaltijd(maaltijdId: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html)` = 0L, dateAdded: `[`Date`](https://developer.android.com/reference/java/util/Date.html)` = Date(), naam: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)` = "", rating: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)` = 0, dateLast: `[`Date`](https://developer.android.com/reference/java/util/Date.html)`? = null, photo_uri: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`? = null)`<br>Model gebruikt voor een maaltijd |
 
 ### Properties
 
 | Name | Summary |
 |---|---|
-| [dateAdded](date-added.md) | `var dateAdded: `[`Date`](http://docs.oracle.com/javase/6/docs/api/java/util/Date.html)<br>Datum wanneer de maaltijd toegevoegd is |
-| [dateLast](date-last.md) | `var dateLast: `[`Date`](http://docs.oracle.com/javase/6/docs/api/java/util/Date.html)`?`<br>Datum wanneer de maaltijd laatst gegegeten is |
+| [dateAdded](date-added.md) | `var dateAdded: `[`Date`](https://developer.android.com/reference/java/util/Date.html)<br>Datum wanneer de maaltijd toegevoegd is |
+| [dateLast](date-last.md) | `var dateLast: `[`Date`](https://developer.android.com/reference/java/util/Date.html)`?`<br>Datum wanneer de maaltijd laatst gegegeten is |
 | [maaltijdId](maaltijd-id.md) | `var maaltijdId: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html)<br>Id van de maaltijd |
 | [maaltijdOnderdelen](maaltijd-onderdelen.md) | `var maaltijdOnderdelen: `[`MutableList`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html)`<`[`MaaltijdOnderdeel`](../-maaltijd-onderdeel/index.md)`>`<br>MaaltijdOnderdelen ([MaaltijdOnderdeel](../-maaltijd-onderdeel/index.md)) die bij de maaltijd horen |
 | [naam](naam.md) | `var naam: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Naam van de maaltijd |

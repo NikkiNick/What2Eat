@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `MaaltijdDatabase()`
+
+Room database voor maaltijden, maaltijdonderdelen en een JOIN table voor many-to-many relaties
+

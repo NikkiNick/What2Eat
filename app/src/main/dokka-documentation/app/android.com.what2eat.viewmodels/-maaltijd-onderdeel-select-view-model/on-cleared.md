@@ -3,3 +3,7 @@
 # onCleared
 
 `protected fun onCleared(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+
+Deze functie wordt opgeroepen als het ViewModel wordt afgebroken.
+[viewModelJob](view-model-job.md) wordt afgesloten.
+

@@ -16,25 +16,25 @@ import java.util.*
  */
 @Entity(tableName = "table_maaltijden")
 @TypeConverters(DateConverter::class)
-class Maaltijd(){
+data class Maaltijd(
 
     @PrimaryKey(autoGenerate = true)
-    var maaltijdId: Long = 0L
+    var maaltijdId: Long = 0L,
 
     @ColumnInfo(name = "date_added")
-    var dateAdded: Date = Date()
+    var dateAdded: Date = Date(),
 
     @ColumnInfo(name = "maaltijd_naam")
-    var  naam: String = ""
+    var  naam: String = "",
 
     @ColumnInfo(name = "maaltijd_rating")
-    var rating: Int = 0
+    var rating: Int = 0,
 
     @ColumnInfo(name = "date_last")
-    var dateLast: Date? = null
+    var dateLast: Date? = null,
 
     @ColumnInfo(name = "maaltijd_photo_uri")
-    var photo_uri: String? = null
+    var photo_uri: String? = null){
 
     @Ignore
     var maaltijdOnderdelen = mutableListOf<MaaltijdOnderdeel>()
