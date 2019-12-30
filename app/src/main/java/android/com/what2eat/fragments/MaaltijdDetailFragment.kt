@@ -1,23 +1,14 @@
 package android.com.what2eat.fragments
 
 
-import android.app.Application
 import android.com.what2eat.R
 import android.com.what2eat.activities.MainActivity
 import android.com.what2eat.adapters.MaaltijdOnderdeelAdapter
-import android.com.what2eat.database.MaaltijdDao
-import android.com.what2eat.database.MaaltijdDatabase
-import android.com.what2eat.database.MaaltijdMaaltijdOnderdeelDao
-import android.com.what2eat.database.MaaltijdOnderdeelDao
 import android.com.what2eat.databinding.FragmentMaaltijdDetailBinding
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModel
-import android.com.what2eat.viewmodels.MaaltijdDetailViewModelFactory
-import android.content.Context
-import android.graphics.Canvas
+import android.com.what2eat.viewmodels.viewModelFactories.MaaltijdDetailViewModelFactory
 import android.graphics.drawable.ClipDrawable
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -28,55 +19,74 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ItemDecoration
-
 
 /**
- * A simple [Fragment] subclass.
+ * Fragment voor het weergeven van detail van een maaltijd
+ * @property binding Binding object van het fragment
+ * @property viewModelFactory [MaaltijdDetailViewModelFactory] dat gebruikt wordt om [MaaltijdDetailViewModel] aan te maken
+ * @property viewModel [MaaltijdDetailViewModel] dat gebruikt wordt in het fragment voor business logica
  */
 class MaaltijdDetailFragment : Fragment() {
 
+    /**
+     * Fragment Properties
+     */
     private lateinit var binding: FragmentMaaltijdDetailBinding
     private lateinit var viewModelFactory: MaaltijdDetailViewModelFactory
     private lateinit var viewModel: MaaltijdDetailViewModel
-    private lateinit var application: Application
-    private lateinit var maaaltijdDataSource: MaaltijdDao
-    private lateinit var maaltijdOnderdeelDataSource: MaaltijdOnderdeelDao
-    private lateinit var maaltijdMaaltijdOnderdeelDataSource: MaaltijdMaaltijdOnderdeelDao
 
+    /**
+     * Functie die wordt opgeroepen wanneer het fragment aangemaakt wordt en in CREATED lifecycle state is.
+     * Fragment properties worden hier geïnstantieerd.
+     * @param savedInstanceState Bundel die gebruikt wordt om data terug in [MaaltijdDetailFragment] te initialiseren.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
-        application = requireNotNull(this.activity).application
-        maaaltijdDataSource = MaaltijdDatabase.getInstance(application).maaltijdDao
-        maaltijdOnderdeelDataSource = MaaltijdDatabase.getInstance(application).maaltijdOnderdeelDao
-        maaltijdMaaltijdOnderdeelDataSource = MaaltijdDatabase.getInstance(application).maaltijdMaaltijdOnderdeelDao
         val args = MaaltijdDetailFragmentArgs.fromBundle(arguments!!)
-        viewModelFactory = MaaltijdDetailViewModelFactory(args.maaltijdId, maaaltijdDataSource,maaltijdOnderdeelDataSource, maaltijdMaaltijdOnderdeelDataSource, application)
+        viewModelFactory =
+            MaaltijdDetailViewModelFactory(
+                args.maaltijdId
+            )
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdDetailViewModel::class.java)
         super.onCreate(savedInstanceState)
     }
 
+    /**
+     * Functie die wordt opgeroepen wanneer het fragment aangemaakt wordt en in CREATED lifecycle state is.
+     * Setup van DataBinding, RecyclerView, ViewModel Observers, UI ClickListeners, ActionBar
+     * @param inflater LayoutInflater
+     * @param container ViewGroup
+     * @param savedInstanceState Bundle
+     * @return View
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
+        /**
+         * DataBinding : layout inflation, viewModel binding.
+         */
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_detail, container, false)
+        binding.setLifecycleOwner(this)
+        binding.maaltijd = viewModel
 
+        /**
+         * RecyclerView setup voor het tonen van de [RecyclerView] van maaltijdonderdelen van de huidige maaltijd.
+         */
         val adapter = MaaltijdOnderdeelAdapter()
-
         binding.maaltijdOnderdelenRecyclerView.adapter = adapter
         val itemDecor = DividerItemDecoration(context, ClipDrawable.HORIZONTAL)
         binding.maaltijdOnderdelenRecyclerView.addItemDecoration(itemDecor)
 
-        binding.editMealButton.setOnClickListener{
-            it.findNavController().navigate(MaaltijdDetailFragmentDirections.actionMaaltijdDetailFragmentToMaaltijdEditFragment(viewModel.maaltijdId, null))
-        }
-
+        /**
+         * ViewModel Observer: Observeren van de maaltijdOnderdelen van de maaltijd en toevoegen aan de
+         * RecyclerView. Als er geen maaltijdonderdelen zijn dan wordt de RecyclerView niet weergegeven.
+         */
         viewModel.maaltijdOnderdelen.observe(viewLifecycleOwner, Observer {lijst ->
             lijst?.let {
-                Log.i("TestN", "Aantal onderdelen:"+it.size)
                 if(lijst.size == 0){
                     binding.maaltijdOnderdelenTitleText.visibility = GONE
                     binding.maaltijdOnderdelenRecyclerView.visibility = GONE
@@ -87,12 +97,30 @@ class MaaltijdDetailFragment : Fragment() {
                 }
             }
         })
+
+        /**
+         * UI OnClickListeners:
+         *      Listener voor de Edit button om te navigeren naar het Edit fragment.
+         *      Listener voor de afbeelding van de maaltijd weer te geven in een apart fragment. (Enkel wanneer er een afbeelding is)
+         */
+        binding.editMealButton.setOnClickListener{
+            it.findNavController().navigate(MaaltijdDetailFragmentDirections.actionMaaltijdDetailFragmentToMaaltijdEditFragment(viewModel.maaltijdId, null))
+        }
+        binding.maaltijdImage.setOnClickListener {
+            viewModel.maaltijd.value?.photo_uri?.let{
+               findNavController().navigate(MaaltijdDetailFragmentDirections.actionMaaltijdDetailFragmentToMaaltijdImageShowFragment(it))
+            }
+        }
+
+        /**
+         * ActionBar title
+         */
         val act = activity as MainActivity
         act.setCustomActionBar("maaltijddetail")
 
-        binding.setLifecycleOwner(this)
-        binding.maaltijd = viewModel
-
+        /**
+         * Other
+         */
         return binding.root
     }
 

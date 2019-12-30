@@ -23,18 +23,51 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/maaltijd_image"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="16dp"
-                    android:contentDescription="@string/meal"
+                <RelativeLayout
+                    android:id="@+id/relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/dish" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/maaltijd_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="#D0F1BB"
+                        android:contentDescription="@string/meal"
+                        android:src="@drawable/maaltijd_blank_image_wide"
+                        app:maaltijd_photo="@{maaltijd.maaltijd}" />
+
+                    <ImageView
+                        android:id="@+id/maaltijd_camera_button"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:tint="@color/colorPrimary"
+                        app:srcCompat="@drawable/baseline_photo_camera_black_48"
+                        android:contentDescription="@string/take_picture_icon"/>
+
+                    <ImageView
+                        android:id="@+id/maaltijd_photo_delete_button"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        app:srcCompat="@android:drawable/ic_delete"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        android:contentDescription="@string/delete_picture_icon"/>
+
+                </RelativeLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayout"
@@ -47,14 +80,14 @@
                     android:hint="@string/name"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/maaltijd_image">
+                    app:layout_constraintTop_toBottomOf="@id/relative">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/maaltijd_naam"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:singleLine="true"
-                        app:maaltijd_edit_naam="@{maaltijd.maaltijd}"
+                        android:text="@={maaltijd.maaltijd.naam}"
                         tools:text="Maaltijd naam" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -198,6 +231,21 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <TextView
+                    android:id="@+id/noItems_Text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/container_content_border"
+                    android:padding="8sp"
+                    android:text="@string/no_mealparts_selected"
+                    android:textAlignment="center"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+                    tools:visibility="visible" />
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/maaltijdOnderdelen_recycler"
                     android:layout_width="0dp"

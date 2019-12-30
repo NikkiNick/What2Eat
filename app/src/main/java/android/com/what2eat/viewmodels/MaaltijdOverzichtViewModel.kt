@@ -1,76 +1,125 @@
 package android.com.what2eat.viewmodels
 
-import android.app.Application
-import android.com.what2eat.database.MaaltijdDao
 import android.com.what2eat.model.Maaltijd
-import androidx.lifecycle.AndroidViewModel
+import android.com.what2eat.repositories.MaaltijdRepository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import kotlinx.coroutines.*
+import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import java.util.*
+import javax.inject.Inject
 
-class MaaltijdOverzichtViewModel(val database: MaaltijdDao, application: Application) : AndroidViewModel(application){
+/**
+ * ViewModel voor business logica rond een overzicht van maaltijden.
+ * @property maaltijdRepo Repository voor Room databank operaties voor maaltijden
+ * @property maaltijden Lijst van [Maaltijd] waarrond het ViewModel opgebouwd is
+ */
+class MaaltijdOverzichtViewModel() : ViewModel(){
 
+    /**
+     * Injected properties
+     */
+    @Inject lateinit var maaltijdRepo: MaaltijdRepository
 
-    var viewModelJob = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-
+    /**
+     * ViewModel LiveData Properties
+     */
     private var _maaltijden = MutableLiveData<List<Maaltijd>>()
     val maaltijden: LiveData<List<Maaltijd>>
         get() = _maaltijden
 
-    /*
-    Navigation to detail binding
-     */
     private val _navigateToMaaltijdDetail = MutableLiveData<Long>()
     val navigateToMaaltijdDetail
         get() = _navigateToMaaltijdDetail
 
-    fun onMaaltijdClicked(id: Long){
-        _navigateToMaaltijdDetail.value = id
-    }
-    fun onDetailNavigated(){
-        _navigateToMaaltijdDetail.value = null
-    }
+    private val _navigateToMaaltijdEdit = MutableLiveData<Long>()
+    val navigateToMaaltijdEdit
+        get() = _navigateToMaaltijdEdit
 
     private val originalListMaaltijden: MutableList<Maaltijd> = mutableListOf()
 
+    /**
+     * CoRoutine Properties
+     */
+    var viewModelJob = Job()
+    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
+    /**
+     * Initialisatie van de maaltijden in van het ViewModel.
+     */
+    init{
+        android.com.what2eat.Application.component.inject(this)
+    }
+
+    /**
+     * Deze functie initialiseerd de maaltijden voor het ViewModel.
+     */
     fun initMaaltijden(){
         initializeMaaltijden()
     }
-    fun filterMaaltijden(filter: String){
-        val filterString = filter.toLowerCase(Locale.ROOT).trim()
-        _maaltijden.value = mutableListOf()
-        _maaltijden.value = originalListMaaltijden.filter{maaltijd -> maaltijd.naam.contains(filterString)}
-    }
+
+    /**
+     * CoRoutine launcher die de alle maaltijden ophaalt van de Room-databank waarmee het ViewModel
+     * gecreëert is. Deze lijst wordt gedupliceerd voor de filter feature.
+     * @see [MaaltijdRepository.getAllMaaltijden]
+     */
     private fun initializeMaaltijden() {
         uiScope.launch {
-            _maaltijden.value = getAllMaaltijdenFromDatabase()
+            _maaltijden.value = maaltijdRepo.getAllMaaltijden()
             originalListMaaltijden.clear()
             originalListMaaltijden.addAll(_maaltijden.value!!)
         }
     }
 
-    private suspend fun getAllMaaltijdenFromDatabase(): List<Maaltijd>?{
-        return withContext(Dispatchers.IO){
-            val maaltijden = database.getAll()
-            maaltijden
-        }
+    /**
+     * Deze functie filtered maaltijden aan de hand van user-input in de SearchView vertrekkende
+     * van de originele maaltijdenlijst.
+     */
+    fun filterMaaltijden(filter: String){
+        val filterString = filter.toLowerCase(Locale.ROOT).trim()
+        _maaltijden.value = mutableListOf()
+        _maaltijden.value = originalListMaaltijden.filter{maaltijd -> maaltijd.naam.contains(filterString)}
     }
 
-    fun clearMaaltijden(){
+    /**
+     * CoRoutine launcher die een nieuwe maaltijd toevoegd in de Room-databank. Hierbij wordt ook de LiveData
+     * aangepast om het fragment te verwittigen dat er dient genavigeeerd te worden naar het Edit scherm
+     * voor de nieuwe maaltijd
+     * @see [MaaltijdRepository.addMaaltijd]
+     */
+    fun addMaaltijd(maaltijd_naam: String){
         uiScope.launch {
-            _maaltijden.value = emptyList()
-            clearAllMaaltijdenFromDatabase()
-        }
-    }
-    private suspend fun clearAllMaaltijdenFromDatabase(){
-        return withContext(Dispatchers.IO){
-            database.deleteAll()
+            val maaltijd = Maaltijd()
+            maaltijd.naam = maaltijd_naam
+            val id = maaltijdRepo.addMaaltijd(maaltijd)
+            _navigateToMaaltijdEdit.value = id
         }
     }
 
+    /**
+     * Functie voor het aanpassen van de LiveData om het fragment te verwittigen te navigeren naar
+     * het Detail scherm voor de geselecteerde maaltijd uit het overzicht.
+     * @param id Id van de geselecteerde maaltijd
+     */
+    fun onMaaltijdClicked(id: Long){
+        _navigateToMaaltijdDetail.value = id
+    }
+
+    /**
+     * Functie voor het resetten van de LiveData wanneer het fragment heeft genavigeerd naar het
+     * Detail scherm van een geselecteerde maaltijd
+     */
+    fun onDetailNavigated(){
+        _navigateToMaaltijdDetail.value = null
+    }
+
+    /**
+     * Deze functie wordt opgeroepen als het ViewModel wordt afgebroken.
+     * [viewModelJob] wordt afgesloten.
+     */
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
