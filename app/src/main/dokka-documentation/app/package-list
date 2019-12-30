@@ -1,0 +1,28 @@
+$dokka.format:gfm
+$dokka.linkExtension:md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$ingredient_setNaam(android.widget.TextView, kotlin.String)android.com.what2eat.adapters.-binding-adapters/android.widget.-text-view/ingredient_set-naam.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$maaltijd_setDateAdded(android.widget.TextView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/android.widget.-text-view/maaltijd_set-date-added.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$maaltijd_setDateLastEaten(android.widget.TextView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/android.widget.-text-view/maaltijd_set-date-last-eaten.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$maaltijd_setNaam(android.widget.TextView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/android.widget.-text-view/maaltijd_set-naam.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$maaltijd_setPhoto(android.widget.ImageView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/android.widget.-image-view/maaltijd_set-photo.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$maaltijd_setPhotoCircle(android.widget.ImageView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/android.widget.-image-view/maaltijd_set-photo-circle.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$maaltijd_setRating(android.widget.LinearLayout, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/android.widget.-linear-layout/maaltijd_set-rating.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$maaltijd_setRatingString(android.widget.TextView, android.com.what2eat.model.Maaltijd)android.com.what2eat.adapters.-binding-adapters/android.widget.-text-view/maaltijd_set-rating-string.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$maaltijdonderdeel_setNaam(android.widget.CheckBox, android.com.what2eat.model.MaaltijdOnderdeel)android.com.what2eat.adapters.-binding-adapters/android.widget.-check-box/maaltijdonderdeel_set-naam.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$maaltijdonderdeel_setNaamText(android.widget.TextView, android.com.what2eat.model.MaaltijdOnderdeel)android.com.what2eat.adapters.-binding-adapters/android.widget.-text-view/maaltijdonderdeel_set-naam-text.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$recipe_setNaam(android.widget.TextView, android.com.what2eat.network.RecipeData)android.com.what2eat.adapters.-binding-adapters/android.widget.-text-view/recipe_set-naam.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$recipe_setPhoto(android.widget.ImageView, android.com.what2eat.network.RecipeData)android.com.what2eat.adapters.-binding-adapters/android.widget.-image-view/recipe_set-photo.md
+$dokka.location:android.com.what2eat.adapters.BindingAdapters$recipe_setPhotoCircle(android.widget.ImageView, android.com.what2eat.network.RecipeData)android.com.what2eat.adapters.-binding-adapters/android.widget.-image-view/recipe_set-photo-circle.md
+android.com.what2eat
+android.com.what2eat.activities
+android.com.what2eat.adapters
+android.com.what2eat.adapters.BindingAdapters
+android.com.what2eat.database
+android.com.what2eat.fragments
+android.com.what2eat.injection
+android.com.what2eat.model
+android.com.what2eat.network
+android.com.what2eat.repositories
+android.com.what2eat.utils
+android.com.what2eat.viewmodels
+android.com.what2eat.viewmodels.viewModelFactories

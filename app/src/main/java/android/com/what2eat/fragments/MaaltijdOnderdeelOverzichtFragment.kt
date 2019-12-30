@@ -27,26 +27,38 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 
 /**
- * [Fragment] voor maaltijdonderdelenoverzicht
+ * Fragment voor maaltijdOnderdelen-overzicht
+ * @property binding Binding object van het fragment
+ * @property viewModel [MaaltijdOnderdeelOverzichtViewModel] dat gebruikt wordt in het fragment voor business logica
  */
 class MaaltijdOnderdeelOverzichtFragment : Fragment() {
+
     /**
      * Fragment Properties
      */
     private lateinit var binding: FragmentMaaltijdOnderdeelOverzichtBinding
     private lateinit var viewModel: MaaltijdOnderdeelOverzichtViewModel
+
     /**
-     * Functie die wordt opgeroepen wanneer het [Fragment] aangemaakt wordt en in CREATED lifecycle state is.
+     * Functie die wordt opgeroepen wanneer het fragment aangemaakt wordt en in CREATED lifecycle state is.
      * Fragment properties worden hier geïnstantieerd.
+     * @param savedInstanceState Bundel die gebruikt wordt om data terug in het fragment te initialiseren.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         viewModel = ViewModelProviders.of(this).get(MaaltijdOnderdeelOverzichtViewModel::class.java)
         super.onCreate(savedInstanceState)
     }
+
     /**
-     * Functie die wordt opgeroepen wanneer het [Fragment] aangemaakt wordt en in CREATED lifecycle state is.
+     * Functie die wordt opgeroepen wanneer het fragment aangemaakt wordt en in CREATED lifecycle state is.
+     * Setup van DataBinding, RecyclerView, ViewModel Observers, UI ClickListeners, SearchView, ActionBar
+     * @param inflater LayoutInflater
+     * @param container ViewGroup
+     * @param savedInstanceState Bundle
+     * @return View
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         /**
          * DataBinding : layout inflation, viewModel binding and initialisatie.
          */
@@ -58,6 +70,7 @@ class MaaltijdOnderdeelOverzichtFragment : Fragment() {
         )
         binding.setLifecycleOwner(this)
         viewModel.initMaaltijdOnderdelen()
+
         /**
          * RecyclerView setup voor lijst van maaltijdonderdelen inclusief [DividerItemDecoration].
          */
@@ -93,12 +106,14 @@ class MaaltijdOnderdeelOverzichtFragment : Fragment() {
                 }
             }
         })
+
         /**
          * UI onClickListener voor het toevoegen van een nieuw maaltijdonderdeel
          */
         binding.addMaaltijdOnderdeelButton.setOnClickListener {
             addMaaltijdOnderdeel()
         }
+
         /**
          * SearchView
          */
@@ -113,11 +128,13 @@ class MaaltijdOnderdeelOverzichtFragment : Fragment() {
                 return false
             }
         })
+
         /**
          * Actionbar title
          */
         val activity = getActivity() as MainActivity
         activity.setCustomActionBar("maaltijdonderdelenoverzicht")
+
         /**
          * Other
          */
@@ -126,8 +143,9 @@ class MaaltijdOnderdeelOverzichtFragment : Fragment() {
         return binding.root
 
     }
+
     /**
-     * Deze functie toont een [AlertDialog] waarbij de naam van het nieuw maaltijdonderdeel gevraagd wordt.
+     * Deze functie toont een AlertDialog waarbij de naam van het nieuw maaltijdOnderdeel gevraagd wordt.
      * Het maaltijdonderdeel wordt aangemaakt en gepersisteerd via [MaaltijdOnderdeelOverzichtViewModel].
      */
     private fun addMaaltijdOnderdeel(){
@@ -155,5 +173,13 @@ class MaaltijdOnderdeelOverzichtFragment : Fragment() {
         builder.show()
         input.requestFocus()
     }
-
+    /**
+     * Deze functie wordt opgeroepen wanneer het STARTED lifecycle wordt ingegaan door het fragment.
+     * Input van SearchView wordt gereset.
+     */
+    override fun onStart() {
+        super.onStart()
+        binding.searchView.setQuery("", false)
+        binding.searchView.clearFocus()
+    }
 }

@@ -14,18 +14,30 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
+/**
+ * Network Module voor Dagger dependency injection
+ */
 @Module
 class NetworkModule {
 
+    /**
+     * Voorzien van RecipeApi singleton
+     * @param retrofit Retrofit instantie die nodig is om RecipeApi instantie aan te maken
+     * @return [RecipeApi]
+     */
     @Singleton
     @Provides
-    internal fun provideRecipeApi(retrofit: Retrofit): RecipeApi {
+    fun provideRecipeApi(retrofit: Retrofit): RecipeApi {
         return retrofit.create(RecipeApi::class.java)
     }
 
+    /**
+     * Voorzien van Retrofit singleton
+     * @return Retrofit
+     */
     @Singleton
     @Provides
-    internal fun provideRetrofitInterface(): Retrofit {
+    fun provideRetrofitInterface(): Retrofit {
         val moshi = Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
             .build()
@@ -38,10 +50,14 @@ class NetworkModule {
 
 
     }
-
+    /**
+     * Voorzien van RecipeApiRepository singleton
+     * @param recipeApi RecipeApi instantie die nodig is om RecipeApiRepository instantie aan te maken
+     * @return [RecipeApiRepository]
+     */
     @Singleton
     @Provides
-    internal fun provideRecipeApiRepository(recipeApi: RecipeApi): RecipeApiRepository{
+    fun provideRecipeApiRepository(recipeApi: RecipeApi): RecipeApiRepository{
         return RecipeApiRepository(recipeApi)
     }
 

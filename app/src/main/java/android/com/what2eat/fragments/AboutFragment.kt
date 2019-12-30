@@ -9,23 +9,25 @@ import android.view.ViewGroup
 
 import android.com.what2eat.R
 import android.com.what2eat.activities.MainActivity
-import android.com.what2eat.viewmodels.ActionbarViewModel
-import androidx.lifecycle.ViewModelProviders
 
 /**
- * About fragment
+ * Fragment voor het weergeven van about informatie
  */
 class AboutFragment : Fragment() {
 
-    //private lateinit var actionbarViewModel: ActionbarViewModel
-
+    /**
+     * Initialiseerd het fragment in CREATED lifecycle state. De layout wordt geinflate en custom
+     * actionbar wordt ingesteld
+     * @param inflater LayoutInflater
+     * @param container ViewGroup
+     * @param savedInstanceState Bundle
+     * @return View
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        //actionbarViewModel = ViewModelProviders.of(activity!!).get(ActionbarViewModel::class.java)
-        //actionbarViewModel.setTitle(context!!.resources.getString(R.string.about))
         val act = activity as MainActivity
         act.setCustomActionBar("about")
 

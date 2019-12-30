@@ -26,26 +26,38 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.android.material.snackbar.Snackbar
 
 /**
- * [Fragment] voor maaltijdoverzicht
+ * Fragment voor maaltijdoverzicht
+ * @property binding Binding object van het fragment
+ * @property viewModel [MaaltijdOverzichtViewModel] dat gebruikt wordt in het fragment voor business logica
  */
 class MaaltijdOverzichtFragment : Fragment() {
+
     /**
      * Fragment Properties
      */
     private lateinit var binding: FragmentMaaltijdOverzichtBinding
     private lateinit var viewModel: MaaltijdOverzichtViewModel
-    /*
-     * Functie die wordt opgeroepen wanneer het [Fragment] aangemaakt wordt en in CREATED lifecycle state is.
+
+    /**
+     * Functie die wordt opgeroepen wanneer het fragment aangemaakt wordt en in CREATED lifecycle state is.
      * Fragment properties worden hier geïnstantieerd.
+     * @param savedInstanceState Bundel die gebruikt wordt om data terug in het fragment te initialiseren.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         viewModel = ViewModelProviders.of(this).get(MaaltijdOverzichtViewModel::class.java)
         super.onCreate(savedInstanceState)
     }
+
     /**
-     * Functie die wordt opgeroepen wanneer het [Fragment] aangemaakt wordt en in CREATED lifecycle state is.
+     * Functie die wordt opgeroepen wanneer het fragment aangemaakt wordt en in CREATED lifecycle state is.
+     * Setup van DataBinding, RecyclerView, ViewModel Observers, UI ClickListeners, SearchView, ActionBar
+     * @param inflater LayoutInflater
+     * @param container ViewGroup
+     * @param savedInstanceState Bundle
+     * @return View
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         /**
          * DataBinding : layout inflation, viewModel binding and initialisatie.
          */
@@ -53,6 +65,7 @@ class MaaltijdOverzichtFragment : Fragment() {
         binding.setLifecycleOwner(this)
         binding.maaltijden = viewModel
         viewModel.initMaaltijden()
+
         /**
          * RecyclerView setup voor lijst van maaltijden inclusief [DividerItemDecoration].
          */
@@ -62,10 +75,12 @@ class MaaltijdOverzichtFragment : Fragment() {
         binding.recyclerMaaltijden.adapter = adapter
         val itemDecor = DividerItemDecoration(context, HORIZONTAL)
         binding.recyclerMaaltijden.addItemDecoration(itemDecor)
+
         /**
          * ViewModel Observers:
          *      Observeren van maaltijden en toevoegen aan RecyclerView
          *      Observeren wanneer er geklikt wordt op een maaltijd om door te gaan naar detail scherm.
+         *      Observeren wanneer er naar het edit scherm genavigeerd moet worden wanneer een nieuwe maaltijd aangemaakt wordt.
          */
         viewModel.maaltijden.observe(this, Observer{ lijst ->
             lijst?.let{
@@ -99,12 +114,14 @@ class MaaltijdOverzichtFragment : Fragment() {
                 this.findNavController().navigate(MaaltijdOverzichtFragmentDirections.actionMaaltijdOverzichtFragmentToMaaltijdEditFragment(it, null))
             }
         })
+
         /**
          * UI OnClickListener voor Add button voor het toevoegen van een nieuwe maaltijd.
          */
         binding.addMaaltijdButton.setOnClickListener{
             show_addMaaltijdDialog()
         }
+
         /**
          * SearchView
          */
@@ -119,11 +136,13 @@ class MaaltijdOverzichtFragment : Fragment() {
                 return false
             }
         })
+
         /**
          * ToolBar title
          */
         val activity = getActivity() as MainActivity
         activity.setCustomActionBar("maaltijdoverzicht")
+
         /**
          * Other
          */
@@ -131,8 +150,9 @@ class MaaltijdOverzichtFragment : Fragment() {
         return binding.root
 
     }
+
     /**
-     * Deze functie toont een [AlertDialog] waarbij de naam van de nieuwe maaltijd gevraagd wordt.
+     * Deze functie toont een AlertDialog waarbij de naam van de nieuwe maaltijd gevraagd wordt.
      * De maaltijd wordt aangemaakt en gepersisteerd via [MaaltijdOverzichtViewModel].
      */
     private fun show_addMaaltijdDialog(){
@@ -164,6 +184,7 @@ class MaaltijdOverzichtFragment : Fragment() {
 
     /**
      * Deze functie wordt gebruikt om een SnackBar met bericht weer te geven
+     * @param message Bericht dat weergegeven moet worden in de SnackBar
      */
     private fun showSnackBar(message: String){
         val snackbar: Snackbar = Snackbar.make(getActivity()!!.findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
@@ -173,8 +194,8 @@ class MaaltijdOverzichtFragment : Fragment() {
         snackbar.show()
     }
     /**
-     * Deze functie wordt opgeroepen wanneer het STARTED lifecycle wordt ingegaan door het [Fragment].
-     * Input van [SearchView] wordt gereset.
+     * Deze functie wordt opgeroepen wanneer het STARTED lifecycle wordt ingegaan door het fragment.
+     * Input van SearchView wordt gereset.
      */
     override fun onStart() {
         super.onStart()

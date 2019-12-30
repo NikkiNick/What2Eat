@@ -6,7 +6,7 @@ import android.com.what2eat.activities.MainActivity
 import android.com.what2eat.adapters.MaaltijdOnderdeelAdapter
 import android.com.what2eat.databinding.FragmentMaaltijdDetailBinding
 import android.com.what2eat.viewmodels.MaaltijdDetailViewModel
-import android.com.what2eat.viewmodels.MaaltijdDetailViewModelFactory
+import android.com.what2eat.viewmodels.viewModelFactories.MaaltijdDetailViewModelFactory
 import android.graphics.drawable.ClipDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -23,41 +23,56 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 
-
 /**
- * [Fragment] voor maaltijd detail
+ * Fragment voor het weergeven van detail van een maaltijd
+ * @property binding Binding object van het fragment
+ * @property viewModelFactory [MaaltijdDetailViewModelFactory] dat gebruikt wordt om [MaaltijdDetailViewModel] aan te maken
+ * @property viewModel [MaaltijdDetailViewModel] dat gebruikt wordt in het fragment voor business logica
  */
 class MaaltijdDetailFragment : Fragment() {
+
     /**
      * Fragment Properties
      */
-
     private lateinit var binding: FragmentMaaltijdDetailBinding
     private lateinit var viewModelFactory: MaaltijdDetailViewModelFactory
     private lateinit var viewModel: MaaltijdDetailViewModel
+
     /**
-     * Functie die wordt opgeroepen wanneer het [Fragment] aangemaakt wordt en in CREATED lifecycle state is.
+     * Functie die wordt opgeroepen wanneer het fragment aangemaakt wordt en in CREATED lifecycle state is.
      * Fragment properties worden hier geïnstantieerd.
+     * @param savedInstanceState Bundel die gebruikt wordt om data terug in [MaaltijdDetailFragment] te initialiseren.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         val args = MaaltijdDetailFragmentArgs.fromBundle(arguments!!)
-        viewModelFactory = MaaltijdDetailViewModelFactory(args.maaltijdId)
+        viewModelFactory =
+            MaaltijdDetailViewModelFactory(
+                args.maaltijdId
+            )
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MaaltijdDetailViewModel::class.java)
         super.onCreate(savedInstanceState)
     }
+
     /**
-     * Functie die wordt opgeroepen wanneer het [Fragment] aangemaakt wordt en in CREATED lifecycle state is.
+     * Functie die wordt opgeroepen wanneer het fragment aangemaakt wordt en in CREATED lifecycle state is.
+     * Setup van DataBinding, RecyclerView, ViewModel Observers, UI ClickListeners, ActionBar
+     * @param inflater LayoutInflater
+     * @param container ViewGroup
+     * @param savedInstanceState Bundle
+     * @return View
      */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         /**
          * DataBinding : layout inflation, viewModel binding.
          */
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maaltijd_detail, container, false)
         binding.setLifecycleOwner(this)
         binding.maaltijd = viewModel
+
         /**
          * RecyclerView setup voor het tonen van de [RecyclerView] van maaltijdonderdelen van de huidige maaltijd.
          */
@@ -65,9 +80,10 @@ class MaaltijdDetailFragment : Fragment() {
         binding.maaltijdOnderdelenRecyclerView.adapter = adapter
         val itemDecor = DividerItemDecoration(context, ClipDrawable.HORIZONTAL)
         binding.maaltijdOnderdelenRecyclerView.addItemDecoration(itemDecor)
+
         /**
          * ViewModel Observer: Observeren van de maaltijdOnderdelen van de maaltijd en toevoegen aan de
-         * [RecyclerView]. Als er geen maaltijdonderdelen zijn dan wordt de [RecyclerView] niet weergegeven.
+         * RecyclerView. Als er geen maaltijdonderdelen zijn dan wordt de RecyclerView niet weergegeven.
          */
         viewModel.maaltijdOnderdelen.observe(viewLifecycleOwner, Observer {lijst ->
             lijst?.let {
@@ -81,6 +97,7 @@ class MaaltijdDetailFragment : Fragment() {
                 }
             }
         })
+
         /**
          * UI OnClickListeners:
          *      Listener voor de Edit button om te navigeren naar het Edit fragment.
@@ -94,11 +111,13 @@ class MaaltijdDetailFragment : Fragment() {
                findNavController().navigate(MaaltijdDetailFragmentDirections.actionMaaltijdDetailFragmentToMaaltijdImageShowFragment(it))
             }
         }
+
         /**
-         * ToolBar title
+         * ActionBar title
          */
         val act = activity as MainActivity
         act.setCustomActionBar("maaltijddetail")
+
         /**
          * Other
          */
