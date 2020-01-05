@@ -2,6 +2,7 @@ package android.com.what2eat.fragments
 
 
 import android.com.what2eat.R
+import android.com.what2eat.activities.MainActivity
 import android.com.what2eat.adapters.RecipeAdapter
 import android.com.what2eat.adapters.RecipeListener
 import android.com.what2eat.databinding.FragmentMaaltijdOnderdeelInspiratieBinding
@@ -108,7 +109,11 @@ class RecipeOverzichtFragment : Fragment() {
                 }
             }
         })
-
+        /**
+         * ActionBar title
+         */
+        val act = activity as MainActivity
+        act.setCustomActionBar("recipeoverzicht")
         /**
          * Other
          */

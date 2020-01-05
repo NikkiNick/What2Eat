@@ -199,7 +199,7 @@ class MaaltijdOverzichtFragment : Fragment() {
      */
     override fun onStart() {
         super.onStart()
-        binding.searchView.setQuery("", false)
+        binding.searchView.queryHint = resources.getString(R.string.search)
         binding.searchView.clearFocus()
     }
 }

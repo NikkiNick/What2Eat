@@ -55,7 +55,10 @@ class MainActivity : AppCompatActivity() {
             "about" -> supportActionBar?.setCustomView(R.layout.actionbar_about)
             "add_new_meal" -> supportActionBar?.setCustomView(R.layout.actionbar_add_new_meal)
             "maaltijddetail" -> supportActionBar?.setCustomView(R.layout.actionbar_my_meal)
+            "maaltijdonderdeeldetail" -> supportActionBar?.setCustomView(R.layout.actionbar_my_mealpart)
             "edit_meal" -> supportActionBar?.setCustomView(R.layout.actionbar_edit_meal)
+            "recipedetail" -> supportActionBar?.setCustomView(R.layout.actionbar_recipe)
+            "recipeoverzicht" -> supportActionBar?.setCustomView(R.layout.actionbar_recipes)
         }
         NavigationUI.setupActionBarWithNavController(this, navController, this.drawerLayout)
         NavigationUI.setupWithNavController(this.binding.navView, navController)

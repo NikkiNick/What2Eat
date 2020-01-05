@@ -1,6 +1,7 @@
 package android.com.what2eat.fragments
 
 import android.com.what2eat.R
+import android.com.what2eat.activities.MainActivity
 import android.com.what2eat.adapters.IngredientAdapter
 import android.com.what2eat.databinding.FragmentRecipeDetailBinding
 import android.com.what2eat.utils.NetworkUtil
@@ -93,7 +94,11 @@ class RecipeDetailFragment : Fragment() {
         binding.visitButton.setOnClickListener {
             startIntent()
         }
-
+        /**
+         * ActionBar title
+         */
+        val act = activity as MainActivity
+        act.setCustomActionBar("recipedetail")
         return binding.root
     }
 
