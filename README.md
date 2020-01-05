@@ -16,7 +16,7 @@ Mocht u niet weten wat te bereiden, neem dan een kijkje in uw eigen repository b
   - Nieuw aanmaken
   - Bestaand bekijken in detail
     - Gelinkte maaltijden weergeven die horen bij het geselecteerd maaltijdonderdeel
-    - Online recepten zoeken die het geselecteerd maaltijdonderdeel als ingredient 
+    - Online recepten zoeken die het geselecteerd maaltijdonderdeel als ingredient bevatten
     - Verwijderen (enkel mogelijk wanneer niet gelinked aan een maaltijd)
     - Aanpassen (naam)
 - Beheer maaltijden:
