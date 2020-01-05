@@ -42,6 +42,7 @@ class MaaltijdDetailViewModel(val maaltijdId: Long): ViewModel(){
     val changeRatingDisplay: LiveData<Int>
         get() = _changeRatingDisplay
 
+
     /**
      * CoRoutine Properties
      */
@@ -99,15 +100,12 @@ class MaaltijdDetailViewModel(val maaltijdId: Long): ViewModel(){
      * het maaltijdOnderdeel.
      * @see [MaaltijdMaaltijdOnderdeelRepository.addMaaltijdOnderdeelToMaaltijd]
      */
-    fun addMaaltijdOnderdelenToMaaltijd(maaltijdOnderdeelIds: LongArray){
+    fun addMaaltijdOnderdelenToMaaltijd(ids: LongArray){
         uiScope.launch {
-            maaltijdOnderdeelIds.forEach { id ->
-                maaltijdMaaltijdOnderdeelRepo.addMaaltijdOnderdeelToMaaltijd(maaltijdId, id)
-                initializeMaaltijd()
-            }
+            ids.forEach { id -> maaltijdMaaltijdOnderdeelRepo.addMaaltijdOnderdeelToMaaltijd(maaltijdId, id)}
+            initializeMaaltijd()
         }
     }
-
     /**
      * CoRoutine launcher die maaltijdOnderdeel verwijderd van de huidige maaltijd
      * in de Room-databank. De relatie (JOIN table) tussen de maaltijd en het maaltijdOnderdeel wordt verwijderd.
