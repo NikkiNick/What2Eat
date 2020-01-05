@@ -20,7 +20,7 @@
                 android:id="@+id/loading_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/medium_margin"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -33,7 +33,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/small_margin"
                     android:text="@string/loading_items" />
 
             </LinearLayout>
@@ -42,7 +42,7 @@
                 android:id="@+id/noconnection_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/medium_margin"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:visibility="gone"
@@ -60,7 +60,7 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/small_margin"
                     android:text="@string/no_connection" />
             </LinearLayout>
 
@@ -68,15 +68,15 @@
                 android:id="@+id/recycler_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/medium_margin"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/noitems_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginEnd="@dimen/medium_margin"
                     android:text="@string/no_items_search"
                     android:textAlignment="center"
                     android:visibility="gone"
@@ -87,7 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/medium_margin"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/medium_margin"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
             </LinearLayout>
 
