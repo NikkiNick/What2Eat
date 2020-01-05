@@ -9,6 +9,26 @@ Eenmaal u maaltijdonderdelen toegevoegd heeft kan u met deze maaltijdonderdelen 
 
 Mocht u niet weten wat te bereiden, neem dan een kijkje in uw eigen repository beheerd in de What2Eat app. U kan u laten inspireren door eerder toegevoegde maaltijden of maaltijden opzoeken op basis van een geselecteerd maaltijdonderdeel.
 
+# Functies
+---
+- Beheer maaltijdonderdelen:
+  - Overzicht (incl. zoekfunctie)
+  - Nieuw aanmaken
+  - Bestaand bekijken in detail
+    - Gelinkte maaltijden weergeven die horen bij het geselecteerd maaltijdonderdeel
+    - Online recepten zoeken die het geselecteerd maaltijdonderdeel als ingredient 
+    - Verwijderen (enkel mogelijk wanneer niet gelinked aan een maaltijd)
+    - Aanpassen (naam)
+- Beheer maaltijden:
+  - Overzicht (incl. zoekfunctie)
+  - Nieuw aanmaken
+  - Bestaand bekijken in detail (naam, rating, afbeelding, datum van toevoeging, maaltijdonderdelen)
+  - Aanpassen:
+    - Naam en/of rating aanpassen
+    - Foto nemen of verwijderen
+    - Maaltijdonderdelen toevoegen of verwijderen
+  - Verwijderen
+
 # Technische specificaties
 ---
 Programmeertaal: Kotlin<br/>
@@ -19,6 +39,7 @@ Doel SDK versie: 29<br/>
 - De UI wordt enkel gereguleerd door Fragments.
 - Business logica gebeurd aan de hand van ViewModels.
 - Communicatie van ViewModel naar Fragments gebeurd aan de hand van LiveData.
+- Gebruik van RecyclerViews voor het weergeven van overzichten.
 - Navigatie via NavGraph, alsook voorzien van NavDrawer en OptionsMenu's waar nodig.
 - Room (ver. 2.2.2) database creatie en connectie.
 - Retrofit (ver. 2.7.0) voor API calls en Moshi (ver. 1.9.2) voor het converteren van netwerkobjecten.
