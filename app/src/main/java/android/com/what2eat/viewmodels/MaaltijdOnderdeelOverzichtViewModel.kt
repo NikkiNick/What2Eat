@@ -85,6 +85,7 @@ class MaaltijdOnderdeelOverzichtViewModel()  : ViewModel(){
             val mo = MaaltijdOnderdeel()
             mo.naam = naam
             maaltijdOnderdeelRepo.addMaaltijdOnderdeel(mo)
+            initMaaltijdOnderdelen()
         }
     }
 

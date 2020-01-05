@@ -84,4 +84,6 @@
     <string name="recipe">Recipe</string>
     <string name="recipes">Recipes</string>
     <string name="search">Search</string>
+    <string name="loading_recipes">Loading recipes</string>
+    <string name="no_recipes_search">No recipes found with this mealpart as ingredient</string>
 </resources>

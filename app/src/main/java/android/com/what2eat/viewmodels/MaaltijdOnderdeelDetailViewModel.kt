@@ -93,11 +93,11 @@ class MaaltijdOnderdeelDetailViewModel(val maaltijdOnderdeel_id: Long)  : ViewMo
         uiScope.launch {
             maaltijdRepo.getMaaltijdenFromMaaltijdOnderdeel(maaltijdOnderdeel_id)?.let {
                 if(it.size > 0){
-                    _showSnackBar.postValue("Maaltijdonderdeel is verbonden met maaltijden")
+                    _showSnackBar.postValue("Can't delete mealpart. This mealparts is already linked to meals.")
                 }
                 else{
                     maaltijdOnderdeelRepo.deleteMaaltijdOnderdeel(_maaltijdOnderdeel.value!!)
-                    _showSnackBar.postValue("Maaltijdonderdeel verwijderd")
+                    _showSnackBar.postValue("Mealpart deleted.")
                 }
             }
         }
