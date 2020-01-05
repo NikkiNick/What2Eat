@@ -1,7 +1,9 @@
 package android.com.what2eat.model
 
 import android.com.what2eat.utils.DateConverter
+import androidx.databinding.Bindable
 import androidx.room.*
+import java.lang.IllegalArgumentException
 import java.util.*
 
 /**
@@ -38,6 +40,17 @@ data class Maaltijd(
 
     @Ignore
     var maaltijdOnderdelen = mutableListOf<MaaltijdOnderdeel>()
+
+
+    var naamProperty: String
+        get() = naam
+        set(value){
+            if(value != null && value != ""){
+                naam = value
+            }
+        }
+
+
 
     /**
      * Functie om een maaltijdOnderdeel toe te voegen aan de maaltijd

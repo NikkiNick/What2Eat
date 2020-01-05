@@ -81,7 +81,7 @@ class MaaltijdOverzichtViewModel() : ViewModel(){
     fun filterMaaltijden(filter: String){
         val filterString = filter.toLowerCase(Locale.ROOT).trim()
         _maaltijden.value = mutableListOf()
-        _maaltijden.value = originalListMaaltijden.filter{maaltijd -> maaltijd.naam.contains(filterString)}
+        _maaltijden.value = originalListMaaltijden.filter{maaltijd -> maaltijd.naamProperty.contains(filterString)}
     }
 
     /**
@@ -93,7 +93,7 @@ class MaaltijdOverzichtViewModel() : ViewModel(){
     fun addMaaltijd(maaltijd_naam: String){
         uiScope.launch {
             val maaltijd = Maaltijd()
-            maaltijd.naam = maaltijd_naam
+            maaltijd.naamProperty = maaltijd_naam
             val id = maaltijdRepo.addMaaltijd(maaltijd)
             _navigateToMaaltijdEdit.value = id
         }

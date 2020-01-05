@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat
 @BindingAdapter("maaltijd_naam")
 fun TextView.maaltijd_setNaam(maaltijd: Maaltijd?){
     maaltijd?.let {
-        text = it.naam
+        text = it.naamProperty
     }
 }
 /**
