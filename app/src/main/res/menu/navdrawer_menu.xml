@@ -6,10 +6,6 @@
         android:icon="@mipmap/round_home_black_18dp"
         android:title="@string/welcome" />
     <item
-        android:id="@+id/aboutFragment"
-        android:icon="@mipmap/round_info_black_18"
-        android:title="@string/about" />
-    <item
         android:id="@+id/maaltijdOverzichtFragment"
         android:icon="@mipmap/baseline_fastfood_black_48dp"
         android:title="@string/my_meals" />
@@ -17,4 +13,8 @@
         android:id="@+id/maaltijdOnderdeelOverzichtFragment"
         android:icon="@mipmap/baseline_fastfood_black_48dp"
         android:title="@string/my_meal_parts" />
+    <item
+        android:id="@+id/aboutFragment"
+        android:icon="@mipmap/round_info_black_18"
+        android:title="@string/about" />
 </menu>

@@ -2,27 +2,89 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/linearLayout"
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".fragments.WelcomeFragment">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/welcome_text"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/medium_margin"
-            android:layout_marginTop="@dimen/medium_margin"
-            android:layout_marginEnd="@dimen/medium_margin"
-            android:text="Welcome 2 What2Eat"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            tools:context=".fragments.WelcomeFragment">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/welcome_text"
+                android:text="@string/welcome_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lineHeight="20dp"
+                style="@style/content_text_style" />
+
+            <LinearLayout
+                android:id="@+id/my_meals_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/welcome_text">
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="173dp"
+                    android:layout_height="151dp"
+                    app:srcCompat="@drawable/dish"
+                    android:contentDescription="@string/go_to_my_meals"/>
+
+                <TextView
+                    android:id="@+id/textView7"
+                    style="@style/subtitle_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/go_to_my_meals" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/my_submeals_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/my_meals_layout">
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="173dp"
+                    android:layout_height="151dp"
+                    android:contentDescription="@string/go_to_my_mealparts"
+                    android:tint="@color/colorAccent"
+                    app:srcCompat="@mipmap/baseline_fastfood_black_48dp" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    style="@style/subtitle_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/go_to_my_mealparts" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </layout>
