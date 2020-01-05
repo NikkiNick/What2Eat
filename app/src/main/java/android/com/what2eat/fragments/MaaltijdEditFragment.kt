@@ -13,16 +13,21 @@ import android.com.what2eat.viewmodels.MaaltijdDetailViewModel
 import android.com.what2eat.viewmodels.viewModelFactories.MaaltijdDetailViewModelFactory
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.graphics.drawable.ClipDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.*
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -36,6 +41,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.bumptech.glide.Glide
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_maaltijd_edit.view.*
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -59,6 +65,7 @@ class MaaltijdEditFragment : Fragment() {
     private lateinit var binding: FragmentMaaltijdEditBinding
     private lateinit var viewModelFactory: MaaltijdDetailViewModelFactory
     private lateinit var viewModel: MaaltijdDetailViewModel
+    private lateinit var args: MaaltijdEditFragmentArgs
     @Inject lateinit var application: Application
     val REQUEST_TAKE_PHOTO = 1
     private lateinit var currentPhotoPath: String
@@ -70,7 +77,7 @@ class MaaltijdEditFragment : Fragment() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         android.com.what2eat.Application.component.inject(this)
-        val args = MaaltijdEditFragmentArgs.fromBundle(arguments!!)
+        args = MaaltijdEditFragmentArgs.fromBundle(arguments!!)
         viewModelFactory =
             MaaltijdDetailViewModelFactory(
                 args.maaltijdId
@@ -150,12 +157,36 @@ class MaaltijdEditFragment : Fragment() {
 
         /**
          * UI OnClickListeners:
+         *      Listener voor de input change van de gebruiker.
          *      Listener voor de save button voor het aanpassen van de maaltijd en om te navigeren naar het Detail fragment.
          *      Listener voor de add button om maaltijdonderdelen toe te voegen.
          *      Listener voor de camera button om een foto te nemen.
          *      Listener voor het verwijderen van de afbeelding.
          *      Listener voor het bekijken van de afbeelding in een apart fragment.
          */
+        binding.maaltijdNaam.addTextChangedListener(object: TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                if(s?.length == 0){
+                    binding.editMealButton.isEnabled = false
+                    binding.editMealButton.setColorFilter(Color.GRAY)
+                    binding.textInputLayout.error = resources.getString(R.string.cannot_be_empty)
+                }
+                else{
+                    binding.textInputLayout.error = null
+                    binding.editMealButton.isEnabled = true
+                    binding.editMealButton.setColorFilter(R.color.colorPrimary)
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+        })
         binding.editMealButton.setOnClickListener{
             viewModel.saveMaaltijd()
             showSnackBar("${this.binding.maaltijdNaam.text.toString()} ${resources.getString(R.string.edited)}")
