@@ -73,4 +73,11 @@
 
     <string name="go_to_my_meals">Go to my meals</string>
     <string name="go_to_my_mealparts">Go to my mealparts</string>
+    <string name="about_text">
+        The What2Eat is created by Nick Gysels\n
+        Student Applied Computer Sciences\n
+        HoGent, Belgium\n
+        Native Apps I - Android mobile applications\n
+        nick.gysels.w2819@student.hogent.be
+    </string>
 </resources>
