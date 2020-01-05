@@ -11,6 +11,7 @@ import android.com.what2eat.R
 import android.com.what2eat.activities.MainActivity
 import android.com.what2eat.databinding.FragmentWelcomeBinding
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 
 /**
  * Fragment voor het weergeven van het welkom scherm
@@ -34,6 +35,13 @@ class WelcomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         this.binding = DataBindingUtil.inflate(inflater, R.layout.fragment_welcome, container, false)
+
+        binding.myMealsLayout.setOnClickListener{
+            findNavController().navigate(R.id.action_welcomeFragment_to_maaltijdOverzichtFragment)
+        }
+        binding.mySubmealsLayout.setOnClickListener{
+            findNavController().navigate(R.id.action_welcomeFragment_to_maaltijdOnderdeelOverzichtFragment)
+        }
 
         val act = activity as MainActivity
         act.setCustomActionBar("welcome")

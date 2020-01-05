@@ -8,7 +8,14 @@
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="android.com.what2eat.fragments.WelcomeFragment"
-        android:label="@string/welcome" />
+        android:label="@string/welcome" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_maaltijdOverzichtFragment"
+            app:destination="@id/maaltijdOverzichtFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_maaltijdOnderdeelOverzichtFragment"
+            app:destination="@id/maaltijdOnderdeelOverzichtFragment" />
+    </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="android.com.what2eat.fragments.AboutFragment"

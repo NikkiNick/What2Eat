@@ -56,4 +56,21 @@
     <string name="find_online_inspiration">Find online insipiration</string>
     <string name="ingredients">Ingredients</string>
     <string name="visit_website">Visit recipe website</string>
+    <string name="welcome_text">
+        Welcome to the What2Eat app.\n
+        In this application you can organize your own mealparts (like patato\'s, meat, chicken,…).
+        You can add, remove or edit your own mealparts. You can even look for online inspiration
+        based on your selected mealpart.\n\n
+        When you have filled your mealparts repository you can use these mealparts to arrange your meals.
+        Also here you can add, remove or edit meals. You can even take a picture of your meal to save
+        a visual representation. \n\n
+        By linking mealparts to certain meals, the linked meals will be visible in the mealpart detail
+        window.\n\n
+        If you don\'t know what meal to prepare, you can check out your own meal repository organized in
+        this application.\n\n
+        I hope you enjoy using What2Eat!
+    </string>
+
+    <string name="go_to_my_meals">Go to my meals</string>
+    <string name="go_to_my_mealparts">Go to my mealparts</string>
 </resources>
