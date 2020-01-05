@@ -2,6 +2,7 @@ package android.com.what2eat.fragments
 
 
 import android.com.what2eat.R
+import android.com.what2eat.activities.MainActivity
 import android.com.what2eat.adapters.MaaltijdAdapter
 import android.com.what2eat.adapters.MaaltijdListener
 import android.com.what2eat.databinding.FragmentMaaltijdOnderdeelDetailBinding
@@ -129,7 +130,11 @@ class MaaltijdOnderdeelDetailFragment : Fragment() {
         binding.searchButton.setOnClickListener {
             findNavController().navigate(MaaltijdOnderdeelDetailFragmentDirections.actionMaaltijdOnderdeelDetailFragmentToRecipeOverzichtFragment(viewModel.maaltijdOnderdeel.value!!.naam))
         }
-
+        /**
+         * ActionBar title
+         */
+        val act = activity as MainActivity
+        act.setCustomActionBar("maaltijdonderdeeldetail")
         /**
          * Other
          */

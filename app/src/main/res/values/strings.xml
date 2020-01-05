@@ -80,4 +80,7 @@
         Native Apps I - Android mobile applications\n
         nick.gysels.w2819@student.hogent.be
     </string>
+    <string name="my_meal_part">My meal part</string>
+    <string name="recipe">Recipe</string>
+    <string name="recipes">Recipes</string>
 </resources>
